@@ -7,7 +7,7 @@ from re import match, compile, IGNORECASE
 from configparser import ConfigParser, NoOptionError, NoSectionError
 
 from varken.varkenlogger import BlacklistFilter
-from varken.structures import SickChillServer, UniFiServer
+from varken.structures import SickChillServer, UniFiServer, CleanuparrServer
 from varken.helpers import clean_sid_check, rfc1918_ip_check, boolcheck
 from varken.structures import SonarrServer, RadarrServer, OmbiServer, OverseerrServer, TautulliServer, InfluxServer
 
@@ -17,7 +17,8 @@ class INIParser(object):
         self.config = None
         self.data_folder = data_folder
         self.filtered_strings = None
-        self.services = ['sonarr', 'radarr', 'lidarr', 'ombi', 'overseerr', 'tautulli', 'sickchill', 'unifi']
+        self.services = ['sonarr', 'radarr', 'lidarr', 'ombi', 'overseerr', 'tautulli', 'sickchill', 'unifi',
+                         'cleanuparr']
 
         self.logger = getLogger()
         self.influx_server = InfluxServer()
@@ -337,6 +338,28 @@ class INIParser(object):
                             server = UniFiServer(id=server_id, url=scheme + url, verify_ssl=verify_ssl, site=site,
                                                  username=username, password=password, usg_name=usg_name,
                                                  get_usg_stats_run_seconds=get_usg_stats_run_seconds)
+
+                        if service == 'cleanuparr':
+                            def setting(key, getter=self.config.get):
+                                return env.get(f'VRKN_{envsection}_{key.upper()}', getter(section, key))
+
+                            server = CleanuparrServer(
+                                id=server_id, url=scheme + url, api_key=apikey, verify_ssl=verify_ssl,
+                                include_dry_run=boolcheck(setting('include_dry_run')),
+                                get_stats=boolcheck(setting('get_stats')),
+                                stats_hours=int(setting('stats_hours', self.config.getint)),
+                                get_stats_run_seconds=int(setting('get_stats_run_seconds', self.config.getint)),
+                                get_timeline=boolcheck(setting('get_timeline')),
+                                timeline_hours=int(setting('timeline_hours', self.config.getint)),
+                                get_timeline_run_seconds=int(setting('get_timeline_run_seconds',
+                                                                     self.config.getint)),
+                                get_strikes=boolcheck(setting('get_strikes')),
+                                num_strikes_to_fetch=int(setting('num_strikes_to_fetch', self.config.getint)),
+                                get_strikes_run_seconds=int(setting('get_strikes_run_seconds', self.config.getint)),
+                                get_events=boolcheck(setting('get_events')),
+                                events_severity=setting('events_severity').strip(),
+                                num_events_to_fetch=int(setting('num_events_to_fetch', self.config.getint)),
+                                get_events_run_seconds=int(setting('get_events_run_seconds', self.config.getint)))
 
                         getattr(self, f'{service}_servers').append(server)
                     except NoOptionError as e:

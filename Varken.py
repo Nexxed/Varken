@@ -26,6 +26,7 @@ from varken.dbmanager import DBManager
 from varken.helpers import GeoIPHandler
 from varken.tautulli import TautulliAPI
 from varken.sickchill import SickChillAPI
+from varken.cleanuparr import CleanuparrAPI
 from varken.varkenlogger import VarkenLogger
 
 
@@ -183,10 +184,26 @@ if __name__ == "__main__":
             at_time = schedule.every(server.get_usg_stats_run_seconds).seconds
             at_time.do(thread, UNIFI.get_usg_stats).tag("unifi-{}-get_usg_stats".format(server.id))
 
+    if CONFIG.cleanuparr_enabled:
+        for server in CONFIG.cleanuparr_servers:
+            CLEANUPARR = CleanuparrAPI(server, DBMANAGER)
+            if server.get_stats:
+                at_time = schedule.every(server.get_stats_run_seconds).seconds
+                at_time.do(thread, CLEANUPARR.get_stats).tag("cleanuparr-{}-get_stats".format(server.id))
+            if server.get_timeline:
+                at_time = schedule.every(server.get_timeline_run_seconds).seconds
+                at_time.do(thread, CLEANUPARR.get_timeline).tag("cleanuparr-{}-get_timeline".format(server.id))
+            if server.get_strikes:
+                at_time = schedule.every(server.get_strikes_run_seconds).seconds
+                at_time.do(thread, CLEANUPARR.get_strikes).tag("cleanuparr-{}-get_strikes".format(server.id))
+            if server.get_events:
+                at_time = schedule.every(server.get_events_run_seconds).seconds
+                at_time.do(thread, CLEANUPARR.get_events).tag("cleanuparr-{}-get_events".format(server.id))
+
     # Run all on startup
     SERVICES_ENABLED = [CONFIG.ombi_enabled, CONFIG.radarr_enabled, CONFIG.tautulli_enabled, CONFIG.unifi_enabled,
                         CONFIG.sonarr_enabled, CONFIG.sickchill_enabled, CONFIG.lidarr_enabled,
-                        CONFIG.overseerr_enabled]
+                        CONFIG.overseerr_enabled, CONFIG.cleanuparr_enabled]
     if not [enabled for enabled in SERVICES_ENABLED if enabled]:
         vl.logger.error("All services disabled. Exiting")
         exit(1)

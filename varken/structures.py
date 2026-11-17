@@ -101,6 +101,26 @@ class UniFiServer(NamedTuple):
     verify_ssl: bool = False
 
 
+class CleanuparrServer(NamedTuple):
+    api_key: str = None
+    id: int = None
+    url: str = None
+    verify_ssl: bool = False
+    include_dry_run: bool = False
+    get_stats: bool = False
+    stats_hours: int = 24
+    get_stats_run_seconds: int = 300
+    get_timeline: bool = False
+    timeline_hours: int = 48
+    get_timeline_run_seconds: int = 300
+    get_strikes: bool = False
+    num_strikes_to_fetch: int = 50
+    get_strikes_run_seconds: int = 300
+    get_events: bool = False
+    events_severity: str = 'Important'
+    num_events_to_fetch: int = 50
+    get_events_run_seconds: int = 300
+
 
 # Shared
 class QueuePages(NamedTuple):
