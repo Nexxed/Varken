@@ -1,5 +1,18 @@
 # Change Log
 
+## Nexxed fork (unreleased)
+
+**Implemented enhancements:**
+- Cleanuparr collector (`[cleanuparr-N]`). It writes the `Cleanuparr` measurement: stats summary and breakdowns,
+  job runs, client/arr health, hourly timelines, struck downloads and recent events.
+- Sonarr/Radarr/Lidarr structures ignore API fields they don't know instead of dropping the whole payload.
+
+**Fixed bugs:**
+- The Docker image now gets the VERSION/BRANCH/BUILD_DATE/VCS_REF build args (previously always `0.0.0-edge`).
+
+**Other:**
+- The CI builds and pushes `ghcr.io/nexxed/varken` instead of Docker Hub.
+
 ## [v1.7.7](https://github.com/Boerderij/Varken/tree/v1.7.7) (2020-12-21)
 [Full Changelog](https://github.com/Boerderij/Varken/compare/1.7.6...v1.7.7)
 

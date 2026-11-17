@@ -1,20 +1,25 @@
 FROM python:3.10.5-alpine
 
+ARG VERSION="0.0.0"
+ARG BRANCH="edge"
+ARG BUILD_DATE="1/1/1970"
+ARG VCS_REF=""
+
 ENV DEBUG="True" \
     DATA_FOLDER="/config" \
-    VERSION="0.0.0" \
-    BRANCH="edge" \
-    BUILD_DATE="1/1/1970"
+    VERSION=$VERSION \
+    BRANCH=$BRANCH \
+    BUILD_DATE=$BUILD_DATE
 
 LABEL maintainer="dirtycajunrice,samwiseg0" \
   org.opencontainers.image.created=$BUILD_DATE \
-  org.opencontainers.image.url="https://github.com/Boerderij/Varken" \
-  org.opencontainers.image.source="https://github.com/Boerderij/Varken" \
+  org.opencontainers.image.url="https://github.com/Nexxed/Varken" \
+  org.opencontainers.image.source="https://github.com/Nexxed/Varken" \
   org.opencontainers.image.version=$VERSION \
   org.opencontainers.image.revision=$VCS_REF \
-  org.opencontainers.image.vendor="boerderij" \
+  org.opencontainers.image.vendor="nexxed" \
   org.opencontainers.image.title="varken" \
-  org.opencontainers.image.description="Varken is a standalone application to aggregate data from the Plex ecosystem into InfluxDB using Grafana for a frontend" \
+  org.opencontainers.image.description="Varken (Nexxed fork, adds Cleanuparr) aggregates data from the Plex ecosystem into InfluxDB using Grafana for a frontend" \
   org.opencontainers.image.licenses="MIT"
 
 WORKDIR /app

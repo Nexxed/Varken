@@ -9,6 +9,12 @@
 [![Release](https://img.shields.io/github/release/boerderij/varken.svg?style=flat-square)](https://github.com/Boerderij/Varken/releases/latest)
 [![Docker Pulls](https://img.shields.io/docker/pulls/boerderij/varken.svg)](https://hub.docker.com/r/boerderij/varken/)
 
+> **About this fork:** this is [Nexxed/Varken](https://github.com/Nexxed/Varken), based on upstream's `develop`
+> branch. It adds a [Cleanuparr](https://github.com/Cleanuparr/Cleanuparr) collector, keeps working when newer
+> Sonarr/Radarr releases add API fields, and publishes images to `ghcr.io/nexxed/varken`
+> (`:develop`/`:latest`, `:cleanuparr`, `:sha-<commit>`). Enable it with `cleanuparr_server_ids` and a
+> `[cleanuparr-N]` section; see `data/varken.example.ini`. The API key is the one on Cleanuparr's account settings page.
+
 Dutch for PIG. PIG is an Acronym for Plex/InfluxDB/Grafana
 
 Varken is a standalone application to aggregate data from the Plex 
