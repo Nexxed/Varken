@@ -12,9 +12,12 @@ from urllib.request import urlretrieve
 from json.decoder import JSONDecodeError
 from os.path import abspath, join, basename, isdir
 from urllib3.exceptions import InsecureRequestWarning
-from requests.exceptions import InvalidSchema, SSLError, ConnectionError, ChunkedEncodingError
+from requests.exceptions import InvalidSchema, SSLError, ConnectionError, ChunkedEncodingError, Timeout
 
 logger = getLogger()
+
+# (connect, read) seconds. Without a timeout a hung server blocks the job thread forever.
+REQUEST_TIMEOUT = (10, 60)
 
 
 class GeoIPHandler(object):
@@ -142,7 +145,7 @@ def rfc1918_ip_check(ip):
     return rfc1918_ip
 
 
-def connection_handler(session, request, verify, as_is_reply=False):
+def connection_handler(session, request, verify, as_is_reply=False, timeout=REQUEST_TIMEOUT):
     air = as_is_reply
     s = session
     r = request
@@ -152,7 +155,7 @@ def connection_handler(session, request, verify, as_is_reply=False):
     disable_warnings(InsecureRequestWarning)
 
     try:
-        get = s.send(r, verify=v)
+        get = s.send(r, verify=v, timeout=timeout)
         if get.status_code == 401:
             if 'NoSiteContext' in str(get.content):
                 logger.info('Your Site is incorrect for %s', r.url)
@@ -177,6 +180,8 @@ def connection_handler(session, request, verify, as_is_reply=False):
         logger.error('Cannot resolve the url/ip/port. Check connectivity. Error: %s', e)
     except ChunkedEncodingError as e:
         logger.error('Broken connection during request... oops? Error: %s', e)
+    except Timeout as e:
+        logger.error('Request timed out after %s seconds: %s', timeout, e)
 
     return return_json
 
