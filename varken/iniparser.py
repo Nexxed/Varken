@@ -12,6 +12,17 @@ from varken.helpers import clean_sid_check, rfc1918_ip_check, boolcheck
 from varken.structures import SonarrServer, RadarrServer, OmbiServer, OverseerrServer, TautulliServer, InfluxServer
 
 
+# Settings added after users already had a varken.ini. A missing key falls back to its default here, instead of
+# raising NoOptionError, which would make rectify_ini rewrite the whole varken.ini from the example.
+ARR_OPTIONAL_SETTINGS = {
+    'get_health': True, 'get_health_run_seconds': 300,
+    'get_wanted': True, 'get_wanted_run_seconds': 900,
+    'get_history_totals': True, 'get_history_totals_run_seconds': 900,
+    'get_disk': True, 'get_disk_run_seconds': 900
+}
+TAUTULLI_OPTIONAL_SETTINGS = {'get_server': True, 'get_server_run_seconds': 300}
+
+
 class INIParser(object):
     def __init__(self, data_folder):
         self.config = None
@@ -51,6 +62,18 @@ class INIParser(object):
         else:
             sids = clean_sid_check(global_server_ids, t)
             return sids
+
+    def optional_settings(self, section, envsection, defaults):
+        settings = {}
+        for key, default in defaults.items():
+            raw = env.get(f'VRKN_{envsection}_{key.upper()}', self.config.get(section, key, fallback=None))
+            if raw is None:
+                settings[key] = default
+            elif isinstance(default, bool):
+                settings[key] = boolcheck(raw)
+            else:
+                settings[key] = int(raw)
+        return settings
 
     def read_file(self, inifile):
         config = ConfigParser(interpolation=None)
@@ -198,6 +221,7 @@ class INIParser(object):
                                                       self.config.get(section, 'queue')))
                             queue_run_seconds = int(env.get(f'VRKN_{envsection}_QUEUE_RUN_SECONDS',
                                                     self.config.getint(section, 'queue_run_seconds')))
+                            arr_settings = self.optional_settings(section, envsection, ARR_OPTIONAL_SETTINGS)
 
                         if service in ['sonarr', 'lidarr']:
                             missing_days = int(env.get(f'VRKN_{envsection}_MISSING_DAYS',
@@ -217,7 +241,8 @@ class INIParser(object):
                                                   missing_days=missing_days, future_days=future_days,
                                                   missing_days_run_seconds=missing_days_run_seconds,
                                                   future_days_run_seconds=future_days_run_seconds,
-                                                  queue=queue, queue_run_seconds=queue_run_seconds)
+                                                  queue=queue, queue_run_seconds=queue_run_seconds,
+                                                  **arr_settings)
 
                         if service == 'radarr':
                             get_missing = boolcheck(env.get(f'VRKN_{envsection}_GET_MISSING',
@@ -228,7 +253,8 @@ class INIParser(object):
 
                             server = RadarrServer(id=server_id, url=scheme + url, api_key=apikey, verify_ssl=verify_ssl,
                                                   queue_run_seconds=queue_run_seconds, get_missing=get_missing,
-                                                  queue=queue, get_missing_run_seconds=get_missing_run_seconds)
+                                                  queue=queue, get_missing_run_seconds=get_missing_run_seconds,
+                                                  **arr_settings)
 
                         if service == 'tautulli':
                             fallback_ip = env.get(f'VRKN_{envsection}_FALLBACK_IP',
@@ -263,7 +289,9 @@ class INIParser(object):
                                                     fallback_ip=fallback_ip, get_stats=get_stats,
                                                     get_activity_run_seconds=get_activity_run_seconds,
                                                     get_stats_run_seconds=get_stats_run_seconds,
-                                                    maxmind_license_key=maxmind_license_key)
+                                                    maxmind_license_key=maxmind_license_key,
+                                                    **self.optional_settings(section, envsection,
+                                                                             TAUTULLI_OPTIONAL_SETTINGS))
 
                         if service == 'ombi':
                             issue_status_counts = boolcheck(env.get(

@@ -4,9 +4,14 @@ from datetime import datetime, timezone, date, timedelta
 
 from varken.structures import SonarrEpisode, SonarrTVShow, SonarrQueue, QueuePages
 from varken.helpers import hashit, connection_handler
+from varken.arr import ArrStatsMixin, queue_item_fields, quality_name
 
 
-class SonarrAPI(object):
+class SonarrAPI(ArrStatsMixin):
+    MEASUREMENT = 'Sonarr'
+    API_PREFIX = '/api/v3'
+    HISTORY_EVENTS = {'grabbed': 1, 'imported': 3, 'failed': 4, 'deleted': 5}
+
     def __init__(self, server, dbmanager):
         self.dbmanager = dbmanager
         self.server = server
@@ -130,35 +135,33 @@ class SonarrAPI(object):
             response = QueuePages(**get)
             queueResponse.extend(response.records)
 
+        influx_payload.append(self.queue_summary_point(queueResponse, now))
+
         download_queue = []
         for queueItem in queueResponse:
             try:
-                download_queue.append(SonarrQueue(**queueItem))
+                download_queue.append((queueItem, SonarrQueue(**queueItem)))
             except TypeError as e:
                 self.logger.error('TypeError has occurred : %s while creating Queue structure. Data attempted is: '
                                   '%s', e, queueItem)
-        if not download_queue:
-            return
 
-        for queueItem in download_queue:
-            tvShow = SonarrTVShow(**queueItem.series)
+        for raw_item, queueItem in download_queue:
             try:
-                episode = SonarrEpisode(**queueItem.episode)
+                tvShow = SonarrTVShow(**(queueItem.series or {}))
+                episode = SonarrEpisode(**(queueItem.episode or {}))
                 sxe = f"S{episode.seasonNumber:0>2}E{episode.episodeNumber:0>2}"
             except TypeError as e:
                 self.logger.error('TypeError has occurred : %s while processing the sonarr queue. \
                                   Remove invalid queue entry. Data attempted is: %s', e, queueItem)
                 continue
 
-            if queueItem.protocol.upper() == 'USENET':
-                protocol_id = 1
-            else:
-                protocol_id = 0
+            protocol = (queueItem.protocol or '').upper()
+            protocol_id = 1 if protocol == 'USENET' else 0
 
-            queue.append((tvShow.title, episode.title, queueItem.protocol.upper(),
-                          protocol_id, sxe, queueItem.seriesId, queueItem.quality['quality']['name']))
+            queue.append((tvShow.title, episode.title, protocol, protocol_id, sxe, queueItem.seriesId,
+                          quality_name(queueItem.quality), queue_item_fields(raw_item)))
 
-        for series_title, episode_title, protocol, protocol_id, sxe, sonarr_id, quality in queue:
+        for series_title, episode_title, protocol, protocol_id, sxe, sonarr_id, quality, extra_fields in queue:
             hash_id = hashit(f'{self.server.id}{series_title}{sxe}')
             influx_payload.append(
                 {
@@ -176,7 +179,8 @@ class SonarrAPI(object):
                     },
                     "time": now,
                     "fields": {
-                        "hash": hash_id
+                        "hash": hash_id,
+                        **extra_fields
                     }
                 }
             )

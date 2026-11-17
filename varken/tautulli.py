@@ -1,5 +1,7 @@
+from time import time
 from logging import getLogger
-from requests import Session, Request
+from requests import Session, Request, get as plain_get
+from requests.exceptions import RequestException
 from geoip2.errors import AddressNotFoundError
 from datetime import datetime, timezone, date, timedelta
 from influxdb.exceptions import InfluxDBClientError
@@ -8,13 +10,24 @@ from varken.structures import TautulliStream
 from varken.helpers import hashit, connection_handler, itemgetter_with_default
 
 
+def _num(value, cast=int, default=0):
+    """Tautulli returns most numbers as strings, often "" when not applicable."""
+    try:
+        return cast(float(value))
+    except (TypeError, ValueError):
+        return default
+
+
 class TautulliAPI(object):
     def __init__(self, server, dbmanager, geoiphandler):
         self.dbmanager = dbmanager
         self.server = server
         self.geoiphandler = geoiphandler
         self.session = Session()
-        self.session.params = {'apikey': self.server.api_key}
+        # Tautulli 2.18+ accepts the API key as a header, which keeps it out of request URLs (and so out of logs).
+        # _api() falls back to the apikey URL parameter if an older Tautulli rejects the header.
+        self.session.headers = {'X-Api-Key': self.server.api_key}
+        self.header_auth = True
         self.endpoint = '/api/v2'
         self.logger = getLogger()
         self.my_ip = None
@@ -22,13 +35,106 @@ class TautulliAPI(object):
     def __repr__(self):
         return f"<tautulli-{self.server.id}>"
 
+    def _api(self, cmd, **params):
+        params['cmd'] = cmd
+        req = self.session.prepare_request(Request('GET', self.server.url + self.endpoint, params=params))
+        response = connection_handler(self.session, req, self.server.verify_ssl, as_is_reply=True)
+        if response is False or response is None:
+            return False
+        if response.status_code == 401 and self.header_auth:
+            self.logger.warning('Tautulli rejected the X-Api-Key header (it needs v2.18 or newer). Falling back to '
+                                'sending the API key as a URL parameter.')
+            self.header_auth = False
+            self.session.headers.pop('X-Api-Key', None)
+            self.session.params = {'apikey': self.server.api_key}
+            params.pop('cmd')
+            return self._api(cmd, **params)
+        if response.status_code != 200:
+            return False
+        try:
+            return response.json()
+        except ValueError:
+            self.logger.error('No JSON response from Tautulli for %s', cmd)
+            return False
+
+    def lookup_public_ip(self):
+        # Plain request rather than self.session, so the Tautulli API key is never sent to a third party.
+        try:
+            return plain_get('https://api.ipify.org', timeout=10).text.strip()
+        except RequestException as e:
+            self.logger.error('Could not look up the public IP: %s', e)
+            return self.server.fallback_ip
+
+    @staticmethod
+    def session_fields(session):
+        """Per-session numbers and low-value strings, written as fields so they don't create new series."""
+        return {
+            "bandwidth": _num(session.bandwidth),
+            "stream_bitrate": _num(session.stream_bitrate),
+            "source_bitrate": _num(session.bitrate),
+            "progress": _num(session.progress_percent, float, 0.0),
+            "view_offset": _num(session.view_offset) // 1000,
+            "duration": _num(session.duration) // 1000,
+            "transcode_speed": _num(session.transcode_speed, float, 0.0),
+            "transcode_throttled": _num(session.transcode_throttled),
+            "transcode_hw_full_pipeline": _num(session.transcode_hw_full_pipeline),
+            "subtitle_decision": session.subtitle_decision or '',
+            "dynamic_range": session.stream_video_dynamic_range or '',
+            "network": session.location or '',
+            "library": session.library_name or '',
+            "atmos": _num(session.audio_atmos),
+            "dolby_vision": _num(session.video_dovi_present)
+        }
+
+    def get_server_status(self):
+        now = datetime.now(timezone.utc).astimezone().isoformat()
+        fields = {}
+
+        status = self._api('server_status')
+        fields["tautulli_reachable"] = int(bool(status))
+        if status:
+            fields["connected"] = int(bool((status['response'].get('data') or {}).get('connected')))
+
+        info = self._api('get_server_info')
+        if info:
+            data = info['response'].get('data') or {}
+            fields["plex_name"] = str(data.get('pms_name') or '')
+            fields["plex_version"] = str(data.get('pms_version') or '')
+            fields["plex_platform"] = str(data.get('pms_platform') or '')
+            fields["plexpass"] = _num(data.get('pms_plexpass'))
+
+        update = self._api('get_pms_update')
+        if update:
+            data = update['response'].get('data') or {}
+            fields["plex_update_available"] = int(bool(data.get('update_available')))
+            fields["plex_update_version"] = str(data.get('version') or '')
+
+        tautulli_info = self._api('get_tautulli_info')
+        if tautulli_info:
+            fields["tautulli_version"] = str((tautulli_info['response'].get('data') or {}).get('tautulli_version')
+                                             or '')
+
+        history = self._api('get_history', length=1, order_column='date', order_dir='desc')
+        if history:
+            rows = (history['response'].get('data') or {}).get('data') or []
+            if rows:
+                last_play = _num(rows[0].get('stopped')) or _num(rows[0].get('date'))
+                if last_play:
+                    fields["last_play"] = datetime.fromtimestamp(last_play, timezone.utc).isoformat()
+                    fields["seconds_since_last_play"] = int(time() - last_play)
+
+        self.dbmanager.write_points([{
+            "measurement": "Tautulli",
+            "tags": {"type": "Server_Status", "server": self.server.id},
+            "time": now,
+            "fields": fields
+        }])
+
     def get_activity(self):
         now = datetime.now(timezone.utc).astimezone().isoformat()
         influx_payload = []
-        params = {'cmd': 'get_activity'}
 
-        req = self.session.prepare_request(Request('GET', self.server.url + self.endpoint, params=params))
-        g = connection_handler(self.session, req, self.server.verify_ssl)
+        g = self._api('get_activity')
 
         if not g:
             return
@@ -62,7 +168,7 @@ class TautulliAPI(object):
                     except AddressNotFoundError as e:
                         self.logger.error('%s', e)
 
-                        self.my_ip = self.session.get('http://ip.42.pl/raw').text
+                        self.my_ip = self.lookup_public_ip()
                         self.logger.debug('Looked the public IP and set it to %s', self.my_ip)
 
                         geodata = self.geoiphandler.lookup(self.my_ip)
@@ -117,9 +223,9 @@ class TautulliAPI(object):
 
             # Platform Overrides
             platform_name = session.platform
-            if platform_name in 'osx':
+            if platform_name == 'osx':
                 platform_name = 'macOS'
-            if platform_name in 'windows':
+            if platform_name == 'windows':
                 platform_name = 'Windows'
 
             hash_id = hashit(f'{session.session_id}{session.session_key}{session.username}{session.full_title}')
@@ -160,11 +266,14 @@ class TautulliAPI(object):
                     },
                     "time": now,
                     "fields": {
-                        "hash": hash_id
+                        "hash": hash_id,
+                        **self.session_fields(session)
                     }
                 }
             )
 
+        transcodes = [s for s in sessions if s.transcode_decision == 'transcode']
+        hw_transcodes = [s for s in transcodes if _num(s.transcode_hw_encoding) or _num(s.transcode_hw_decoding)]
         influx_payload.append(
             {
                 "measurement": "Tautulli",
@@ -180,7 +289,12 @@ class TautulliAPI(object):
                     "lan_bandwidth": int(get['lan_bandwidth']),
                     "transcode_streams": int(get['stream_count_transcode']),
                     "direct_play_streams": int(get['stream_count_direct_play']),
-                    "direct_streams": int(get['stream_count_direct_stream'])
+                    "direct_streams": int(get['stream_count_direct_stream']),
+                    "hw_transcodes": len(hw_transcodes),
+                    "sw_transcodes": len(transcodes) - len(hw_transcodes),
+                    "throttled_streams": sum(1 for s in sessions if _num(s.transcode_throttled)),
+                    "lan_streams": sum(1 for s in sessions if (s.location or '') == 'lan'),
+                    "wan_streams": sum(1 for s in sessions if (s.location or '') in ('wan', 'cellular'))
                 }
             }
         )
@@ -190,10 +304,8 @@ class TautulliAPI(object):
     def get_stats(self):
         now = datetime.now(timezone.utc).astimezone().isoformat()
         influx_payload = []
-        params = {'cmd': 'get_libraries'}
 
-        req = self.session.prepare_request(Request('GET', self.server.url + self.endpoint, params=params))
-        g = connection_handler(self.session, req, self.server.verify_ssl)
+        g = self._api('get_libraries')
 
         if not g:
             return
@@ -272,7 +384,7 @@ class TautulliAPI(object):
                     except AddressNotFoundError as e:
                         self.logger.error('%s', e)
 
-                        self.my_ip = self.session.get('http://ip.42.pl/raw').text
+                        self.my_ip = self.lookup_public_ip()
                         self.logger.debug('Looked the public IP and set it to %s', self.my_ip)
 
                         geodata = self.geoiphandler.lookup(self.my_ip)
@@ -314,9 +426,9 @@ class TautulliAPI(object):
 
             # Platform Overrides
             platform_name = session.platform
-            if platform_name in 'osx':
+            if platform_name == 'osx':
                 platform_name = 'Plex Mac OS'
-            if platform_name in 'windows':
+            if platform_name == 'windows':
                 platform_name = 'Plex Windows'
 
             player_state = 100

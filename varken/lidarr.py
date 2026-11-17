@@ -4,9 +4,15 @@ from datetime import datetime, timezone, date, timedelta
 
 from varken.structures import LidarrQueue, LidarrAlbum
 from varken.helpers import hashit, connection_handler
+from varken.arr import ArrStatsMixin, queue_item_fields, quality_name
 
 
-class LidarrAPI(object):
+class LidarrAPI(ArrStatsMixin):
+    MEASUREMENT = 'Lidarr'
+    API_PREFIX = '/api/v1'
+    HISTORY_EVENTS = {'grabbed': 1, 'track_imported': 3, 'failed': 4, 'deleted': 5, 'renamed': 6,
+                      'import_incomplete': 7, 'imported': 8}
+
     def __init__(self, server, dbmanager):
         self.dbmanager = dbmanager
         self.server = server
@@ -92,22 +98,21 @@ class LidarrAPI(object):
         if not get:
             return
 
+        records = get.get('records') or []
+        influx_payload.append(self.queue_summary_point(records, now))
+
         queue = []
-        for song in get['records']:
+        for song in records:
             try:
-                queue.append(LidarrQueue(**song))
+                queue.append((song, LidarrQueue(**song)))
             except TypeError as e:
                 self.logger.error('TypeError has occurred : %s while creating LidarrQueue structure for show. Data '
                                   'attempted is: %s', e, song)
 
-        if not queue:
-            return
-
-        for song in queue:
-            if song.protocol.upper() == 'USENET':
-                protocol_id = 1
-            else:
-                protocol_id = 0
+        for raw_item, song in queue:
+            # Lidarr 3 reports "UsenetDownloadProtocol"/"TorrentDownloadProtocol" rather than "usenet"/"torrent".
+            protocol = 'USENET' if 'usenet' in (song.protocol or '').lower() else 'TORRENT'
+            protocol_id = 1 if protocol == 'USENET' else 0
             hash_id = hashit(f'{self.server.id}{song.title}{song.artistId}')
             influx_payload.append(
                 {
@@ -117,14 +122,15 @@ class LidarrAPI(object):
                         "id": song.id,
                         "server": self.server.id,
                         "title": song.title,
-                        "quality": song.quality['quality']['name'],
-                        "protocol": song.protocol,
+                        "quality": quality_name(song.quality),
+                        "protocol": protocol,
                         "protocol_id": protocol_id,
                         "indexer": song.indexer
                     },
                     "time": now,
                     "fields": {
-                        "hash": hash_id
+                        "hash": hash_id,
+                        **queue_item_fields(raw_item)
                     }
                 }
             )

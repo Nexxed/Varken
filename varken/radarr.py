@@ -4,9 +4,15 @@ from datetime import datetime, timezone
 
 from varken.structures import QueuePages, RadarrMovie, RadarrQueue
 from varken.helpers import hashit, connection_handler
+from varken.arr import ArrStatsMixin, queue_item_fields, quality_name
 
 
-class RadarrAPI(object):
+class RadarrAPI(ArrStatsMixin):
+    MEASUREMENT = 'Radarr'
+    API_PREFIX = '/api/v3'
+    HISTORY_EVENTS = {'grabbed': 1, 'imported': 3, 'failed': 4, 'deleted': 6, 'renamed': 8, 'ignored': 9}
+    WANTED_PAGE_SIZE = 500
+
     def __init__(self, server, dbmanager):
         self.dbmanager = dbmanager
         self.server = server
@@ -19,19 +25,29 @@ class RadarrAPI(object):
         return f"<radarr-{self.server.id}>"
 
     def get_missing(self):
-        endpoint = '/api/v3/movie'
+        # /wanted/missing returns only monitored movies without a file, instead of the whole library from /movie
+        # (about 12 MB every run for a ~2,000 movie library).
+        endpoint = '/api/v3/wanted/missing'
         now = datetime.now(timezone.utc).astimezone().isoformat()
         influx_payload = []
         missing = []
 
-        req = self.session.prepare_request(Request('GET', self.server.url + endpoint))
-        get = connection_handler(self.session, req, self.server.verify_ssl)
-
-        if not get:
-            return
+        records = []
+        page = 1
+        while True:
+            params = {'page': page, 'pageSize': self.WANTED_PAGE_SIZE, 'monitored': 'true'}
+            req = self.session.prepare_request(Request('GET', self.server.url + endpoint, params=params))
+            get = connection_handler(self.session, req, self.server.verify_ssl)
+            if not get:
+                return
+            response = QueuePages(**get)
+            records.extend(response.records or [])
+            if not response.records or int(response.totalRecords or 0) <= page * self.WANTED_PAGE_SIZE:
+                break
+            page += 1
 
         try:
-            movies = [RadarrMovie(**movie) for movie in get]
+            movies = [RadarrMovie(**movie) for movie in records]
         except TypeError as e:
             self.logger.error('TypeError has occurred : %s while creating RadarrMovie structure', e)
             return
@@ -100,31 +116,30 @@ class RadarrAPI(object):
             response = QueuePages(**get)
             queueResponse.extend(response.records)
 
+        influx_payload.append(self.queue_summary_point(queueResponse, now))
+
         download_queue = []
         for queueItem in queueResponse:
             try:
-                download_queue.append(RadarrQueue(**queueItem))
+                download_queue.append((queueItem, RadarrQueue(**queueItem)))
             except TypeError as e:
+                # Skip just this item; previously one bad record dropped the whole queue.
                 self.logger.warning('TypeError has occurred : %s while creating RadarrQueue structure', e)
-                return
-        if not download_queue:
-            self.logger.warning("No data to send to influx for radarr-queue instance, discarding.")
-            return
 
-        for queue_item in download_queue:
-            movie = RadarrMovie(**queue_item.movie)
+        for raw_item, queue_item in download_queue:
+            try:
+                movie = RadarrMovie(**(queue_item.movie or {}))
+                name = f'{movie.title} ({movie.year})'
+                protocol = (queue_item.protocol or '').upper()
+                protocol_id = 1 if protocol == 'USENET' else 0
+                # tmdbId used to hold the queue item id; write the movie's real TMDb id.
+                queue.append((name, quality_name(queue_item.quality), protocol, protocol_id,
+                              movie.tmdbId if movie.tmdbId is not None else queue_item.id, movie.titleSlug,
+                              queue_item_fields(raw_item)))
+            except (TypeError, KeyError, AttributeError) as e:
+                self.logger.warning('Skipping Radarr queue item %s: %s', queue_item.id, e)
 
-            name = f'{movie.title} ({movie.year})'
-
-            if queue_item.protocol.upper() == 'USENET':
-                protocol_id = 1
-            else:
-                protocol_id = 0
-
-            queue.append((name, queue_item.quality['quality']['name'], queue_item.protocol.upper(),
-                          protocol_id, queue_item.id, movie.titleSlug))
-
-        for name, quality, protocol, protocol_id, qid, title_slug in queue:
+        for name, quality, protocol, protocol_id, qid, title_slug, extra_fields in queue:
             hash_id = hashit(f'{self.server.id}{name}{quality}')
             influx_payload.append(
                 {
@@ -141,7 +156,8 @@ class RadarrAPI(object):
                     },
                     "time": now,
                     "fields": {
-                        "hash": hash_id
+                        "hash": hash_id,
+                        **extra_fields
                     }
                 }
             )

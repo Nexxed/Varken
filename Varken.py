@@ -38,6 +38,17 @@ def thread(job, **kwargs):
     worker.start()
 
 
+def schedule_arr_stats(api, server, name):
+    """Health, wanted counts, history totals and disk space, shared by Sonarr, Radarr and Lidarr."""
+    for enabled, seconds, job in ((server.get_health, server.get_health_run_seconds, api.get_health),
+                                  (server.get_wanted, server.get_wanted_run_seconds, api.get_wanted),
+                                  (server.get_history_totals, server.get_history_totals_run_seconds,
+                                   api.get_history_totals),
+                                  (server.get_disk, server.get_disk_run_seconds, api.get_disk)):
+        if enabled:
+            schedule.every(seconds).seconds.do(thread, job).tag(f"{name}-{server.id}-{job.__name__}")
+
+
 if __name__ == "__main__":
     parser = ArgumentParser(prog='varken',
                             description='Command-line utility to aggregate data from the plex ecosystem into InfluxDB',
@@ -108,6 +119,7 @@ if __name__ == "__main__":
             if server.future_days > 0:
                 at_time = schedule.every(server.future_days_run_seconds).seconds
                 at_time.do(thread, SONARR.get_calendar, query="Future").tag("sonarr-{}-get_future".format(server.id))
+            schedule_arr_stats(SONARR, server, 'sonarr')
 
     if CONFIG.tautulli_enabled:
         GEOIPHANDLER = GeoIPHandler(DATA_FOLDER, CONFIG.tautulli_servers[0].maxmind_license_key)
@@ -120,6 +132,9 @@ if __name__ == "__main__":
             if server.get_stats:
                 at_time = schedule.every(server.get_stats_run_seconds).seconds
                 at_time.do(thread, TAUTULLI.get_stats).tag("tautulli-{}-get_stats".format(server.id))
+            if server.get_server:
+                at_time = schedule.every(server.get_server_run_seconds).seconds
+                at_time.do(thread, TAUTULLI.get_server_status).tag("tautulli-{}-get_server_status".format(server.id))
 
     if CONFIG.radarr_enabled:
         for server in CONFIG.radarr_servers:
@@ -130,6 +145,7 @@ if __name__ == "__main__":
             if server.queue:
                 at_time = schedule.every(server.queue_run_seconds).seconds
                 at_time.do(thread, RADARR.get_queue).tag("radarr-{}-get_queue".format(server.id))
+            schedule_arr_stats(RADARR, server, 'radarr')
 
     if CONFIG.lidarr_enabled:
         for server in CONFIG.lidarr_servers:
@@ -145,6 +161,7 @@ if __name__ == "__main__":
                 at_time = schedule.every(server.future_days_run_seconds).seconds
                 at_time.do(thread, LIDARR.get_calendar, query="Future").tag("lidarr-{}-get_future".format(
                     server.id))
+            schedule_arr_stats(LIDARR, server, 'lidarr')
 
     if CONFIG.ombi_enabled:
         for server in CONFIG.ombi_servers:

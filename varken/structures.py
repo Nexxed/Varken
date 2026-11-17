@@ -31,6 +31,14 @@ class SonarrServer(NamedTuple):
     queue_run_seconds: int = 30
     url: str = None
     verify_ssl: bool = False
+    get_health: bool = True
+    get_health_run_seconds: int = 300
+    get_wanted: bool = True
+    get_wanted_run_seconds: int = 900
+    get_history_totals: bool = True
+    get_history_totals_run_seconds: int = 900
+    get_disk: bool = True
+    get_disk_run_seconds: int = 900
 
 
 class RadarrServer(NamedTuple):
@@ -42,6 +50,14 @@ class RadarrServer(NamedTuple):
     queue_run_seconds: int = 30
     url: str = None
     verify_ssl: bool = False
+    get_health: bool = True
+    get_health_run_seconds: int = 300
+    get_wanted: bool = True
+    get_wanted_run_seconds: int = 900
+    get_history_totals: bool = True
+    get_history_totals_run_seconds: int = 900
+    get_disk: bool = True
+    get_disk_run_seconds: int = 900
 
 
 class OmbiServer(NamedTuple):
@@ -79,6 +95,8 @@ class TautulliServer(NamedTuple):
     url: str = None
     verify_ssl: bool = None
     maxmind_license_key: str = None
+    get_server: bool = True
+    get_server_run_seconds: int = 300
 
 
 class SickChillServer(NamedTuple):
@@ -605,6 +623,9 @@ class TautulliStream(NamedTuple):
     video_codec_level: str = None
     video_decision: str = None
     video_dynamic_range: str = None
+    # Added in Tautulli 2.18
+    audio_atmos: int = None
+    video_dovi_present: int = None
     video_frame_rate: str = None
     video_framerate: str = None
     video_full_resolution: str = None
