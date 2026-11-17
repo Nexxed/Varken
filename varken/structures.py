@@ -101,6 +101,7 @@ class UniFiServer(NamedTuple):
     verify_ssl: bool = False
 
 
+
 # Shared
 class QueuePages(NamedTuple):
     page: int = None
@@ -650,3 +651,23 @@ class LidarrAlbum(NamedTuple):
     links: list = None
     statistics: dict = {}
     id: int = None
+
+
+# Newer *arr releases (Sonarr v4, Radarr v5+) keep adding fields to their API responses (e.g. releaseDate,
+# lastSearchTime, seasonNumber). The structures above are built with **kwargs straight from those responses, so any
+# field they don't declare raised "unexpected keyword argument" and the whole payload was dropped. Every field above
+# has a default, so ignoring undeclared keys is safe and keeps Varken working as the upstream APIs evolve.
+def _ignore_unknown_fields(cls):
+    original_new = cls.__new__
+    known = frozenset(cls._fields)
+
+    def __new__(klass, *args, **kwargs):
+        return original_new(klass, *args, **{k: v for k, v in kwargs.items() if k in known})
+
+    cls.__new__ = __new__
+    return cls
+
+
+for _structure in list(globals().values()):
+    if isinstance(_structure, type) and issubclass(_structure, tuple) and hasattr(_structure, '_fields'):
+        _ignore_unknown_fields(_structure)
