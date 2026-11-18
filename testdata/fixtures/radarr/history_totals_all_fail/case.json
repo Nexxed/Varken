@@ -1,0 +1,19 @@
+{
+  "job": "get_history_totals",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/history",
+      "status": 500,
+      "body": "x"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/blocklist",
+      "status": 500,
+      "body": "x"
+    }
+  ]
+}

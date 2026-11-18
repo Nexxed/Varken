@@ -1,0 +1,1 @@
+GET /api/v1/history/since?date=2026-11-17T16:30:00Z&includeAlbum=true&includeArtist=true

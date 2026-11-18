@@ -1,0 +1,19 @@
+{
+  "job": "get_tasks",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/system/task",
+      "status": 500,
+      "body": "x"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/system/status",
+      "status": 401,
+      "body": "x"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Radarr,download_client=SABnzbd,event_type=grabbed,indexer=NZBgeek,protocol=USENET,quality=HDTV-720p,server=1,type=History_Event event_id=1234567i,hash="7f2c246122005cc7dcd683983d226a1a",message="",source_title="Release.Name.S01E01.720p-GRP",title="Dune (2021)" 1794996000000234567
+Radarr,download_client=qBittorrent,event_type=downloadFolderImported,quality=HDTV-720p,server=1,type=History_Event event_id=42i,hash="a8baa56554f96369ab93e4f3bb068c22",message="Upgrade",source_title="Release.Name.S01E01.720p-GRP",title="Arrival" 1794999600000000042

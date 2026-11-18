@@ -1,0 +1,445 @@
+{
+  "job": "get_library",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/movie",
+      "status": 200,
+      "body": [
+        {
+          "title": "A",
+          "originalTitle": "A",
+          "sortTitle": "a",
+          "sizeOnDisk": 10,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/A",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/A",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21",
+          "movieFile": {
+            "size": 10,
+            "quality": {
+              "quality": {
+                "name": "Bluray-2160p",
+                "resolution": 2160
+              }
+            },
+            "mediaInfo": {
+              "videoDynamicRangeType": "HDR10"
+            }
+          }
+        },
+        {
+          "title": "B",
+          "originalTitle": "B",
+          "sortTitle": "b",
+          "sizeOnDisk": 20,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/B",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/B",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21",
+          "movieFile": {
+            "size": null,
+            "quality": {
+              "quality": {
+                "name": "WEBDL-1080p",
+                "resolution": 1080
+              }
+            },
+            "mediaInfo": {
+              "videoDynamicRangeType": ""
+            }
+          }
+        },
+        {
+          "title": "C",
+          "originalTitle": "C",
+          "sortTitle": "c",
+          "sizeOnDisk": 30,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/C",
+          "qualityProfileId": 1,
+          "monitored": false,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/C",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21",
+          "movieFile": {
+            "size": 30,
+            "quality": {
+              "quality": {
+                "name": "Bluray-2160p",
+                "resolution": "2160"
+              }
+            },
+            "mediaInfo": {
+              "videoDynamicRangeType": "DV HDR10"
+            }
+          }
+        },
+        {
+          "title": "D",
+          "originalTitle": "D",
+          "sortTitle": "d",
+          "sizeOnDisk": 40,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/D",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/D",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21",
+          "movieFile": {}
+        },
+        {
+          "title": "E",
+          "originalTitle": "E",
+          "sortTitle": "e",
+          "sizeOnDisk": 50,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/E",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/E",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21",
+          "movieFile": null
+        },
+        {
+          "title": "F",
+          "originalTitle": "F",
+          "sortTitle": "f",
+          "sizeOnDisk": 60,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/F",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/F",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21",
+          "movieFile": {
+            "size": "x",
+            "quality": null,
+            "mediaInfo": null
+          }
+        },
+        {
+          "title": "G",
+          "originalTitle": "G",
+          "sortTitle": "g",
+          "sizeOnDisk": 70,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/G",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/G",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21",
+          "movieFile": {
+            "size": 70.9,
+            "quality": {
+              "quality": {
+                "name": 720,
+                "resolution": -1
+              }
+            },
+            "mediaInfo": {
+              "videoDynamicRangeType": "HDR10"
+            }
+          }
+        },
+        {
+          "title": "H",
+          "originalTitle": "H",
+          "sortTitle": "h",
+          "sizeOnDisk": "80",
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2021-10-22T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2021,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/H",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/H",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 438631,
+          "titleSlug": "438631",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 631,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "job": "get_calendar",
+  "fix": "Python raised TypeError formatting a null season number and wrote nothing; that episode is now skipped and the others are written.",
+  "args": {
+    "query": "Future"
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 7,
+    "future_days": 1
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/calendar/",
+      "status": 200,
+      "body": [
+        {
+          "seriesId": 1,
+          "tvdbId": 1001,
+          "episodeFileId": 0,
+          "seasonNumber": null,
+          "episodeNumber": 1,
+          "title": "No season number",
+          "airDate": "2026-11-15",
+          "airDateUtc": "2026-11-15T02:00:00Z",
+          "runtime": 45,
+          "overview": "...",
+          "hasFile": false,
+          "monitored": true,
+          "absoluteEpisodeNumber": 1,
+          "unverifiedSceneNumbering": false,
+          "grabbed": false,
+          "id": 5001,
+          "finaleType": null,
+          "lastSearchTime": "2026-11-16T00:00:00Z",
+          "series": {
+            "title": "The Expanse",
+            "sortTitle": "the expanse",
+            "status": "ended",
+            "overview": "Space.",
+            "network": "Prime",
+            "images": [
+              {
+                "coverType": "poster",
+                "url": "/poster.jpg"
+              }
+            ],
+            "seasons": [
+              {
+                "seasonNumber": 1
+              }
+            ],
+            "year": 2015,
+            "path": "/tv/The Expanse",
+            "qualityProfileId": 1,
+            "seasonFolder": true,
+            "monitored": true,
+            "tvdbId": 280620,
+            "id": 1,
+            "added": "2020-01-01T00:00:00Z",
+            "ratings": {
+              "votes": 10,
+              "value": 8.5
+            },
+            "statistics": {
+              "seasonCount": 6,
+              "episodeFileCount": 62,
+              "episodeCount": 62,
+              "totalEpisodeCount": 62,
+              "sizeOnDisk": 130000000000,
+              "percentOfEpisodes": 100.0
+            },
+            "lastSearchTime": null
+          }
+        },
+        {
+          "seriesId": 1,
+          "tvdbId": 1001,
+          "episodeFileId": 0,
+          "seasonNumber": 1,
+          "episodeNumber": 1,
+          "title": "Dulcinea",
+          "airDate": "2026-11-15",
+          "airDateUtc": "2026-11-15T02:00:00Z",
+          "runtime": 45,
+          "overview": "...",
+          "hasFile": false,
+          "monitored": true,
+          "absoluteEpisodeNumber": 1,
+          "unverifiedSceneNumbering": false,
+          "grabbed": false,
+          "id": 5001,
+          "finaleType": null,
+          "lastSearchTime": "2026-11-16T00:00:00Z",
+          "series": {
+            "title": "The Expanse",
+            "sortTitle": "the expanse",
+            "status": "ended",
+            "overview": "Space.",
+            "network": "Prime",
+            "images": [
+              {
+                "coverType": "poster",
+                "url": "/poster.jpg"
+              }
+            ],
+            "seasons": [
+              {
+                "seasonNumber": 1
+              }
+            ],
+            "year": 2015,
+            "path": "/tv/The Expanse",
+            "qualityProfileId": 1,
+            "seasonFolder": true,
+            "monitored": true,
+            "tvdbId": 280620,
+            "id": 1,
+            "added": "2020-01-01T00:00:00Z",
+            "ratings": {
+              "votes": 10,
+              "value": 8.5
+            },
+            "statistics": {
+              "seasonCount": 6,
+              "episodeFileCount": 62,
+              "episodeCount": 62,
+              "totalEpisodeCount": 62,
+              "sizeOnDisk": 130000000000,
+              "percentOfEpisodes": 100.0
+            },
+            "lastSearchTime": null
+          }
+        }
+      ]
+    }
+  ]
+}

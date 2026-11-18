@@ -1,0 +1,24 @@
+{
+  "job": "get_missing",
+  "description": "an empty page ends the paging even when totalRecords says there is more",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/wanted/missing",
+      "status": 200,
+      "match_query": {
+        "page": "1"
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 500,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 1000,
+        "records": []
+      }
+    }
+  ]
+}

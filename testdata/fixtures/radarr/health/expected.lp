@@ -1,0 +1,8 @@
+Radarr,level=warning,server=1,source=IndexerStatusCheck,type=Health message="Indexers unavailable due to failures: X",wiki_url="https://wiki.servarr.com/sonarr/system#indexers-are-unavailable-due-to-failures" 1795019400123456000
+Radarr,level=warning,server=1,source=IndexerStatusCheck#2,type=Health message="Second indexer warning",wiki_url="" 1795019400123456000
+Radarr,level=error,server=1,source=DownloadClientCheck,type=Health message="Unable to communicate with SABnzbd",wiki_url="https://wiki.servarr.com/x" 1795019400123456000
+Radarr,level=notice,server=1,source=UpdateCheck,type=Health message="New update is available",wiki_url="" 1795019400123456000
+Radarr,level=warning,server=1,source=DownloadClientCheck,type=Health message="Different level, same source",wiki_url="" 1795019400123456000
+Radarr,level=warning,server=1,source=Unknown,type=Health message="No source: reads as Unknown, level lower-cased",wiki_url="" 1795019400123456000
+Radarr,level=unknown,server=1,source=RootFolderCheck,type=Health message="No type: unknown level xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",wiki_url="" 1795019400123456000
+Radarr,server=1,type=Health_Summary errors=1i,issues=5i,notices=1i,warnings=4i 1795019400123456000

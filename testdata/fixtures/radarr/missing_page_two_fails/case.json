@@ -1,0 +1,127 @@
+{
+  "job": "get_missing",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/wanted/missing",
+      "status": 200,
+      "match_query": {
+        "page": "1"
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 500,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 900,
+        "records": [
+          {
+            "title": "Dune",
+            "originalTitle": "Dune",
+            "sortTitle": "dune",
+            "sizeOnDisk": 0,
+            "status": "released",
+            "overview": "...",
+            "inCinemas": "2021-10-22T00:00:00Z",
+            "physicalRelease": "2022-01-11T00:00:00Z",
+            "digitalRelease": "2021-10-21T00:00:00Z",
+            "images": [
+              {
+                "coverType": "poster"
+              }
+            ],
+            "website": "",
+            "year": 2021,
+            "hasFile": false,
+            "youTubeTrailerId": "",
+            "studio": "Legendary",
+            "path": "/movies/Dune",
+            "qualityProfileId": 1,
+            "monitored": true,
+            "minimumAvailability": "released",
+            "isAvailable": true,
+            "folderName": "/movies/Dune",
+            "runtime": 155,
+            "cleanTitle": "dune",
+            "imdbId": "tt1160419",
+            "tmdbId": 438631,
+            "titleSlug": "438631",
+            "genres": [
+              "Science Fiction"
+            ],
+            "tags": [],
+            "added": "2021-01-01T00:00:00Z",
+            "ratings": {
+              "imdb": {
+                "votes": 1,
+                "value": 8.0
+              }
+            },
+            "popularity": 50.5,
+            "id": 631,
+            "lastSearchTime": "2026-11-01T00:00:00Z",
+            "releaseDate": "2021-10-21"
+          },
+          {
+            "title": "Arrival",
+            "originalTitle": "Arrival",
+            "sortTitle": "arrival",
+            "sizeOnDisk": 0,
+            "status": "released",
+            "overview": "...",
+            "inCinemas": "2021-10-22T00:00:00Z",
+            "physicalRelease": "2022-01-11T00:00:00Z",
+            "digitalRelease": "2021-10-21T00:00:00Z",
+            "images": [
+              {
+                "coverType": "poster"
+              }
+            ],
+            "website": "",
+            "year": 2016,
+            "hasFile": false,
+            "youTubeTrailerId": "",
+            "studio": "Legendary",
+            "path": "/movies/Arrival",
+            "qualityProfileId": 1,
+            "monitored": true,
+            "minimumAvailability": "released",
+            "isAvailable": false,
+            "folderName": "/movies/Arrival",
+            "runtime": 155,
+            "cleanTitle": "dune",
+            "imdbId": "tt1160419",
+            "tmdbId": 329865,
+            "titleSlug": "329865",
+            "genres": [
+              "Science Fiction"
+            ],
+            "tags": [],
+            "added": "2021-01-01T00:00:00Z",
+            "ratings": {
+              "imdb": {
+                "votes": 1,
+                "value": 8.0
+              }
+            },
+            "popularity": 50.5,
+            "id": 865,
+            "lastSearchTime": "2026-11-01T00:00:00Z",
+            "releaseDate": "2021-10-21"
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/wanted/missing",
+      "status": 500,
+      "match_query": {
+        "page": "2"
+      },
+      "body": "x"
+    }
+  ]
+}

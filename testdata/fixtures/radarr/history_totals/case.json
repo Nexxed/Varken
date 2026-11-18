@@ -1,0 +1,116 @@
+{
+  "job": "get_history_totals",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/history",
+      "status": 200,
+      "match_query": {
+        "eventType": 1
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 101,
+        "records": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/history",
+      "status": 200,
+      "match_query": {
+        "eventType": 3
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 103,
+        "records": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/history",
+      "status": 200,
+      "match_query": {
+        "eventType": 4
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 104,
+        "records": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/history",
+      "status": 200,
+      "match_query": {
+        "eventType": 6
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 106,
+        "records": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/history",
+      "status": 200,
+      "match_query": {
+        "eventType": 8
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 108,
+        "records": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/history",
+      "status": 200,
+      "match_query": {
+        "eventType": 9
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 109,
+        "records": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/blocklist",
+      "status": 200,
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 4,
+        "records": []
+      }
+    }
+  ]
+}

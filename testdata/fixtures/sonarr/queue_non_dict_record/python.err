@@ -1,0 +1,1 @@
+AttributeError: 'NoneType' object has no attribute 'get' at arr.py:194

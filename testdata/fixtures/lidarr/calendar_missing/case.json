@@ -1,0 +1,267 @@
+{
+  "job": "get_calendar",
+  "args": {
+    "query": "Missing"
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 30,
+    "future_days": 30
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/calendar",
+      "status": 200,
+      "match_query": {
+        "start": "2026-10-19",
+        "end": "2026-11-18"
+      },
+      "body": [
+        {
+          "title": "Random Access Memories",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 1,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          },
+          "statistics": {
+            "trackFileCount": 7,
+            "trackCount": 14,
+            "totalTrackCount": 14,
+            "sizeOnDisk": 1,
+            "percentOfTracks": 50.0
+          }
+        },
+        {
+          "title": "Discovery",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 2,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          },
+          "statistics": {
+            "trackFileCount": 7,
+            "trackCount": 14,
+            "totalTrackCount": 14,
+            "sizeOnDisk": 1,
+            "percentOfTracks": 100
+          }
+        },
+        {
+          "title": "Homework",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 3,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          },
+          "statistics": {
+            "trackFileCount": 7,
+            "trackCount": 14,
+            "totalTrackCount": 14,
+            "sizeOnDisk": 1,
+            "percentOfTracks": 100.0
+          }
+        },
+        {
+          "title": "No Stats Key",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 4,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          }
+        },
+        {
+          "title": "Null Percent",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 5,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          },
+          "statistics": {
+            "trackFileCount": 7,
+            "trackCount": 14,
+            "totalTrackCount": 14,
+            "sizeOnDisk": 1,
+            "percentOfTracks": null
+          }
+        },
+        {
+          "title": "Fragments, Live = 2",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 6,
+          "artist": {
+            "artistName": "Björk",
+            "id": 1
+          },
+          "statistics": {
+            "trackCount": 10,
+            "percentOfTracks": 0
+          }
+        },
+        {
+          "title": "Int Percent",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": null,
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 7,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          },
+          "statistics": {
+            "trackFileCount": 7,
+            "trackCount": 14,
+            "totalTrackCount": 14,
+            "sizeOnDisk": 1,
+            "percentOfTracks": 64
+          }
+        }
+      ]
+    }
+  ]
+}

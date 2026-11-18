@@ -1,0 +1,2 @@
+GET /api/v3/queue/status?pageSize=1000
+GET /api/v3/queue?includeEpisode=True&includeSeries=True&includeUnknownSeriesItems=False&pageSize=250

@@ -1,0 +1,534 @@
+{
+  "job": "get_queue",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/queue/status",
+      "status": 200,
+      "body": {
+        "totalCount": 3,
+        "count": 3,
+        "unknownCount": 1,
+        "errors": false,
+        "warnings": true,
+        "unknownErrors": false,
+        "unknownWarnings": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/queue",
+      "status": 200,
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 7,
+        "records": [
+          {
+            "id": 1,
+            "title": "Dune.2021.2160p",
+            "size": 1073741824,
+            "sizeleft": 536870912,
+            "timeleft": "00:10:00",
+            "estimatedCompletionTime": "2026-11-18T16:40:00Z",
+            "added": "2026-11-18T16:00:00Z",
+            "status": "downloading",
+            "trackedDownloadStatus": "ok",
+            "trackedDownloadState": "downloading",
+            "statusMessages": [],
+            "downloadId": "SABnzbd_nzo_1",
+            "protocol": "usenet",
+            "downloadClient": "SABnzbd",
+            "downloadClientHasPostImportCategory": false,
+            "indexer": "NZBgeek",
+            "outputPath": "/downloads/Dune.2021.2160p",
+            "quality": {
+              "quality": {
+                "name": "Bluray-2160p"
+              }
+            },
+            "languages": [
+              {
+                "id": 1,
+                "name": "English"
+              }
+            ],
+            "customFormats": [],
+            "customFormatScore": 0,
+            "movieId": 631,
+            "movie": {
+              "title": "Dune",
+              "originalTitle": "Dune",
+              "sortTitle": "dune",
+              "sizeOnDisk": 0,
+              "status": "released",
+              "overview": "...",
+              "inCinemas": "2021-10-22T00:00:00Z",
+              "physicalRelease": "2022-01-11T00:00:00Z",
+              "digitalRelease": "2021-10-21T00:00:00Z",
+              "images": [
+                {
+                  "coverType": "poster"
+                }
+              ],
+              "website": "",
+              "year": 2021,
+              "hasFile": false,
+              "youTubeTrailerId": "",
+              "studio": "Legendary",
+              "path": "/movies/Dune",
+              "qualityProfileId": 1,
+              "monitored": true,
+              "minimumAvailability": "released",
+              "isAvailable": true,
+              "folderName": "/movies/Dune",
+              "runtime": 155,
+              "cleanTitle": "dune",
+              "imdbId": "tt1160419",
+              "tmdbId": 438631,
+              "titleSlug": "438631",
+              "genres": [
+                "Science Fiction"
+              ],
+              "tags": [],
+              "added": "2021-01-01T00:00:00Z",
+              "ratings": {
+                "imdb": {
+                  "votes": 1,
+                  "value": 8.0
+                }
+              },
+              "popularity": 50.5,
+              "id": 631,
+              "lastSearchTime": "2026-11-01T00:00:00Z",
+              "releaseDate": "2021-10-21"
+            }
+          },
+          {
+            "id": 2,
+            "title": "Arrival.2016.1080p",
+            "size": 10,
+            "sizeleft": 3,
+            "timeleft": "00:00:09.9",
+            "estimatedCompletionTime": "2026-11-18T16:40:00Z",
+            "added": "2026-11-18T16:00:00Z",
+            "status": "downloading",
+            "trackedDownloadStatus": "ok",
+            "trackedDownloadState": "importPending",
+            "statusMessages": [],
+            "downloadId": "SABnzbd_nzo_2",
+            "protocol": "torrent",
+            "downloadClient": "SABnzbd",
+            "downloadClientHasPostImportCategory": false,
+            "indexer": "NZBgeek",
+            "outputPath": "/downloads/Arrival.2016.1080p",
+            "quality": {
+              "quality": {
+                "id": 4,
+                "name": "HDTV-720p",
+                "source": "television",
+                "resolution": 720
+              },
+              "revision": {
+                "version": 1,
+                "real": 0
+              }
+            },
+            "languages": [
+              {
+                "id": 1,
+                "name": "English"
+              }
+            ],
+            "customFormats": [],
+            "customFormatScore": 0,
+            "movieId": 865,
+            "movie": {
+              "title": "Arrival",
+              "originalTitle": "Arrival",
+              "sortTitle": "arrival",
+              "sizeOnDisk": 0,
+              "status": "released",
+              "overview": "...",
+              "inCinemas": "2021-10-22T00:00:00Z",
+              "physicalRelease": "2022-01-11T00:00:00Z",
+              "digitalRelease": "2021-10-21T00:00:00Z",
+              "images": [
+                {
+                  "coverType": "poster"
+                }
+              ],
+              "website": "",
+              "year": 2016,
+              "hasFile": false,
+              "youTubeTrailerId": "",
+              "studio": "Legendary",
+              "path": "/movies/Arrival",
+              "qualityProfileId": 1,
+              "monitored": true,
+              "minimumAvailability": "released",
+              "isAvailable": true,
+              "folderName": "/movies/Arrival",
+              "runtime": 155,
+              "cleanTitle": "dune",
+              "imdbId": "tt1160419",
+              "tmdbId": 329865,
+              "titleSlug": "329865",
+              "genres": [
+                "Science Fiction"
+              ],
+              "tags": [],
+              "added": "2021-01-01T00:00:00Z",
+              "ratings": {
+                "imdb": {
+                  "votes": 1,
+                  "value": 8.0
+                }
+              },
+              "popularity": 50.5,
+              "id": 865,
+              "lastSearchTime": "2026-11-01T00:00:00Z",
+              "releaseDate": "2021-10-21"
+            }
+          },
+          {
+            "id": 3,
+            "title": "Unknown.Movie",
+            "size": 1073741824,
+            "sizeleft": 536870912,
+            "timeleft": "00:10:00",
+            "estimatedCompletionTime": "2026-11-18T16:40:00Z",
+            "added": "2026-11-18T16:00:00Z",
+            "status": "downloading",
+            "trackedDownloadStatus": "ok",
+            "trackedDownloadState": "downloading",
+            "statusMessages": [],
+            "downloadId": "SABnzbd_nzo_3",
+            "protocol": "usenet",
+            "downloadClient": "SABnzbd",
+            "downloadClientHasPostImportCategory": false,
+            "indexer": "NZBgeek",
+            "outputPath": "/downloads/Unknown.Movie",
+            "quality": null,
+            "languages": [
+              {
+                "id": 1,
+                "name": "English"
+              }
+            ],
+            "customFormats": [],
+            "customFormatScore": 0,
+            "movieId": null,
+            "movie": null
+          },
+          {
+            "id": 4,
+            "title": "No.Tmdb",
+            "size": 1073741824,
+            "sizeleft": 536870912,
+            "timeleft": "00:10:00",
+            "estimatedCompletionTime": "2026-11-18T16:40:00Z",
+            "added": "2026-11-18T16:00:00Z",
+            "status": "downloading",
+            "trackedDownloadStatus": "ok",
+            "trackedDownloadState": "downloading",
+            "statusMessages": [],
+            "downloadId": "SABnzbd_nzo_4",
+            "protocol": "Usenet",
+            "downloadClient": "SABnzbd",
+            "downloadClientHasPostImportCategory": false,
+            "indexer": "NZBgeek",
+            "outputPath": "/downloads/No.Tmdb",
+            "quality": {
+              "quality": {
+                "id": 4,
+                "name": "HDTV-720p",
+                "source": "television",
+                "resolution": 720
+              },
+              "revision": {
+                "version": 1,
+                "real": 0
+              }
+            },
+            "languages": [
+              {
+                "id": 1,
+                "name": "English"
+              }
+            ],
+            "customFormats": [],
+            "customFormatScore": 0,
+            "movieId": 999,
+            "movie": {
+              "title": "No Tmdb",
+              "originalTitle": "No Tmdb",
+              "sortTitle": "no tmdb",
+              "sizeOnDisk": 0,
+              "status": "released",
+              "overview": "...",
+              "inCinemas": "2021-10-22T00:00:00Z",
+              "physicalRelease": "2022-01-11T00:00:00Z",
+              "digitalRelease": "2021-10-21T00:00:00Z",
+              "images": [
+                {
+                  "coverType": "poster"
+                }
+              ],
+              "website": "",
+              "year": null,
+              "hasFile": false,
+              "youTubeTrailerId": "",
+              "studio": "Legendary",
+              "path": "/movies/No Tmdb",
+              "qualityProfileId": 1,
+              "monitored": true,
+              "minimumAvailability": "released",
+              "isAvailable": true,
+              "folderName": "/movies/No Tmdb",
+              "runtime": 155,
+              "cleanTitle": "dune",
+              "imdbId": "tt1160419",
+              "tmdbId": null,
+              "titleSlug": "None",
+              "genres": [
+                "Science Fiction"
+              ],
+              "tags": [],
+              "added": "2021-01-01T00:00:00Z",
+              "ratings": {
+                "imdb": {
+                  "votes": 1,
+                  "value": 8.0
+                }
+              },
+              "popularity": 50.5,
+              "id": 999,
+              "lastSearchTime": "2026-11-01T00:00:00Z",
+              "releaseDate": "2021-10-21"
+            }
+          },
+          {
+            "id": 5,
+            "title": "Movie.Is.Text",
+            "size": 1073741824,
+            "sizeleft": 536870912,
+            "timeleft": "00:10:00",
+            "estimatedCompletionTime": "2026-11-18T16:40:00Z",
+            "added": "2026-11-18T16:00:00Z",
+            "status": "downloading",
+            "trackedDownloadStatus": "ok",
+            "trackedDownloadState": "downloading",
+            "statusMessages": [],
+            "downloadId": "SABnzbd_nzo_5",
+            "protocol": "usenet",
+            "downloadClient": "SABnzbd",
+            "downloadClientHasPostImportCategory": false,
+            "indexer": "NZBgeek",
+            "outputPath": "/downloads/Movie.Is.Text",
+            "quality": {
+              "quality": {
+                "id": 4,
+                "name": "HDTV-720p",
+                "source": "television",
+                "resolution": 720
+              },
+              "revision": {
+                "version": 1,
+                "real": 0
+              }
+            },
+            "languages": [
+              {
+                "id": 1,
+                "name": "English"
+              }
+            ],
+            "customFormats": [],
+            "customFormatScore": 0,
+            "movieId": null,
+            "movie": "oops"
+          },
+          {
+            "id": 6,
+            "title": "Protocol.Is.Number",
+            "size": 1073741824,
+            "sizeleft": 536870912,
+            "timeleft": "00:10:00",
+            "estimatedCompletionTime": "2026-11-18T16:40:00Z",
+            "added": "2026-11-18T16:00:00Z",
+            "status": "downloading",
+            "trackedDownloadStatus": "ok",
+            "trackedDownloadState": "downloading",
+            "statusMessages": [],
+            "downloadId": "SABnzbd_nzo_6",
+            "protocol": 5,
+            "downloadClient": "SABnzbd",
+            "downloadClientHasPostImportCategory": false,
+            "indexer": "NZBgeek",
+            "outputPath": "/downloads/Protocol.Is.Number",
+            "quality": {
+              "quality": {
+                "id": 4,
+                "name": "HDTV-720p",
+                "source": "television",
+                "resolution": 720
+              },
+              "revision": {
+                "version": 1,
+                "real": 0
+              }
+            },
+            "languages": [
+              {
+                "id": 1,
+                "name": "English"
+              }
+            ],
+            "customFormats": [],
+            "customFormatScore": 0,
+            "movieId": 631,
+            "movie": {
+              "title": "Dune",
+              "originalTitle": "Dune",
+              "sortTitle": "dune",
+              "sizeOnDisk": 0,
+              "status": "released",
+              "overview": "...",
+              "inCinemas": "2021-10-22T00:00:00Z",
+              "physicalRelease": "2022-01-11T00:00:00Z",
+              "digitalRelease": "2021-10-21T00:00:00Z",
+              "images": [
+                {
+                  "coverType": "poster"
+                }
+              ],
+              "website": "",
+              "year": 2021,
+              "hasFile": false,
+              "youTubeTrailerId": "",
+              "studio": "Legendary",
+              "path": "/movies/Dune",
+              "qualityProfileId": 1,
+              "monitored": true,
+              "minimumAvailability": "released",
+              "isAvailable": true,
+              "folderName": "/movies/Dune",
+              "runtime": 155,
+              "cleanTitle": "dune",
+              "imdbId": "tt1160419",
+              "tmdbId": 438631,
+              "titleSlug": "438631",
+              "genres": [
+                "Science Fiction"
+              ],
+              "tags": [],
+              "added": "2021-01-01T00:00:00Z",
+              "ratings": {
+                "imdb": {
+                  "votes": 1,
+                  "value": 8.0
+                }
+              },
+              "popularity": 50.5,
+              "id": 631,
+              "lastSearchTime": "2026-11-01T00:00:00Z",
+              "releaseDate": "2021-10-21"
+            }
+          },
+          {
+            "id": 7,
+            "title": "Timeleft.Is.Number",
+            "size": 1073741824,
+            "sizeleft": 536870912,
+            "timeleft": 60,
+            "estimatedCompletionTime": "2026-11-18T16:40:00Z",
+            "added": "2026-11-18T16:00:00Z",
+            "status": "downloading",
+            "trackedDownloadStatus": "ok",
+            "trackedDownloadState": "downloading",
+            "statusMessages": [],
+            "downloadId": "SABnzbd_nzo_7",
+            "protocol": "usenet",
+            "downloadClient": "SABnzbd",
+            "downloadClientHasPostImportCategory": false,
+            "indexer": "NZBgeek",
+            "outputPath": "/downloads/Timeleft.Is.Number",
+            "quality": {
+              "quality": {
+                "id": 4,
+                "name": "HDTV-720p",
+                "source": "television",
+                "resolution": 720
+              },
+              "revision": {
+                "version": 1,
+                "real": 0
+              }
+            },
+            "languages": [
+              {
+                "id": 1,
+                "name": "English"
+              }
+            ],
+            "customFormats": [],
+            "customFormatScore": 0,
+            "movieId": 631,
+            "movie": {
+              "title": "Dune",
+              "originalTitle": "Dune",
+              "sortTitle": "dune",
+              "sizeOnDisk": 0,
+              "status": "released",
+              "overview": "...",
+              "inCinemas": "2021-10-22T00:00:00Z",
+              "physicalRelease": "2022-01-11T00:00:00Z",
+              "digitalRelease": "2021-10-21T00:00:00Z",
+              "images": [
+                {
+                  "coverType": "poster"
+                }
+              ],
+              "website": "",
+              "year": 2021,
+              "hasFile": false,
+              "youTubeTrailerId": "",
+              "studio": "Legendary",
+              "path": "/movies/Dune",
+              "qualityProfileId": 1,
+              "monitored": true,
+              "minimumAvailability": "released",
+              "isAvailable": true,
+              "folderName": "/movies/Dune",
+              "runtime": 155,
+              "cleanTitle": "dune",
+              "imdbId": "tt1160419",
+              "tmdbId": 438631,
+              "titleSlug": "438631",
+              "genres": [
+                "Science Fiction"
+              ],
+              "tags": [],
+              "added": "2021-01-01T00:00:00Z",
+              "ratings": {
+                "imdb": {
+                  "votes": 1,
+                  "value": 8.0
+                }
+              },
+              "popularity": 50.5,
+              "id": 631,
+              "lastSearchTime": "2026-11-01T00:00:00Z",
+              "releaseDate": "2021-10-21"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

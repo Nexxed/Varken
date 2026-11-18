@@ -1,0 +1,16 @@
+{
+  "job": "get_history_events",
+  "args": {
+    "days": 1
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/history/since",
+      "status": 200,
+      "body": []
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "job": "get_calendar",
+  "fix": "Python raised AttributeError on a null statistics object and wrote nothing; it now reads as no statistics (0%, 0/0), like a missing one.",
+  "args": {
+    "query": "Future"
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 30,
+    "future_days": 30
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/calendar",
+      "status": 200,
+      "body": [
+        {
+          "title": "Null Stats",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 8,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          },
+          "statistics": null
+        },
+        {
+          "title": "Random Access Memories",
+          "disambiguation": "",
+          "overview": "",
+          "artistId": 1,
+          "foreignAlbumId": "mbid",
+          "monitored": true,
+          "anyReleaseOk": true,
+          "profileId": 1,
+          "duration": 3000,
+          "albumType": "Album",
+          "secondaryTypes": [],
+          "mediumCount": 1,
+          "ratings": {
+            "votes": 0,
+            "value": 0
+          },
+          "releaseDate": "2026-11-10T00:00:00Z",
+          "releases": [],
+          "genres": [],
+          "media": [],
+          "images": [],
+          "links": [],
+          "id": 1,
+          "artist": {
+            "artistName": "Daft Punk",
+            "id": 1
+          },
+          "statistics": {
+            "trackFileCount": 7,
+            "trackCount": 14,
+            "totalTrackCount": 14,
+            "sizeOnDisk": 1,
+            "percentOfTracks": 50.0
+          }
+        }
+      ]
+    }
+  ]
+}

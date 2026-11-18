@@ -1,0 +1,25 @@
+{"s": "00:00:00", "seconds": 0}
+{"s": "01:02:03", "seconds": 3723}
+{"s": "1.02:03:04", "seconds": 93784}
+{"s": "10.00:00:01", "seconds": 864001}
+{"s": "23:59:59.5", "seconds": 86399}
+{"s": "00:01:30.9999", "seconds": 90}
+{"s": "", "seconds": null}
+{"s": "bad", "seconds": null}
+{"s": "1:2", "seconds": null}
+{"s": "1.2.3:4:5", "seconds": null}
+{"s": "-1:00:00", "seconds": -3600}
+{"s": "99999.00:00:00", "seconds": 8639913600}
+{"s": ":::", "seconds": null}
+{"s": "1.:2:3", "seconds": null}
+{"s": "00:00:-5", "seconds": -5}
+{"s": " 1:2:3", "seconds": 3723}
+{"s": "1:2:3 ", "seconds": 3723}
+{"s": "1_0:00:00", "seconds": 36000}
+{"s": "00:00:1e2", "seconds": 100}
+{"s": "00:00:nan", "seconds": null}
+{"s": "00:00:inf", "seconds": {"error": "OverflowError"}}
+{"s": "٣:00:00", "seconds": 10800}
+{"s": "01:02:03:04", "seconds": null}
+{"s": ".1:2:3", "seconds": null}
+{"s": "1.5:00:00", "seconds": 104400}

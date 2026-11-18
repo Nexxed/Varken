@@ -1,0 +1,2 @@
+GET /api/v3/diskspace
+GET /api/v3/rootfolder

@@ -1,0 +1,2 @@
+Lidarr,albumId=8,albumName=Null\ Stats,artistName=Daft\ Punk,completeCount=0/0,percentComplete=0,releaseDate=2026-11-10T00:00:00Z,server=1,type=Future hash="180919f6471254259bad1a686cc02ece" 1795019400123456000
+Lidarr,albumId=1,albumName=Random\ Access\ Memories,artistName=Daft\ Punk,completeCount=7/14,percentComplete=50.0,releaseDate=2026-11-10T00:00:00Z,server=1,type=Future hash="e60e76c78cd510c495dd6a4b179a96b3" 1795019400123456000

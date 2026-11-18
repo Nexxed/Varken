@@ -1,0 +1,39 @@
+{
+  "job": "get_history_totals",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 30,
+    "future_days": 30
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/history",
+      "status": 200,
+      "match_query": {
+        "eventType": 1
+      },
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 50,
+        "records": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/history",
+      "status": 500,
+      "body": "down"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/blocklist",
+      "status": 200,
+      "body": []
+    }
+  ]
+}

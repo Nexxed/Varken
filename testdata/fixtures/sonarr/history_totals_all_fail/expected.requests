@@ -1,0 +1,5 @@
+GET /api/v3/blocklist?pageSize=1
+GET /api/v3/history?eventType=1&pageSize=1
+GET /api/v3/history?eventType=3&pageSize=1
+GET /api/v3/history?eventType=4&pageSize=1
+GET /api/v3/history?eventType=5&pageSize=1

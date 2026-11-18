@@ -1,0 +1,28 @@
+{
+  "job": "get_queue",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/queue/status",
+      "status": 200,
+      "body": {
+        "totalCount": 0
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/queue",
+      "status": 200,
+      "body": {
+        "page": 1,
+        "pageSize": 250,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 0,
+        "records": []
+      }
+    }
+  ]
+}

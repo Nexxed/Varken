@@ -1,0 +1,1 @@
+TypeError: 'NoneType' object is not iterable at sonarr.py:126

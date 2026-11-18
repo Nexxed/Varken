@@ -1,0 +1,3 @@
+GET /api/v1/wanted/cutoff?monitored=true&pageSize=1
+GET /api/v1/wanted/missing?monitored=false&pageSize=1
+GET /api/v1/wanted/missing?monitored=true&pageSize=1

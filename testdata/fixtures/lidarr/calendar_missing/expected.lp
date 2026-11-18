@@ -1,0 +1,5 @@
+Lidarr,albumId=1,albumName=Random\ Access\ Memories,artistName=Daft\ Punk,completeCount=7/14,percentComplete=50.0,releaseDate=2026-11-10T00:00:00Z,server=1,type=Missing hash="e60e76c78cd510c495dd6a4b179a96b3" 1795019400123456000
+Lidarr,albumId=4,albumName=No\ Stats\ Key,artistName=Daft\ Punk,completeCount=0/0,percentComplete=0,releaseDate=2026-11-10T00:00:00Z,server=1,type=Missing hash="7bb7aab35205122fdc7375536eb4a552" 1795019400123456000
+Lidarr,albumId=5,albumName=Null\ Percent,artistName=Daft\ Punk,completeCount=7/14,releaseDate=2026-11-10T00:00:00Z,server=1,type=Missing hash="02ec78a039d5218194cf1772b35aa7d4" 1795019400123456000
+Lidarr,albumId=6,albumName=Fragments\,\ Live\ \=\ 2,artistName=Björk,completeCount=0/10,percentComplete=0,releaseDate=2026-11-10T00:00:00Z,server=1,type=Missing hash="e20d930f29b0bb043c72f970e6b363fd" 1795019400123456000
+Lidarr,albumId=7,albumName=Int\ Percent,artistName=Daft\ Punk,completeCount=7/14,percentComplete=64,server=1,type=Missing hash="f916b015e6eb127d5b42c44638efad97" 1795019400123456000
