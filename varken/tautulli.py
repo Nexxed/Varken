@@ -252,7 +252,6 @@ class TautulliAPI(object):
                         "audio_profile": session.audio_profile.upper(),
                         "stream_audio_codec": session.stream_audio_codec.upper(),
                         "quality_profile": session.quality_profile,
-                        "progress_percent": session.progress_percent,
                         "region_code": geodata.subdivisions.most_specific.iso_code,
                         "location": location,
                         "full_location": f'{geodata.subdivisions.most_specific.name} - {geodata.city.name}',
@@ -262,10 +261,14 @@ class TautulliAPI(object):
                         "device_type": platform_name,
                         "relayed": session.relayed,
                         "secure": session.secure,
+                        # Tautulli's own lan/wan/cellular. "location" above is the GeoIP city.
+                        "network": session.location or '',
                         "server": self.server.id
                     },
                     "time": now,
                     "fields": {
+                        # progress_percent used to be a tag here, creating a new series on every poll; it is now
+                        # the "progress" field from session_fields().
                         "hash": hash_id,
                         **self.session_fields(session)
                     }
@@ -319,7 +322,8 @@ class TautulliAPI(object):
                         "type": "library_stats",
                         "server": self.server.id,
                         "section_name": library['section_name'],
-                        "section_type": library['section_type']
+                        "section_type": library['section_type'],
+                        "section_id": str(library.get('section_id', ''))
                     },
                     "time": now,
                     "fields": {

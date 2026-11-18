@@ -52,10 +52,10 @@ class LidarrAPI(ArrStatsMixin):
                 self.logger.error('TypeError has occurred : %s while creating LidarrAlbum structure for album. Data '
                                   'attempted is: %s', e, album)
 
-        # Add Album to missing list if album is not complete
+        # Missing: only albums that aren't complete. Future: every upcoming album, like Sonarr's Future.
         for album in albums:
             percent_of_tracks = album.statistics.get('percentOfTracks', 0)
-            if percent_of_tracks != 100:
+            if query != "Missing" or percent_of_tracks != 100:
                 influx_albums.append(
                     (album.title, album.releaseDate, album.artist['artistName'], album.id, percent_of_tracks,
                      f"{album.statistics.get('trackFileCount', 0)}/{album.statistics.get('trackCount', 0)}")
@@ -68,7 +68,7 @@ class LidarrAPI(ArrStatsMixin):
                     "measurement": "Lidarr",
                     "tags": {
                         "type": query,
-                        "sonarrId": album_id,
+                        "albumId": album_id,
                         "server": self.server.id,
                         "albumName": title,
                         "artistName": artist_name,

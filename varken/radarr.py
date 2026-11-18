@@ -68,6 +68,7 @@ class RadarrAPI(ArrStatsMixin):
                 {
                     "measurement": "Radarr",
                     "tags": {
+                        "type": "Missing",
                         "Missing": True,
                         "Missing_Available": ma,
                         "tmdbId": mid,
