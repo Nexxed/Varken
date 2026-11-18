@@ -5,9 +5,10 @@ from datetime import datetime, timezone, date, timedelta
 from varken.structures import SonarrEpisode, SonarrTVShow, SonarrQueue, QueuePages
 from varken.helpers import hashit, connection_handler
 from varken.arr import ArrStatsMixin, queue_item_fields, quality_name
+from varken.arr_history import ArrHistoryMixin
 
 
-class SonarrAPI(ArrStatsMixin):
+class SonarrAPI(ArrStatsMixin, ArrHistoryMixin):
     MEASUREMENT = 'Sonarr'
     API_PREFIX = '/api/v3'
     HISTORY_EVENTS = {'grabbed': 1, 'imported': 3, 'failed': 4, 'deleted': 5}
