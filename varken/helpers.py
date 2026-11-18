@@ -122,7 +122,8 @@ class GeoIPHandler(object):
             if 'GeoLite2-City.mmdb' in files.name:
                 self.logger.debug('"GeoLite2-City.mmdb" FOUND in tar file')
                 files.name = basename(files.name)
-                tar.extract(files, self.data_folder)
+                # filter='data' rejects absolute paths, links and special files (default from Python 3.14).
+                tar.extract(files, self.data_folder, filter='data')
                 self.logger.debug('%s has been extracted to %s', files, self.data_folder)
         tar.close()
         try:

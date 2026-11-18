@@ -1,4 +1,4 @@
-FROM python:3.10.5-alpine
+FROM python:3.13.17-alpine3.24
 
 ARG VERSION="0.0.0"
 ARG BRANCH="edge"
