@@ -6,14 +6,13 @@ from logging import getLogger, StreamHandler, Formatter, DEBUG
 
 from varken.iniparser import INIParser
 from varken.dbmanager import DBManager
-from varken.helpers import GeoIPHandler
 from varken.tautulli import TautulliAPI
 
 if __name__ == "__main__":
     parser = ArgumentParser(prog='varken',
                             description='Tautulli historical import tool')
     parser.add_argument("-d", "--data-folder", help='Define an alternate data folder location')
-    parser.add_argument("-D", "--days", default=30, type=int, help='Specify length of historical import')
+    parser.add_argument("-D", "--days", default=365, type=int, help='Days of play history to import')
     opts = parser.parse_args()
 
     DATA_FOLDER = abspath(join(dirname(__file__), '..', 'data'))
@@ -41,7 +40,8 @@ if __name__ == "__main__":
     DBMANAGER = DBManager(CONFIG.influx_server)
 
     if CONFIG.tautulli_enabled:
-        GEOIPHANDLER = GeoIPHandler(DATA_FOLDER, CONFIG.tautulli_servers[0].maxmind_license_key)
+        # Play history needs no GeoIP lookups, so no GeoIP handler (or MaxMind download) is required.
         for server in CONFIG.tautulli_servers:
-            TAUTULLI = TautulliAPI(server, DBMANAGER, GEOIPHANDLER)
-            TAUTULLI.get_historical(days=opts.days)
+            TAUTULLI = TautulliAPI(server, DBMANAGER, None)
+            templogger.info("Importing %s days of play history from %s", opts.days, server.url)
+            TAUTULLI.get_history_plays(days=opts.days)
