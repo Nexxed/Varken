@@ -13,3 +13,8 @@ varken-venv/
 venv/
 logs/
 __pycache__
+# Go
+/varken
+/dist/
+coverage.out
+*.test

@@ -1,0 +1,38 @@
+{"s": "0", "float": "0.0", "int_float": 0, "int": 0}
+{"s": "1", "float": "1.0", "int_float": 1, "int": 1}
+{"s": "-1", "float": "-1.0", "int_float": -1, "int": -1}
+{"s": "+5", "float": "5.0", "int_float": 5, "int": 5}
+{"s": " 7 ", "float": "7.0", "int_float": 7, "int": 7}
+{"s": "1.5", "float": "1.5", "int_float": 1, "int": {"error": "ValueError"}}
+{"s": "-1.5", "float": "-1.5", "int_float": -1, "int": {"error": "ValueError"}}
+{"s": "1e3", "float": "1000.0", "int_float": 1000, "int": {"error": "ValueError"}}
+{"s": "1E3", "float": "1000.0", "int_float": 1000, "int": {"error": "ValueError"}}
+{"s": "1.", "float": "1.0", "int_float": 1, "int": {"error": "ValueError"}}
+{"s": ".5", "float": "0.5", "int_float": 0, "int": {"error": "ValueError"}}
+{"s": "1_000", "float": "1000.0", "int_float": 1000, "int": 1000}
+{"s": "1__0", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "_1", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "inf", "float": "inf", "int_float": {"error": "OverflowError"}, "int": {"error": "ValueError"}}
+{"s": "-inf", "float": "-inf", "int_float": {"error": "OverflowError"}, "int": {"error": "ValueError"}}
+{"s": "Infinity", "float": "inf", "int_float": {"error": "OverflowError"}, "int": {"error": "ValueError"}}
+{"s": "nan", "float": "nan", "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "NaN", "float": "nan", "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": " ", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "abc", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "0x10", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "1,5", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "١٢", "float": "12.0", "int_float": 12, "int": 12}
+{"s": "12\n", "float": "12.0", "int_float": 12, "int": 12}
+{"s": "\t3\t", "float": "3.0", "int_float": 3, "int": 3}
+{"s": "999999999999999999999999999999", "float": "1e+30", "int_float": 1000000000000000019884624838656, "int": 999999999999999999999999999999}
+{"s": "1e400", "float": "inf", "int_float": {"error": "OverflowError"}, "int": {"error": "ValueError"}}
+{"s": "-0", "float": "-0.0", "int_float": 0, "int": 0}
+{"s": "3.999", "float": "3.999", "int_float": 3, "int": {"error": "ValueError"}}
+{"s": "-3.999", "float": "-3.999", "int_float": -3, "int": {"error": "ValueError"}}
+{"s": "00012", "float": "12.0", "int_float": 12, "int": 12}
+{"s": "1_0.5", "float": "10.5", "int_float": 10, "int": {"error": "ValueError"}}
+{"s": "1.5e-3", "float": "0.0015", "int_float": 0, "int": {"error": "ValueError"}}
+{"s": "true", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "None", "float": {"error": "ValueError"}, "int_float": {"error": "ValueError"}, "int": {"error": "ValueError"}}
+{"s": "२", "float": "2.0", "int_float": 2, "int": 2}

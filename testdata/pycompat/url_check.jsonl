@@ -1,0 +1,66 @@
+{"url": "localhost", "include_port": true, "valid": true}
+{"url": "localhost", "include_port": false, "valid": true}
+{"url": "localhost:8080", "include_port": true, "valid": true}
+{"url": "localhost:8080", "include_port": false, "valid": false}
+{"url": "sonarr.domain.tld:8989", "include_port": true, "valid": true}
+{"url": "sonarr.domain.tld:8989", "include_port": false, "valid": false}
+{"url": "radarr1.domain.tld", "include_port": true, "valid": true}
+{"url": "radarr1.domain.tld", "include_port": false, "valid": true}
+{"url": "192.168.1.10:7878", "include_port": true, "valid": true}
+{"url": "192.168.1.10:7878", "include_port": false, "valid": false}
+{"url": "host", "include_port": true, "valid": true}
+{"url": "host", "include_port": false, "valid": true}
+{"url": "my_host", "include_port": true, "valid": true}
+{"url": "my_host", "include_port": false, "valid": true}
+{"url": "my-host:1234", "include_port": true, "valid": true}
+{"url": "my-host:1234", "include_port": false, "valid": false}
+{"url": "domain.tld/sonarr", "include_port": true, "valid": true}
+{"url": "domain.tld/sonarr", "include_port": false, "valid": true}
+{"url": "domain.tld:443/sonarr/", "include_port": true, "valid": true}
+{"url": "domain.tld:443/sonarr/", "include_port": false, "valid": false}
+{"url": "http://x.com", "include_port": true, "valid": false}
+{"url": "http://x.com", "include_port": false, "valid": false}
+{"url": "https://x.com:443", "include_port": true, "valid": false}
+{"url": "https://x.com:443", "include_port": false, "valid": false}
+{"url": "x.com:abc", "include_port": true, "valid": false}
+{"url": "x.com:abc", "include_port": false, "valid": false}
+{"url": "", "include_port": true, "valid": true}
+{"url": "", "include_port": false, "valid": true}
+{"url": " ", "include_port": true, "valid": false}
+{"url": " ", "include_port": false, "valid": false}
+{"url": "a b", "include_port": true, "valid": false}
+{"url": "a b", "include_port": false, "valid": false}
+{"url": "x.com/a b", "include_port": true, "valid": false}
+{"url": "x.com/a b", "include_port": false, "valid": false}
+{"url": "x.com?a=1", "include_port": true, "valid": true}
+{"url": "x.com?a=1", "include_port": false, "valid": true}
+{"url": "UPPER.CASE.TLD", "include_port": true, "valid": true}
+{"url": "UPPER.CASE.TLD", "include_port": false, "valid": true}
+{"url": "999.999.999.999", "include_port": true, "valid": true}
+{"url": "999.999.999.999", "include_port": false, "valid": true}
+{"url": "[::1]:8080", "include_port": true, "valid": false}
+{"url": "[::1]:8080", "include_port": false, "valid": false}
+{"url": "ex-ample.co.uk:80/path?q=1", "include_port": true, "valid": true}
+{"url": "ex-ample.co.uk:80/path?q=1", "include_port": false, "valid": false}
+{"url": "name.local", "include_port": true, "valid": true}
+{"url": "name.local", "include_port": false, "valid": true}
+{"url": "xn--bcher-kva.example", "include_port": true, "valid": false}
+{"url": "xn--bcher-kva.example", "include_port": false, "valid": false}
+{"url": "host:", "include_port": true, "valid": false}
+{"url": "host:", "include_port": false, "valid": false}
+{"url": "host:8080/", "include_port": true, "valid": true}
+{"url": "host:8080/", "include_port": false, "valid": false}
+{"url": "host/", "include_port": true, "valid": true}
+{"url": "host/", "include_port": false, "valid": true}
+{"url": "a..b", "include_port": true, "valid": false}
+{"url": "a..b", "include_port": false, "valid": false}
+{"url": "-a.com", "include_port": true, "valid": false}
+{"url": "-a.com", "include_port": false, "valid": false}
+{"url": "a-.com", "include_port": true, "valid": false}
+{"url": "a-.com", "include_port": false, "valid": false}
+{"url": "ünïcode.com", "include_port": true, "valid": false}
+{"url": "ünïcode.com", "include_port": false, "valid": false}
+{"url": "ı.com", "include_port": true, "valid": true}
+{"url": "ı.com", "include_port": false, "valid": true}
+{"url": "tab\t.com", "include_port": true, "valid": false}
+{"url": "tab\t.com", "include_port": false, "valid": false}
