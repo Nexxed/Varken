@@ -1,0 +1,10 @@
+{
+  "get_usg_stats_run_seconds": 30,
+  "id": 1,
+  "password": "secret",
+  "site": "main office",
+  "url": "",
+  "username": "admin",
+  "usg_name": "MyRouter",
+  "verify_ssl": false
+}

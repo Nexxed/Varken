@@ -1,0 +1,3 @@
+GET /api/s/abc123/stat/device
+GET /api/self/sites
+POST /api/login

@@ -1,0 +1,47 @@
+{
+  "job": "get_disk",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 7,
+    "future_days": 1
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/diskspace",
+      "status": 200,
+      "body": [
+        {
+          "path": "C:\\",
+          "label": "System",
+          "freeSpace": 1,
+          "totalSpace": 100
+        },
+        {
+          "path": "D:\\Media",
+          "label": "Media",
+          "freeSpace": 5,
+          "totalSpace": 1000
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/rootfolder",
+      "status": 200,
+      "body": [
+        {
+          "path": "D:\\Media\\TV",
+          "accessible": true,
+          "freeSpace": 5
+        },
+        {
+          "path": "C:\\TV",
+          "accessible": true,
+          "freeSpace": 1
+        }
+      ]
+    }
+  ]
+}

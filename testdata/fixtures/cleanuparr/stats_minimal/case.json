@@ -1,0 +1,20 @@
+{
+  "job": "get_stats",
+  "description": "Sections missing: every count falls back to 0.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2/stats",
+      "status": 200,
+      "match_query": {
+        "hours": 24,
+        "includeDryRun": "false"
+      },
+      "body": {
+        "timeframeHours": 24
+      }
+    }
+  ]
+}

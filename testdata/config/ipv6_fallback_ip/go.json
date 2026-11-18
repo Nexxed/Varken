@@ -1,0 +1,71 @@
+{
+  "influx": {
+    "password": "s3cret-influx",
+    "port": 8086,
+    "ssl": false,
+    "url": "influxdb",
+    "username": "varken",
+    "verify_ssl": false
+  },
+  "services": {
+    "cleanuparr": {
+      "enabled": null,
+      "servers": []
+    },
+    "lidarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "ombi": {
+      "enabled": null,
+      "servers": []
+    },
+    "overseerr": {
+      "enabled": null,
+      "servers": []
+    },
+    "radarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "sickchill": {
+      "enabled": null,
+      "servers": []
+    },
+    "sonarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "tautulli": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "tautullikeydddddddd",
+          "fallback_ip": "2606:4700:4700::1111",
+          "get_activity": true,
+          "get_activity_run_seconds": 30,
+          "get_daily_stats": true,
+          "get_daily_stats_run_seconds": 3600,
+          "get_history": true,
+          "get_history_run_seconds": 300,
+          "get_server": true,
+          "get_server_run_seconds": 300,
+          "get_stats": true,
+          "get_stats_run_seconds": 3600,
+          "history_backfill_days": 364,
+          "history_days": 2,
+          "id": 1,
+          "maxmind_license_key": "mmkey1234567890",
+          "url": "http://tautulli:8181",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "unifi": {
+      "enabled": null,
+      "servers": []
+    }
+  }
+}

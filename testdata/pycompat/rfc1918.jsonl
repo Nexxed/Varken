@@ -1,0 +1,24 @@
+{"ip": "1.1.1.1", "private": false}
+{"ip": "10.0.0.1", "private": true}
+{"ip": "192.168.1.1", "private": true}
+{"ip": "172.16.0.1", "private": true}
+{"ip": "172.32.0.1", "private": false}
+{"ip": "100.64.0.1", "private": false}
+{"ip": "127.0.0.1", "private": true}
+{"ip": "0.0.0.0", "private": true}
+{"ip": "169.254.1.1", "private": true}
+{"ip": "192.0.2.1", "private": true}
+{"ip": "198.18.0.1", "private": true}
+{"ip": "203.0.113.5", "private": true}
+{"ip": "255.255.255.255", "private": true}
+{"ip": "8.8.8.8", "private": false}
+{"ip": "224.0.0.1", "private": false}
+{"ip": "240.0.0.1", "private": true}
+{"ip": "192.0.0.8", "private": true}
+{"ip": "192.0.0.9", "private": false}
+{"ip": "192.0.0.170", "private": true}
+{"ip": "bad", "private": {"error": "AddressValueError"}}
+{"ip": "", "private": {"error": "AddressValueError"}}
+{"ip": "::1", "private": {"error": "AddressValueError"}}
+{"ip": "2001:db8::1", "private": {"error": "AddressValueError"}}
+{"ip": "1.1.1", "private": {"error": "AddressValueError"}}

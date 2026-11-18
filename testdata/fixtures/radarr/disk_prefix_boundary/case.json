@@ -1,0 +1,44 @@
+{
+  "job": "get_disk",
+  "fix": "Python matched a root folder to a volume by plain string prefix, so /data2/movies took the size of the /data volume; the match now has to end on a path separator, so it gets the / volume.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/diskspace",
+      "status": 200,
+      "body": [
+        {
+          "path": "/",
+          "label": "",
+          "freeSpace": 1,
+          "totalSpace": 50
+        },
+        {
+          "path": "/data",
+          "label": "",
+          "freeSpace": 2,
+          "totalSpace": 4000
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/rootfolder",
+      "status": 200,
+      "body": [
+        {
+          "path": "/data2/movies",
+          "accessible": true,
+          "freeSpace": 3
+        },
+        {
+          "path": "/data/movies",
+          "accessible": true,
+          "freeSpace": 2
+        }
+      ]
+    }
+  ]
+}

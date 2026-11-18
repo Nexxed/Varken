@@ -1,0 +1,108 @@
+{
+  "job": "get_server_status",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "server_status"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "result": "success",
+            "connected": true
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_server_info"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "pms_name": "Plex",
+            "pms_version": "1.41.0.1234",
+            "pms_platform": "Linux",
+            "pms_plexpass": "1"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_pms_update"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "update_available": true,
+            "version": "1.42.0.1"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_tautulli_info"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "tautulli_version": "v2.18.1"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_history",
+        "length": 1
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "recordsFiltered": 1,
+            "data": [
+              {
+                "id": 9,
+                "stopped": 1795012200,
+                "date": 1795010400
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

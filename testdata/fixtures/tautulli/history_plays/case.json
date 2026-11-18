@@ -1,0 +1,244 @@
+{
+  "job": "get_history_plays",
+  "args": {
+    "days": 2
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_libraries"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": [
+            {
+              "section_id": 1,
+              "section_name": "Movies"
+            },
+            {
+              "section_id": "2",
+              "section_name": "TV Shows"
+            },
+            {
+              "section_id": null,
+              "section_name": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_history",
+        "section_id": "1",
+        "start": "0"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "recordsFiltered": 3,
+            "data": [
+              {
+                "id": 101,
+                "stopped": 1795015400,
+                "started": 1795010400,
+                "friendly_name": "Alice",
+                "user": "alice",
+                "platform": "Chrome",
+                "product": "Plex Web",
+                "media_type": "movie",
+                "transcode_decision": "transcode",
+                "location": "wan",
+                "full_title": "Title 101",
+                "play_duration": 3000,
+                "duration": 3600,
+                "paused_counter": 60,
+                "percent_complete": 85,
+                "watched_status": 1
+              },
+              {
+                "id": 1234567,
+                "stopped": 1795014400,
+                "started": 1795010400,
+                "friendly_name": "",
+                "user": "bob",
+                "platform": "osx",
+                "product": "Plex Web",
+                "media_type": "movie",
+                "transcode_decision": "transcode",
+                "location": null,
+                "full_title": null,
+                "play_duration": "",
+                "duration": "1800",
+                "paused_counter": 60,
+                "percent_complete": 85,
+                "watched_status": 0.5
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_history",
+        "section_id": "1",
+        "start": "2"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "recordsFiltered": 3,
+            "data": [
+              {
+                "id": 103,
+                "stopped": 1795013400,
+                "started": 1795010400,
+                "friendly_name": "Alice",
+                "user": "alice",
+                "platform": "windows",
+                "product": "Plex Web",
+                "media_type": "movie",
+                "transcode_decision": "transcode",
+                "location": "wan",
+                "full_title": "Title 103",
+                "play_duration": null,
+                "duration": 3600,
+                "paused_counter": "",
+                "percent_complete": 85,
+                "watched_status": "1"
+              },
+              {
+                "id": 0,
+                "stopped": 1795013300,
+                "started": 1795010400,
+                "friendly_name": "Alice",
+                "user": "alice",
+                "platform": "Chrome",
+                "product": "Plex Web",
+                "media_type": "movie",
+                "transcode_decision": "transcode",
+                "location": "wan",
+                "full_title": "Title 0",
+                "play_duration": 3000,
+                "duration": 3600,
+                "paused_counter": 60,
+                "percent_complete": 85,
+                "watched_status": 1
+              },
+              {
+                "id": 104,
+                "stopped": null,
+                "started": 1795010400,
+                "friendly_name": "Alice",
+                "user": "alice",
+                "platform": "Chrome",
+                "product": "Plex Web",
+                "media_type": "movie",
+                "transcode_decision": "transcode",
+                "location": "wan",
+                "full_title": "Title 104",
+                "play_duration": 3000,
+                "duration": 3600,
+                "paused_counter": 60,
+                "percent_complete": 85,
+                "watched_status": 1
+              },
+              {
+                "id": 105,
+                "stopped": "",
+                "started": 1795010400,
+                "friendly_name": "Alice",
+                "user": "alice",
+                "platform": "Chrome",
+                "product": "Plex Web",
+                "media_type": "movie",
+                "transcode_decision": "transcode",
+                "location": "wan",
+                "full_title": "Title 105",
+                "play_duration": 3000,
+                "duration": 3600,
+                "paused_counter": 60,
+                "percent_complete": 85,
+                "watched_status": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_history",
+        "section_id": "2",
+        "start": "0"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "recordsFiltered": 1,
+            "data": [
+              {
+                "id": 201,
+                "stopped": 1795019300,
+                "started": 1795010400,
+                "friendly_name": "Alice",
+                "user": "alice",
+                "platform": "Chrome",
+                "product": "Plex Web",
+                "media_type": "episode",
+                "transcode_decision": "transcode",
+                "location": "wan",
+                "full_title": "Title 201",
+                "play_duration": 3000,
+                "duration": 3600,
+                "paused_counter": 60,
+                "percent_complete": 85,
+                "watched_status": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_history"
+      },
+      "body": {
+        "response": {
+          "result": "error",
+          "message": "bad section"
+        }
+      }
+    }
+  ]
+}

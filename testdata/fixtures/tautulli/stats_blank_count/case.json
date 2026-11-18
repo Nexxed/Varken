@@ -1,0 +1,43 @@
+{
+  "job": "get_stats",
+  "fix": "Python raised ValueError on int(\"\") for a library count and lost every library; unparseable counts are now left out of that point",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_libraries"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": [
+            {
+              "section_id": 1,
+              "section_name": "Movies",
+              "section_type": "movie",
+              "count": "1200",
+              "parent_count": "",
+              "child_count": ""
+            },
+            {
+              "section_id": 5,
+              "section_name": "New",
+              "section_type": "show",
+              "count": "",
+              "parent_count": "3",
+              "child_count": null
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

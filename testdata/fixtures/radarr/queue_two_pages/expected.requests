@@ -1,0 +1,3 @@
+GET /api/v3/queue/status
+GET /api/v3/queue?includeMovie=True&includeUnknownMovieItems=False&page=2&pageSize=250
+GET /api/v3/queue?includeMovie=True&includeUnknownMovieItems=False&pageSize=250

@@ -1,0 +1,2 @@
+GET /api/v3/diskspace?pageSize=1000
+GET /api/v3/rootfolder?pageSize=1000

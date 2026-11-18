@@ -1,0 +1,22 @@
+{
+  "job": "get_stats",
+  "description": "timeframeHours missing: falls back to the configured stats_hours.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2/stats",
+      "status": 200,
+      "match_query": {
+        "hours": 24,
+        "includeDryRun": "false"
+      },
+      "body": {
+        "events": {
+          "total": 1
+        }
+      }
+    }
+  ]
+}

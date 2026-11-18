@@ -1,0 +1,75 @@
+{
+  "job": "get_all_requests",
+  "description": "Non-object list items are skipped (Python logged a TypeError for each) but still counted.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/tv",
+      "status": 200,
+      "body": [
+        null,
+        "x",
+        {
+          "id": 1,
+          "tvDbId": 70001,
+          "title": "Denied Show",
+          "childRequests": [
+            {
+              "id": 7,
+              "denied": true,
+              "approved": false,
+              "available": false,
+              "requestedDate": "2026-11-10T09:30:00.123",
+              "requestedUser": {
+                "userAlias": "bob"
+              },
+              "seasonRequests": [
+                {
+                  "seasonNumber": 1
+                }
+              ]
+            }
+          ],
+          "totalSeasons": 3,
+          "imdbId": null,
+          "status": "Continuing",
+          "background": "x.jpg",
+          "requestStatus": "Common.Approved"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/movie",
+      "status": 200,
+      "body": [
+        5,
+        {
+          "id": 1,
+          "theMovieDbId": 1001,
+          "title": "Denied Movie",
+          "denied": true,
+          "approved": false,
+          "available": false,
+          "requestedDate": "2026-11-01T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "alice",
+            "userName": "alice"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000001",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        }
+      ]
+    }
+  ]
+}

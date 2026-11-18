@@ -2,8 +2,8 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>Varken</Name>
-  <Repository>boerderij/varken</Repository>
-  <Registry>https://hub.docker.com/r/boerderij/varken/~/dockerfile/</Registry>
+  <Repository>ghcr.io/nexxed/varken:latest</Repository>
+  <Registry>https://github.com/Nexxed/Varken/pkgs/container/varken</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>

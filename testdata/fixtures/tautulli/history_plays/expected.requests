@@ -1,0 +1,5 @@
+GET /api/v2?after=2026-11-16&cmd=get_history&length=1000&section_id=1&start=0
+GET /api/v2?after=2026-11-16&cmd=get_history&length=1000&section_id=1&start=2
+GET /api/v2?after=2026-11-16&cmd=get_history&length=1000&section_id=2&start=0
+GET /api/v2?after=2026-11-16&cmd=get_history&length=1000&start=0
+GET /api/v2?cmd=get_libraries

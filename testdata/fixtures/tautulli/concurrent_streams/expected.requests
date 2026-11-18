@@ -1,0 +1,1 @@
+GET /api/v2?cmd=get_concurrent_streams_by_stream_type&time_range=30

@@ -1,0 +1,235 @@
+{
+  "created": false,
+  "exception": null,
+  "exit": null,
+  "filtered": [
+    "cleanuparr.domain.tld",
+    "cleanuparr.domain.tld:11011",
+    "influxdb.domain.tld",
+    "lidarr1.domain.tld",
+    "lidarr1.domain.tld:8686",
+    "ombi.domain.tld",
+    "overseerr.domain.tld",
+    "radarr1.domain.tld",
+    "radarr2.domain.tld",
+    "root",
+    "sickchill.domain.tld",
+    "sickchill.domain.tld:8081",
+    "sonarr1.domain.tld",
+    "sonarr1.domain.tld:8989",
+    "sonarr2.domain.tld",
+    "sonarr2.domain.tld:8989",
+    "tautulli.domain.tld",
+    "tautulli.domain.tld:8181",
+    "ubnt",
+    "unifi.domain.tld",
+    "unifi.domain.tld:8443",
+    "xxxxxxxxxxxxxxxx",
+    "yyyyyyyyyyyyyyyy"
+  ],
+  "influx": {
+    "password": "root",
+    "port": 8086,
+    "ssl": false,
+    "url": "influxdb.domain.tld",
+    "username": "root",
+    "verify_ssl": false
+  },
+  "rewritten": false,
+  "services": {
+    "cleanuparr": {
+      "enabled": null,
+      "servers": []
+    },
+    "lidarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "ombi": {
+      "enabled": null,
+      "servers": []
+    },
+    "overseerr": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "xxxxxxxxxxxxxxxx",
+          "get_request_total_counts": true,
+          "id": 1,
+          "num_latest_requests_seconds": 30,
+          "num_latest_requests_to_fetch": 10,
+          "request_total_run_seconds": 30,
+          "url": "http://overseerr.domain.tld",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "radarr": {
+      "enabled": [
+        1,
+        2
+      ],
+      "servers": [
+        {
+          "api_key": "xxxxxxxxxxxxxxxx",
+          "calendar_days": 30,
+          "get_calendar": true,
+          "get_calendar_run_seconds": 3600,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": true,
+          "get_library_run_seconds": 21600,
+          "get_missing": true,
+          "get_missing_run_seconds": 300,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 1,
+          "queue": true,
+          "queue_run_seconds": 300,
+          "url": "http://radarr1.domain.tld",
+          "verify_ssl": false
+        },
+        {
+          "api_key": "yyyyyyyyyyyyyyyy",
+          "calendar_days": 30,
+          "get_calendar": true,
+          "get_calendar_run_seconds": 3600,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": true,
+          "get_library_run_seconds": 21600,
+          "get_missing": true,
+          "get_missing_run_seconds": 300,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 2,
+          "queue": true,
+          "queue_run_seconds": 300,
+          "url": "http://radarr2.domain.tld",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "sickchill": {
+      "enabled": null,
+      "servers": []
+    },
+    "sonarr": {
+      "enabled": [
+        1,
+        2
+      ],
+      "servers": [
+        {
+          "api_key": "xxxxxxxxxxxxxxxx",
+          "future_days": 1,
+          "future_days_run_seconds": 300,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": true,
+          "get_library_run_seconds": 3600,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 1,
+          "missing_days": 7,
+          "missing_days_run_seconds": 300,
+          "queue": true,
+          "queue_run_seconds": 300,
+          "url": "http://sonarr1.domain.tld:8989",
+          "verify_ssl": false
+        },
+        {
+          "api_key": "yyyyyyyyyyyyyyyy",
+          "future_days": 1,
+          "future_days_run_seconds": 300,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": true,
+          "get_library_run_seconds": 3600,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 2,
+          "missing_days": 7,
+          "missing_days_run_seconds": 300,
+          "queue": true,
+          "queue_run_seconds": 300,
+          "url": "http://sonarr2.domain.tld:8989",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "tautulli": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "xxxxxxxxxxxxxxxx",
+          "fallback_ip": "1.1.1.1",
+          "get_activity": true,
+          "get_activity_run_seconds": 30,
+          "get_daily_stats": true,
+          "get_daily_stats_run_seconds": 3600,
+          "get_history": true,
+          "get_history_run_seconds": 300,
+          "get_server": true,
+          "get_server_run_seconds": 300,
+          "get_stats": true,
+          "get_stats_run_seconds": 3600,
+          "history_backfill_days": 364,
+          "history_days": 2,
+          "id": 1,
+          "maxmind_license_key": "xxxxxxxxxxxxxxxx",
+          "url": "http://tautulli.domain.tld:8181",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "unifi": {
+      "enabled": null,
+      "servers": []
+    }
+  }
+}

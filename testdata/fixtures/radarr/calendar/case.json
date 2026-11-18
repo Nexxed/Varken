@@ -1,0 +1,397 @@
+{
+  "job": "get_calendar",
+  "args": {
+    "future_days": 30
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/calendar",
+      "status": 200,
+      "match_query": {
+        "start": "2026-11-18",
+        "end": "2026-12-18"
+      },
+      "body": [
+        {
+          "title": "Cinema Soon",
+          "originalTitle": "Cinema Soon",
+          "sortTitle": "cinema soon",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2026-11-20T00:00:00Z",
+          "physicalRelease": null,
+          "digitalRelease": "2027-01-01T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2026,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Cinema Soon",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Cinema Soon",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 1,
+          "titleSlug": "1",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 1,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": "Digital First",
+          "originalTitle": "Digital First",
+          "sortTitle": "digital first",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2026-10-01T00:00:00Z",
+          "physicalRelease": "2026-11-25T00:00:00Z",
+          "digitalRelease": "2026-11-25",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2026,
+          "hasFile": true,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Digital First",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Digital First",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 2,
+          "titleSlug": "2",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 2,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": "Today",
+          "originalTitle": "Today",
+          "sortTitle": "today",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2026-11-18T05:00:00Z",
+          "physicalRelease": null,
+          "digitalRelease": null,
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2026,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Today",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Today",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 3,
+          "titleSlug": "3",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 3,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": "Edge Of Range",
+          "originalTitle": "Edge Of Range",
+          "sortTitle": "edge of range",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": null,
+          "physicalRelease": "2026-12-19",
+          "digitalRelease": "2026-12-18T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": null,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Edge Of Range",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Edge Of Range",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 4,
+          "titleSlug": "4",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 4,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": "Out Of Range",
+          "originalTitle": "Out Of Range",
+          "sortTitle": "out of range",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2027-03-01T00:00:00Z",
+          "physicalRelease": null,
+          "digitalRelease": null,
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2027,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Out Of Range",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Out Of Range",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 5,
+          "titleSlug": "5",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 5,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": null,
+          "originalTitle": null,
+          "sortTitle": "",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2026-11-30",
+          "physicalRelease": "bad",
+          "digitalRelease": "",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2026,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/None",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/None",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": null,
+          "titleSlug": "None",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 999,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": "Number Date",
+          "originalTitle": "Number Date",
+          "sortTitle": "number date",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": 20261201,
+          "physicalRelease": null,
+          "digitalRelease": null,
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2026,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Number Date",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Number Date",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": "77",
+          "titleSlug": "77",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 999,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": "Float Tmdb",
+          "originalTitle": "Float Tmdb",
+          "sortTitle": "float tmdb",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2026-11-19T00:00:00Z",
+          "physicalRelease": null,
+          "digitalRelease": null,
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 0,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Float Tmdb",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Float Tmdb",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 6.9,
+          "titleSlug": "6.9",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 999,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "created": false,
+  "exception": null,
+  "exit": null,
+  "filtered": [
+    "admin",
+    "cleanuparr",
+    "cleanuparr:11011",
+    "cleanuparrkeyhhhhhhhh",
+    "influxdb",
+    "lidarr",
+    "lidarr:8686",
+    "lidarrkey1cccccccc",
+    "ombi.example.com",
+    "ombi.example.com/ombi",
+    "ombikeyeeeeeeee",
+    "overseerr",
+    "overseerr:5055",
+    "overseerrkeyffffffff",
+    "radarr",
+    "radarr:7878",
+    "radarrkey1bbbbbbbb",
+    "s3cret-influx",
+    "sickchill",
+    "sickchill:8081",
+    "sickchillkeygggggggg",
+    "sonarr",
+    "sonarr:8989",
+    "sonarrkey1aaaaaaaa",
+    "sonarrkey2aaaaaaaa",
+    "tautulli",
+    "tautulli:8181",
+    "tautullikeydddddddd",
+    "tv.example.com",
+    "tv.example.com:443",
+    "tv.example.com:443/sonarr",
+    "unifi",
+    "unifi-pass",
+    "unifi:8443",
+    "varken"
+  ],
+  "influx": {
+    "password": "envpass",
+    "port": 8087,
+    "ssl": true,
+    "url": "influx.lan",
+    "username": "envuser",
+    "verify_ssl": true
+  },
+  "rewritten": false,
+  "services": {
+    "cleanuparr": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "cleanuparrkeyhhhhhhhh",
+          "events_severity": "Warning",
+          "get_events": true,
+          "get_events_run_seconds": 300,
+          "get_stats": true,
+          "get_stats_run_seconds": 300,
+          "get_strikes": true,
+          "get_strikes_run_seconds": 300,
+          "get_timeline": true,
+          "get_timeline_run_seconds": 300,
+          "id": 1,
+          "include_dry_run": true,
+          "num_events_to_fetch": 50,
+          "num_strikes_to_fetch": 50,
+          "stats_hours": 24,
+          "timeline_hours": 48,
+          "url": "http://cleanuparr:11011",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "lidarr": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "lidarrkey1cccccccc",
+          "future_days": 30,
+          "future_days_run_seconds": 300,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": true,
+          "get_library_run_seconds": 3600,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 1,
+          "missing_days": 30,
+          "missing_days_run_seconds": 300,
+          "queue": true,
+          "queue_run_seconds": 300,
+          "url": "http://lidarr:8686",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "ombi": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "ombikeyeeeeeeee",
+          "id": 1,
+          "issue_status_counts": false,
+          "issue_status_run_seconds": 300,
+          "request_total_counts": true,
+          "request_total_run_seconds": 300,
+          "request_type_counts": true,
+          "request_type_run_seconds": 300,
+          "url": "https://ombi.example.com/ombi",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "overseerr": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "overseerrkeyffffffff",
+          "get_request_total_counts": true,
+          "id": 1,
+          "num_latest_requests_seconds": 45,
+          "num_latest_requests_to_fetch": 10,
+          "request_total_run_seconds": 30,
+          "url": "http://overseerr:5055",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "radarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "sickchill": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "sickchillkeygggggggg",
+          "get_missing": true,
+          "get_missing_run_seconds": 300,
+          "id": 1,
+          "url": "http://sickchill:8081",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "sonarr": {
+      "enabled": [
+        1,
+        2
+      ],
+      "servers": [
+        {
+          "api_key": "envsonarrkey1234",
+          "future_days": 1,
+          "future_days_run_seconds": 300,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": false,
+          "get_library_run_seconds": 7200,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 1,
+          "missing_days": 7,
+          "missing_days_run_seconds": 300,
+          "queue": false,
+          "queue_run_seconds": 60,
+          "url": "http://sonarr:8989",
+          "verify_ssl": false
+        },
+        {
+          "api_key": "sonarrkey2aaaaaaaa",
+          "future_days": 1,
+          "future_days_run_seconds": 300,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": true,
+          "get_library_run_seconds": 3600,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 2,
+          "missing_days": 7,
+          "missing_days_run_seconds": 300,
+          "queue": true,
+          "queue_run_seconds": 300,
+          "url": "https://tv.example.com:443/sonarr",
+          "verify_ssl": true
+        }
+      ]
+    },
+    "tautulli": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "tautullikeydddddddd",
+          "fallback_ip": "8.8.8.8",
+          "get_activity": true,
+          "get_activity_run_seconds": 30,
+          "get_daily_stats": true,
+          "get_daily_stats_run_seconds": 3600,
+          "get_history": true,
+          "get_history_run_seconds": 300,
+          "get_server": true,
+          "get_server_run_seconds": 300,
+          "get_stats": true,
+          "get_stats_run_seconds": 3600,
+          "history_backfill_days": 30,
+          "history_days": 2,
+          "id": 1,
+          "maxmind_license_key": "envmaxmindkey",
+          "url": "http://tautulli:8181",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "unifi": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "get_usg_stats_run_seconds": 300,
+          "id": 1,
+          "password": "unifi-pass",
+          "site": "mysite",
+          "url": "https://unifi:8443",
+          "username": "admin",
+          "usg_name": "Gateway",
+          "verify_ssl": false
+        }
+      ]
+    }
+  }
+}

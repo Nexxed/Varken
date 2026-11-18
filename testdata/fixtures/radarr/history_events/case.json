@@ -1,0 +1,120 @@
+{
+  "job": "get_history_events",
+  "args": {
+    "days": 1
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/history/since",
+      "status": 200,
+      "match_query": {
+        "date": "2026-11-17T16:30:00Z"
+      },
+      "body": [
+        {
+          "id": 1234567,
+          "eventType": "grabbed",
+          "date": "2026-11-18T10:00:00.1234567Z",
+          "sourceTitle": "Release.Name.S01E01.720p-GRP",
+          "quality": {
+            "quality": {
+              "name": "HDTV-720p"
+            }
+          },
+          "data": {
+            "indexer": "NZBgeek",
+            "protocol": "Usenet",
+            "downloadClient": "SABnzbd",
+            "downloadUrl": "https://indexer/api?apikey=SECRET&id=1"
+          },
+          "movie": {
+            "title": "Dune",
+            "year": 2021
+          }
+        },
+        {
+          "id": 42,
+          "eventType": "downloadFolderImported",
+          "date": "2026-11-18T11:00:00Z",
+          "sourceTitle": "Release.Name.S01E01.720p-GRP",
+          "quality": {
+            "quality": {
+              "name": "HDTV-720p"
+            }
+          },
+          "data": {
+            "downloadClientName": "qBittorrent",
+            "message": null,
+            "reason": "Upgrade"
+          },
+          "movie": {
+            "title": "Arrival",
+            "year": null
+          }
+        },
+        {
+          "id": 43,
+          "eventType": "grabbed",
+          "date": "2026-11-18T12:00:00.5+02:00",
+          "sourceTitle": "Torrent.Release",
+          "quality": {},
+          "data": {
+            "protocol": "torrent",
+            "indexer": null
+          },
+          "movie": {
+            "title": "",
+            "year": 2016
+          }
+        },
+        {
+          "id": 44,
+          "eventType": "downloadFailed",
+          "date": "2026-11-18T13:00:00Z",
+          "sourceTitle": null,
+          "data": {
+            "message": "Failed: yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+          }
+        },
+        {
+          "id": null,
+          "eventType": "grabbed",
+          "date": "2026-11-18T13:00:00Z"
+        },
+        {
+          "id": 45,
+          "eventType": "grabbed",
+          "date": null
+        },
+        {
+          "id": 46,
+          "eventType": null,
+          "date": "0001-01-01T00:00:00Z"
+        },
+        {
+          "id": "47",
+          "eventType": null,
+          "date": "2026-11-18T14:00:00Z",
+          "quality": {
+            "quality": {
+              "name": null
+            }
+          },
+          "movie": {
+            "title": "Up",
+            "year": 2009
+          }
+        },
+        {
+          "id": 48.0,
+          "eventType": "episodeFileDeleted",
+          "date": "2026-11-18T15:00:00Z",
+          "data": {}
+        }
+      ]
+    }
+  ]
+}

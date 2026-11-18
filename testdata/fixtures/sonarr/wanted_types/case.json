@@ -1,0 +1,44 @@
+{
+  "job": "get_wanted",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 7,
+    "future_days": 1
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/wanted/missing",
+      "status": 200,
+      "match_query": {
+        "monitored": "true"
+      },
+      "body": {
+        "totalRecords": "15"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/wanted/missing",
+      "status": 200,
+      "match_query": {
+        "monitored": "false"
+      },
+      "body": {
+        "totalRecords": 4.9
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/wanted/cutoff",
+      "status": 200,
+      "match_query": {
+        "monitored": "true"
+      },
+      "body": {
+        "totalRecords": null
+      }
+    }
+  ]
+}

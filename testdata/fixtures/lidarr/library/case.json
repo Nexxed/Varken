@@ -1,0 +1,43 @@
+{
+  "job": "get_library",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 30,
+    "future_days": 30
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/artist",
+      "status": 200,
+      "body": [
+        {
+          "artistName": "Daft Punk",
+          "id": 1,
+          "statistics": {
+            "albumCount": 4,
+            "trackFileCount": 50,
+            "trackCount": 60,
+            "totalTrackCount": 61,
+            "sizeOnDisk": 3000000000,
+            "percentOfTracks": 82
+          }
+        },
+        {
+          "artistName": "Björk",
+          "id": 2,
+          "statistics": null
+        },
+        {
+          "artistName": "Text",
+          "id": 3,
+          "statistics": {
+            "albumCount": "2",
+            "sizeOnDisk": 1500000000.0
+          }
+        }
+      ]
+    }
+  ]
+}

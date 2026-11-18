@@ -1,0 +1,13 @@
+{
+  "job": "get_events",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/events",
+      "status": 503,
+      "body_text": "busy"
+    }
+  ]
+}

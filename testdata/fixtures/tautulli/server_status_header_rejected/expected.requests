@@ -1,0 +1,6 @@
+GET /api/v2?apikey=testkey&cmd=get_history&length=1&order_column=date&order_dir=desc
+GET /api/v2?apikey=testkey&cmd=get_pms_update
+GET /api/v2?apikey=testkey&cmd=get_server_info
+GET /api/v2?apikey=testkey&cmd=get_tautulli_info
+GET /api/v2?apikey=testkey&cmd=server_status
+GET /api/v2?cmd=server_status

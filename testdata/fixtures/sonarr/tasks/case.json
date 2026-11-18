@@ -1,0 +1,68 @@
+{
+  "job": "get_tasks",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 7,
+    "future_days": 1
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/system/task",
+      "status": 200,
+      "body": [
+        {
+          "name": "RssSync",
+          "taskName": "RssSync",
+          "interval": 15,
+          "lastExecution": "2026-11-18T16:20:00.1234567Z",
+          "lastStartTime": "2026-11-18T16:19:58Z",
+          "nextExecution": "2026-11-18T16:35:00.5Z",
+          "lastDuration": "00:00:01.9876543",
+          "id": 1
+        },
+        {
+          "name": "Housekeeping",
+          "interval": 1440,
+          "lastExecution": "0001-01-01T00:00:00Z",
+          "nextExecution": null,
+          "lastDuration": "1.02:03:04.5",
+          "id": 2
+        },
+        {
+          "taskName": "",
+          "name": "NameOnly",
+          "interval": "60",
+          "lastExecution": "2026-11-18T18:00:00Z",
+          "lastDuration": null,
+          "id": 3
+        },
+        {
+          "interval": 5,
+          "id": 4
+        },
+        {
+          "taskName": "Backup",
+          "interval": 10080.0,
+          "lastExecution": "2026-11-12T03:00:00+02:00",
+          "nextExecution": "2026-11-19T03:00:00",
+          "lastDuration": "nonsense",
+          "id": 5
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v3/system/status",
+      "status": 200,
+      "body": {
+        "appName": "Sonarr",
+        "version": "4.0.11.2680",
+        "buildTime": "2026-10-01T00:00:00Z",
+        "startTime": "2026-11-16T08:00:00.0000001Z",
+        "isDocker": true
+      }
+    }
+  ]
+}

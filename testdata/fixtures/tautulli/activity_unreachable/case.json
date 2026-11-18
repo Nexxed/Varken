@@ -1,0 +1,19 @@
+{
+  "job": "get_activity",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 500,
+      "match_query": {
+        "cmd": "get_activity"
+      },
+      "body_text": "oops"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "job": "get_latest_requests",
+  "fix": "Python crashed on a request without media and wrote nothing; it is skipped. A request without requestedBy is written without requested_user, and a null media status falls back to the lookup.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/request",
+      "status": 200,
+      "match_query": {
+        "take": 10,
+        "filter": "all",
+        "sort": "added"
+      },
+      "body": {
+        "pageInfo": {
+          "pages": 1,
+          "pageSize": 10,
+          "results": 4,
+          "page": 1
+        },
+        "results": [
+          {
+            "id": 1,
+            "status": 2,
+            "createdAt": "2026-11-17T10:00:00.000Z",
+            "updatedAt": "2026-11-17T10:00:00.000Z",
+            "type": "movie",
+            "is4k": false,
+            "media": null,
+            "requestedBy": {
+              "id": 1,
+              "displayName": "Alice",
+              "email": "alice@example.com"
+            },
+            "modifiedBy": null,
+            "seasons": []
+          },
+          {
+            "id": 2,
+            "status": 2,
+            "createdAt": "2026-11-16T09:00:00.000Z",
+            "updatedAt": "2026-11-16T09:00:00.000Z",
+            "type": "tv",
+            "is4k": false,
+            "media": {
+              "id": 102,
+              "tmdbId": 1399,
+              "tvdbId": null,
+              "status": 4,
+              "mediaType": "tv"
+            },
+            "requestedBy": null,
+            "modifiedBy": null,
+            "seasons": []
+          },
+          {
+            "id": 3,
+            "status": 2,
+            "createdAt": "2026-11-15T08:00:00.000Z",
+            "updatedAt": "2026-11-15T08:00:00.000Z",
+            "type": "movie",
+            "is4k": false,
+            "media": {
+              "id": 103,
+              "tmdbId": 550,
+              "tvdbId": null,
+              "status": null,
+              "mediaType": "movie"
+            },
+            "requestedBy": {
+              "id": 3,
+              "displayName": "Carol",
+              "email": "carol@example.com"
+            },
+            "modifiedBy": null,
+            "seasons": []
+          },
+          {
+            "id": 4,
+            "status": 2,
+            "createdAt": "2026-11-14T08:00:00.000Z",
+            "updatedAt": "2026-11-14T08:00:00.000Z",
+            "type": "music",
+            "is4k": false,
+            "media": {
+              "id": 104,
+              "tmdbId": 1,
+              "tvdbId": null,
+              "status": 5,
+              "mediaType": "music"
+            },
+            "requestedBy": {
+              "id": 4,
+              "displayName": "Dave",
+              "email": "dave@example.com"
+            },
+            "modifiedBy": null,
+            "seasons": []
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tv/1399",
+      "status": 200,
+      "body": {
+        "id": 1399,
+        "mediaInfo": {
+          "id": 1400,
+          "tmdbId": 1399,
+          "status": 4,
+          "requests": [
+            {
+              "id": 2,
+              "createdAt": "2026-11-16T09:00:00.000Z",
+              "requestedBy": {
+                "id": 2,
+                "displayName": "Bob",
+                "email": "bob@example.com"
+              }
+            }
+          ]
+        },
+        "name": "Game of Thrones"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/movie/550",
+      "status": 200,
+      "body": {
+        "id": 550,
+        "mediaInfo": {
+          "id": 551,
+          "tmdbId": 550,
+          "status": 2,
+          "requests": [
+            {
+              "id": 3,
+              "createdAt": "2026-11-15T08:00:00.000Z",
+              "requestedBy": {
+                "id": 3,
+                "displayName": "Carol",
+                "email": "carol@example.com"
+              }
+            }
+          ]
+        },
+        "title": "Fight Club"
+      }
+    }
+  ]
+}

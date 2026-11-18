@@ -1,0 +1,25 @@
+{
+  "job": "get_request_counts",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "get_request_total_counts": true
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/request/count",
+      "status": 200,
+      "body": {
+        "total": 20,
+        "movie": 12,
+        "tv": 8,
+        "pending": 2,
+        "approved": 15,
+        "declined": 1,
+        "processing": 3,
+        "available": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+GET /api/v2/stats/timeline?bucket=hour&hours=48&includeDryRun=false&metric=strikesIssued

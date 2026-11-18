@@ -1,0 +1,16 @@
+{
+  "job": "get_calendar",
+  "args": {
+    "future_days": 30
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/calendar",
+      "status": 200,
+      "body": []
+    }
+  ]
+}

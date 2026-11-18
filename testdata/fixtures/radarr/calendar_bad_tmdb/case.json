@@ -1,0 +1,112 @@
+{
+  "job": "get_calendar",
+  "fix": "Python's int() raised ValueError on a non-numeric tmdbId and wrote nothing; that movie is now skipped and the others are written.",
+  "args": {
+    "future_days": 30
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/calendar",
+      "status": 200,
+      "body": [
+        {
+          "title": "Bad Id",
+          "originalTitle": "Bad Id",
+          "sortTitle": "bad id",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2026-11-20T00:00:00Z",
+          "physicalRelease": "2022-01-11T00:00:00Z",
+          "digitalRelease": "2021-10-21T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2026,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Bad Id",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Bad Id",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": "tt123",
+          "titleSlug": "tt123",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 999,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        },
+        {
+          "title": "Cinema Soon",
+          "originalTitle": "Cinema Soon",
+          "sortTitle": "cinema soon",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2026-11-20T00:00:00Z",
+          "physicalRelease": null,
+          "digitalRelease": "2027-01-01T00:00:00Z",
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2026,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Cinema Soon",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Cinema Soon",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 1,
+          "titleSlug": "1",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 1,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        }
+      ]
+    }
+  ]
+}

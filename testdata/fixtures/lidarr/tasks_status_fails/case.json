@@ -1,0 +1,34 @@
+{
+  "job": "get_tasks",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 30,
+    "future_days": 30
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/system/task",
+      "status": 200,
+      "body": [
+        {
+          "name": "RssSync",
+          "taskName": "RssSync",
+          "interval": 15,
+          "lastExecution": "2026-11-18T16:20:00.1234567Z",
+          "lastStartTime": "2026-11-18T16:19:58Z",
+          "nextExecution": "2026-11-18T16:35:00.5Z",
+          "lastDuration": "00:00:01.9876543",
+          "id": 1
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/system/status",
+      "status": 500,
+      "body": "x"
+    }
+  ]
+}

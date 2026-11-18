@@ -1,0 +1,279 @@
+{
+  "job": "get_library",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 7,
+    "future_days": 1
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/series",
+      "status": 200,
+      "body": [
+        {
+          "title": "The Expanse",
+          "sortTitle": "the expanse",
+          "status": "ended",
+          "overview": "Space.",
+          "network": "Prime",
+          "images": [
+            {
+              "coverType": "poster",
+              "url": "/poster.jpg"
+            }
+          ],
+          "seasons": [
+            {
+              "seasonNumber": 1
+            }
+          ],
+          "year": 2015,
+          "path": "/tv/The Expanse",
+          "qualityProfileId": 1,
+          "seasonFolder": true,
+          "monitored": true,
+          "tvdbId": 280620,
+          "id": 1,
+          "added": "2020-01-01T00:00:00Z",
+          "ratings": {
+            "votes": 10,
+            "value": 8.5
+          },
+          "statistics": {
+            "seasonCount": 6,
+            "episodeFileCount": 62,
+            "episodeCount": 62,
+            "totalEpisodeCount": 62,
+            "sizeOnDisk": 130000000000,
+            "percentOfEpisodes": 100.0
+          },
+          "lastSearchTime": null
+        },
+        {
+          "title": "Andor",
+          "sortTitle": "andor",
+          "status": "Continuing",
+          "overview": "Space.",
+          "network": "Prime",
+          "images": [
+            {
+              "coverType": "poster",
+              "url": "/poster.jpg"
+            }
+          ],
+          "seasons": [
+            {
+              "seasonNumber": 1
+            }
+          ],
+          "year": 2015,
+          "path": "/tv/Andor",
+          "qualityProfileId": 1,
+          "seasonFolder": true,
+          "monitored": true,
+          "tvdbId": 280621,
+          "id": 2,
+          "added": "2020-01-01T00:00:00Z",
+          "ratings": {
+            "votes": 10,
+            "value": 8.5
+          },
+          "statistics": {
+            "episodeCount": 10,
+            "episodeFileCount": 4,
+            "totalEpisodeCount": 24,
+            "sizeOnDisk": 50000000000,
+            "percentOfEpisodes": 40.123456
+          },
+          "lastSearchTime": null
+        },
+        {
+          "title": "Upcoming",
+          "sortTitle": "upcoming",
+          "status": "upcoming",
+          "overview": "Space.",
+          "network": "Prime",
+          "images": [
+            {
+              "coverType": "poster",
+              "url": "/poster.jpg"
+            }
+          ],
+          "seasons": [
+            {
+              "seasonNumber": 1
+            }
+          ],
+          "year": 2015,
+          "path": "/tv/Upcoming",
+          "qualityProfileId": 1,
+          "seasonFolder": true,
+          "monitored": false,
+          "tvdbId": 280622,
+          "id": 3,
+          "added": "2020-01-01T00:00:00Z",
+          "ratings": {
+            "votes": 10,
+            "value": 8.5
+          },
+          "statistics": {
+            "episodeCount": 0,
+            "episodeFileCount": 0,
+            "sizeOnDisk": 0,
+            "percentOfEpisodes": 0
+          },
+          "lastSearchTime": null
+        },
+        {
+          "title": "No Stats",
+          "sortTitle": "no stats",
+          "status": "ended",
+          "overview": "Space.",
+          "network": "Prime",
+          "images": [
+            {
+              "coverType": "poster",
+              "url": "/poster.jpg"
+            }
+          ],
+          "seasons": [
+            {
+              "seasonNumber": 1
+            }
+          ],
+          "year": 2015,
+          "path": "/tv/No Stats",
+          "qualityProfileId": 1,
+          "seasonFolder": true,
+          "monitored": true,
+          "tvdbId": 280623,
+          "id": 4,
+          "added": "2020-01-01T00:00:00Z",
+          "ratings": {
+            "votes": 10,
+            "value": 8.5
+          },
+          "statistics": null,
+          "lastSearchTime": null
+        },
+        {
+          "title": "Weird Percent",
+          "sortTitle": "weird percent",
+          "status": "ended",
+          "overview": "Space.",
+          "network": "Prime",
+          "images": [
+            {
+              "coverType": "poster",
+              "url": "/poster.jpg"
+            }
+          ],
+          "seasons": [
+            {
+              "seasonNumber": 1
+            }
+          ],
+          "year": 2015,
+          "path": "/tv/Weird Percent",
+          "qualityProfileId": 1,
+          "seasonFolder": true,
+          "monitored": true,
+          "tvdbId": 280624,
+          "id": 5,
+          "added": "2020-01-01T00:00:00Z",
+          "ratings": {
+            "votes": 10,
+            "value": 8.5
+          },
+          "statistics": {
+            "episodeCount": "3",
+            "episodeFileCount": 3.0,
+            "percentOfEpisodes": "abc",
+            "sizeOnDisk": "1e3"
+          },
+          "lastSearchTime": null
+        },
+        {
+          "title": "No Id",
+          "sortTitle": "no id",
+          "status": "ended",
+          "overview": "Space.",
+          "network": "Prime",
+          "images": [
+            {
+              "coverType": "poster",
+              "url": "/poster.jpg"
+            }
+          ],
+          "seasons": [
+            {
+              "seasonNumber": 1
+            }
+          ],
+          "year": 2015,
+          "path": "/tv/No Id",
+          "qualityProfileId": 1,
+          "seasonFolder": true,
+          "monitored": true,
+          "tvdbId": 280625,
+          "id": null,
+          "added": "2020-01-01T00:00:00Z",
+          "ratings": {
+            "votes": 10,
+            "value": 8.5
+          },
+          "statistics": {
+            "seasonCount": 6,
+            "episodeFileCount": 62,
+            "episodeCount": 62,
+            "totalEpisodeCount": 62,
+            "sizeOnDisk": 130000000000,
+            "percentOfEpisodes": 100.0
+          },
+          "lastSearchTime": null
+        },
+        {
+          "title": null,
+          "sortTitle": "",
+          "status": null,
+          "overview": "Space.",
+          "network": "Prime",
+          "images": [
+            {
+              "coverType": "poster",
+              "url": "/poster.jpg"
+            }
+          ],
+          "seasons": [
+            {
+              "seasonNumber": 1
+            }
+          ],
+          "year": 2015,
+          "path": "/tv/None",
+          "qualityProfileId": 1,
+          "seasonFolder": true,
+          "monitored": true,
+          "tvdbId": 280626,
+          "id": 7,
+          "added": "2020-01-01T00:00:00Z",
+          "ratings": {
+            "votes": 10,
+            "value": 8.5
+          },
+          "statistics": {
+            "seasonCount": 6,
+            "episodeFileCount": 62,
+            "episodeCount": 62,
+            "totalEpisodeCount": 62,
+            "sizeOnDisk": 130000000000,
+            "percentOfEpisodes": 100.0
+          },
+          "lastSearchTime": null
+        }
+      ]
+    }
+  ]
+}

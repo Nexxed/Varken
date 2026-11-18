@@ -1,0 +1,12 @@
+{"s": "true", "bool": true}
+{"s": "True", "bool": true}
+{"s": "TRUE", "bool": true}
+{"s": "yes", "bool": true}
+{"s": "Yes", "bool": true}
+{"s": "y", "bool": false}
+{"s": "1", "bool": false}
+{"s": "on", "bool": false}
+{"s": "false", "bool": false}
+{"s": " true", "bool": false}
+{"s": "true ", "bool": false}
+{"s": "", "bool": false}

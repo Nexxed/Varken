@@ -1,0 +1,1 @@
+Python rewrote varken.ini from the example to fill the key; Go uses the same default in memory.

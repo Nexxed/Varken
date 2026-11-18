@@ -1,0 +1,115 @@
+{
+  "job": "get_missing",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/wanted/missing",
+      "status": 200,
+      "body": {
+        "page": 1,
+        "pageSize": 500,
+        "sortKey": "timeleft",
+        "sortDirection": "ascending",
+        "totalRecords": 2,
+        "records": [
+          {
+            "title": "Up",
+            "originalTitle": "Up",
+            "sortTitle": "up",
+            "sizeOnDisk": 0,
+            "status": "released",
+            "overview": "...",
+            "inCinemas": "2021-10-22T00:00:00Z",
+            "physicalRelease": "2022-01-11T00:00:00Z",
+            "digitalRelease": "2021-10-21T00:00:00Z",
+            "images": [
+              {
+                "coverType": "poster"
+              }
+            ],
+            "website": "",
+            "year": 2009,
+            "hasFile": true,
+            "youTubeTrailerId": "",
+            "studio": "Legendary",
+            "path": "/movies/Up",
+            "qualityProfileId": 1,
+            "monitored": true,
+            "minimumAvailability": "released",
+            "isAvailable": true,
+            "folderName": "/movies/Up",
+            "runtime": 155,
+            "cleanTitle": "dune",
+            "imdbId": "tt1160419",
+            "tmdbId": 14160,
+            "titleSlug": "14160",
+            "genres": [
+              "Science Fiction"
+            ],
+            "tags": [],
+            "added": "2021-01-01T00:00:00Z",
+            "ratings": {
+              "imdb": {
+                "votes": 1,
+                "value": 8.0
+              }
+            },
+            "popularity": 50.5,
+            "id": 160,
+            "lastSearchTime": "2026-11-01T00:00:00Z",
+            "releaseDate": "2021-10-21"
+          },
+          {
+            "title": "Unmonitored",
+            "originalTitle": "Unmonitored",
+            "sortTitle": "unmonitored",
+            "sizeOnDisk": 0,
+            "status": "released",
+            "overview": "...",
+            "inCinemas": "2021-10-22T00:00:00Z",
+            "physicalRelease": "2022-01-11T00:00:00Z",
+            "digitalRelease": "2021-10-21T00:00:00Z",
+            "images": [
+              {
+                "coverType": "poster"
+              }
+            ],
+            "website": "",
+            "year": 2000,
+            "hasFile": false,
+            "youTubeTrailerId": "",
+            "studio": "Legendary",
+            "path": "/movies/Unmonitored",
+            "qualityProfileId": 1,
+            "monitored": false,
+            "minimumAvailability": "released",
+            "isAvailable": true,
+            "folderName": "/movies/Unmonitored",
+            "runtime": 155,
+            "cleanTitle": "dune",
+            "imdbId": "tt1160419",
+            "tmdbId": 1,
+            "titleSlug": "1",
+            "genres": [
+              "Science Fiction"
+            ],
+            "tags": [],
+            "added": "2021-01-01T00:00:00Z",
+            "ratings": {
+              "imdb": {
+                "votes": 1,
+                "value": 8.0
+              }
+            },
+            "popularity": 50.5,
+            "id": 1,
+            "lastSearchTime": "2026-11-01T00:00:00Z",
+            "releaseDate": "2021-10-21"
+          }
+        ]
+      }
+    }
+  ]
+}

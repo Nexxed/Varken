@@ -21,7 +21,12 @@
 # CONFIGURATION NOTES
 #
 #    - The example settings in this file assume that you will run varken as user: varken
-#    - The example settings in this file assume that varken is installed to: /opt/Varken
+#    - The example settings in this file assume that varken is installed to: /opt/Varken, with the varken binary
+#      at /opt/Varken/varken and its configuration in /opt/Varken/data (the default data folder, next to the binary).
+#      Use -d /path/to/data in ExecStart for another folder.
+#
+#    - Upgrading from the Python version: put the varken binary in /opt/Varken, keep /opt/Varken/data as it is,
+#      and replace the ExecStart line below. The virtualenv (varken-venv) is no longer needed.
 #
 #    - To create this user and give it ownership of the Varken directory:
 #       Ubuntu/Debian: sudo addgroup varken && sudo adduser --system --no-create-home varken --ingroup varken
@@ -45,7 +50,7 @@ Type=simple
 User=varken
 Group=varken
 WorkingDirectory=/opt/Varken
-ExecStart=/opt/Varken/varken-venv/bin/python /opt/Varken/Varken.py
+ExecStart=/opt/Varken/varken
 Restart=always
 RestartSec=30
 

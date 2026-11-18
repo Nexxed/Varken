@@ -1,0 +1,61 @@
+{
+  "job": "get_stats",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_libraries"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": [
+            {
+              "section_id": 1,
+              "section_name": "Movies",
+              "section_type": "movie",
+              "count": "1200",
+              "parent_count": "",
+              "child_count": ""
+            },
+            {
+              "section_id": "2",
+              "section_name": "TV Shows",
+              "section_type": "show",
+              "count": "150",
+              "parent_count": "600",
+              "child_count": "9000"
+            },
+            {
+              "section_id": 3,
+              "section_name": "Music",
+              "section_type": "artist",
+              "count": 80,
+              "parent_count": 300,
+              "child_count": 4000.0
+            },
+            {
+              "section_name": "Photos",
+              "section_type": "photo",
+              "count": "10"
+            },
+            {
+              "section_id": null,
+              "section_name": "Odd",
+              "section_type": "movie",
+              "count": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

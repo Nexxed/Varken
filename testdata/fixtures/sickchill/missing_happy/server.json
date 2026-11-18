@@ -1,0 +1,8 @@
+{
+  "api_key": "testkey",
+  "get_missing": true,
+  "get_missing_run_seconds": 30,
+  "id": 1,
+  "url": "",
+  "verify_ssl": false
+}

@@ -1,0 +1,17 @@
+{
+  "job": "get_library",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 30,
+    "future_days": 30
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/artist",
+      "status": 500,
+      "body": "x"
+    }
+  ]
+}

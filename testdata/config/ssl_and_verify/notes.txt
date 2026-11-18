@@ -1,0 +1,1 @@
+verify_ssl is forced off without ssl; only true/yes (any case) are true.

@@ -1,0 +1,70 @@
+{
+  "job": "get_server_status",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "server_status"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "result": "success",
+            "connected": true
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_pms_update"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": null
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 500,
+      "match_query": {
+        "cmd": "get_tautulli_info"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_history",
+        "length": 1
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "recordsFiltered": 1,
+            "data": []
+          }
+        }
+      }
+    }
+  ]
+}

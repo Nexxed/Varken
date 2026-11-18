@@ -1,0 +1,2 @@
+GET /api/v1/Request/movie
+GET /api/v1/Request/tv

@@ -1,0 +1,62 @@
+{
+  "created": false,
+  "exception": null,
+  "exit": null,
+  "filtered": [
+    "influxdb",
+    "s3cret-influx",
+    "tautulli",
+    "tautulli:8181",
+    "tautullikeydddddddd",
+    "varken"
+  ],
+  "influx": {
+    "password": "s3cret-influx",
+    "port": 8086,
+    "ssl": false,
+    "url": "influxdb",
+    "username": "varken",
+    "verify_ssl": false
+  },
+  "rewritten": false,
+  "services": {
+    "cleanuparr": {
+      "enabled": null,
+      "servers": []
+    },
+    "lidarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "ombi": {
+      "enabled": null,
+      "servers": []
+    },
+    "overseerr": {
+      "enabled": null,
+      "servers": []
+    },
+    "radarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "sickchill": {
+      "enabled": null,
+      "servers": []
+    },
+    "sonarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "tautulli": {
+      "enabled": [
+        1
+      ],
+      "servers": []
+    },
+    "unifi": {
+      "enabled": null,
+      "servers": []
+    }
+  }
+}

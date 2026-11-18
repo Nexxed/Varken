@@ -1,0 +1,5 @@
+GET /api/v2/stats/timeline?bucket=hour&hours=48&includeDryRun=false&metric=events
+GET /api/v2/stats/timeline?bucket=hour&hours=48&includeDryRun=false&metric=malwareBlocked
+GET /api/v2/stats/timeline?bucket=hour&hours=48&includeDryRun=false&metric=recovered
+GET /api/v2/stats/timeline?bucket=hour&hours=48&includeDryRun=false&metric=removed
+GET /api/v2/stats/timeline?bucket=hour&hours=48&includeDryRun=false&metric=strikesIssued

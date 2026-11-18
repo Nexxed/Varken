@@ -1,0 +1,181 @@
+{
+  "job": "get_all_requests",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/tv",
+      "status": 200,
+      "body": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/movie",
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "theMovieDbId": 1001,
+          "title": "Denied Movie",
+          "denied": true,
+          "approved": false,
+          "available": false,
+          "requestedDate": "2026-11-01T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "alice",
+            "userName": "alice"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000001",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        },
+        {
+          "id": 2,
+          "theMovieDbId": 1002,
+          "title": "Available Movie",
+          "denied": false,
+          "approved": true,
+          "available": true,
+          "requestedDate": "2026-11-02T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "Carol",
+            "userName": "carol"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000002",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        },
+        {
+          "id": 3,
+          "theMovieDbId": 1003,
+          "title": "Approved Movie",
+          "denied": false,
+          "approved": true,
+          "available": false,
+          "requestedDate": "2026-11-03T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "alice",
+            "userName": "alice"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000003",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        },
+        {
+          "id": 4,
+          "theMovieDbId": 1004,
+          "title": "Pending Movie",
+          "denied": false,
+          "approved": false,
+          "available": false,
+          "requestedDate": "2026-11-04T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "alice",
+            "userName": "alice"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000004",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        },
+        {
+          "id": 5,
+          "theMovieDbId": 1005,
+          "title": "Denied But Available",
+          "denied": true,
+          "approved": true,
+          "available": true,
+          "requestedDate": "2026-11-05T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "alice",
+            "userName": "alice"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000005",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        },
+        {
+          "id": 6,
+          "theMovieDbId": 1006,
+          "title": "Available Not Approved",
+          "denied": false,
+          "approved": false,
+          "available": true,
+          "requestedDate": "2026-11-06T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "alice",
+            "userName": "alice"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000006",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        },
+        {
+          "id": 7,
+          "theMovieDbId": 1007,
+          "title": null,
+          "denied": false,
+          "approved": 1,
+          "available": "",
+          "requestedDate": "2026-11-07T10:00:00",
+          "requestedUserId": "u1",
+          "requestedUser": {
+            "id": "u1",
+            "userAlias": "alice",
+            "userName": "alice"
+          },
+          "requestType": 1,
+          "imdbId": "tt0000007",
+          "overview": "An overview",
+          "released": true,
+          "playedByUsersCount": 0,
+          "watchedByRequestedUser": false,
+          "canApprove": true,
+          "source": 1
+        }
+      ]
+    }
+  ]
+}

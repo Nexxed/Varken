@@ -1,0 +1,1 @@
+Sonarr,server=1,type=Queue_Summary error_items=0i,has_errors=0i,has_warnings=0i,items=0i,size=0i,sizeleft=0i,state_downloading=0i,state_failed=0i,state_failed_pending=0i,state_ignored=0i,state_import_blocked=0i,state_import_pending=0i,state_imported=0i,state_importing=0i,total_count=0i,unknown_count=0i,warning_items=0i 1795019400123456000

@@ -1,0 +1,64 @@
+{
+  "job": "get_calendar",
+  "args": {
+    "future_days": 7
+  },
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v3/calendar",
+      "status": 200,
+      "body": [
+        {
+          "title": "Out Of Range",
+          "originalTitle": "Out Of Range",
+          "sortTitle": "out of range",
+          "sizeOnDisk": 0,
+          "status": "released",
+          "overview": "...",
+          "inCinemas": "2027-03-01T00:00:00Z",
+          "physicalRelease": null,
+          "digitalRelease": null,
+          "images": [
+            {
+              "coverType": "poster"
+            }
+          ],
+          "website": "",
+          "year": 2027,
+          "hasFile": false,
+          "youTubeTrailerId": "",
+          "studio": "Legendary",
+          "path": "/movies/Out Of Range",
+          "qualityProfileId": 1,
+          "monitored": true,
+          "minimumAvailability": "released",
+          "isAvailable": true,
+          "folderName": "/movies/Out Of Range",
+          "runtime": 155,
+          "cleanTitle": "dune",
+          "imdbId": "tt1160419",
+          "tmdbId": 5,
+          "titleSlug": "5",
+          "genres": [
+            "Science Fiction"
+          ],
+          "tags": [],
+          "added": "2021-01-01T00:00:00Z",
+          "ratings": {
+            "imdb": {
+              "votes": 1,
+              "value": 8.0
+            }
+          },
+          "popularity": 50.5,
+          "id": 5,
+          "lastSearchTime": "2026-11-01T00:00:00Z",
+          "releaseDate": "2021-10-21"
+        }
+      ]
+    }
+  ]
+}

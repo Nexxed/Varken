@@ -1,0 +1,65 @@
+{
+  "job": "get_disk",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "missing_days": 30,
+    "future_days": 30
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/diskspace",
+      "status": 500,
+      "body": "x"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/rootfolder",
+      "status": 200,
+      "body": [
+        {
+          "path": "/data/tv",
+          "accessible": true,
+          "freeSpace": 1000000000000,
+          "unmappedFolders": [
+            {
+              "name": "Show A",
+              "path": "/data/tv/Show A"
+            },
+            {
+              "name": "Show B",
+              "path": "/data/tv/Show B"
+            }
+          ],
+          "id": 1
+        },
+        {
+          "path": "/mnt/tv/shows/",
+          "accessible": true,
+          "freeSpace": 500000000000.0,
+          "unmappedFolders": [],
+          "id": 2
+        },
+        {
+          "path": "/srv/media",
+          "accessible": false,
+          "freeSpace": 0,
+          "id": 3
+        },
+        {
+          "path": "/data/movies",
+          "accessible": true,
+          "freeSpace": 1000000000000,
+          "totalSpace": 123,
+          "id": 4
+        },
+        {
+          "path": "",
+          "accessible": true,
+          "id": 5
+        }
+      ]
+    }
+  ]
+}

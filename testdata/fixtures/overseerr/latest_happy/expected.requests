@@ -1,0 +1,4 @@
+GET /api/v1/movie/550
+GET /api/v1/movie/603
+GET /api/v1/request?filter=all&sort=added&take=10
+GET /api/v1/tv/1399

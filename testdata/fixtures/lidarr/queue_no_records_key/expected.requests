@@ -1,0 +1,2 @@
+GET /api/v1/queue/status
+GET /api/v1/queue?pageSize=1000

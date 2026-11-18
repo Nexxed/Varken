@@ -1,0 +1,64 @@
+{
+  "job": "get_concurrent_streams",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_concurrent_streams_by_stream_type",
+        "time_range": "30"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "categories": [
+              "2026-11-16",
+              "2026-11-17",
+              "2026-1-5",
+              "bad",
+              5,
+              "2026-02-30"
+            ],
+            "series": [
+              {
+                "name": "Direct Play",
+                "data": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ]
+              },
+              {
+                "name": "Transcode",
+                "data": [
+                  0,
+                  null,
+                  "2"
+                ]
+              },
+              {
+                "data": [
+                  7
+                ]
+              },
+              {
+                "name": "Empty"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

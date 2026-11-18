@@ -1,0 +1,2 @@
+GET /api/v2?apikey=testkey&cmd=get_activity
+GET /api/v2?cmd=get_activity

@@ -1,0 +1,2 @@
+GET /api/v3/system/status
+GET /api/v3/system/task

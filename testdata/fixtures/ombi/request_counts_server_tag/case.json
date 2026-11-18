@@ -1,0 +1,22 @@
+{
+  "job": "get_request_counts",
+  "fix": "With add_server_tag = true (new, off by default) the count points carry the server tag; Python had none.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "id": 2,
+    "add_server_tag": true
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/count",
+      "status": 200,
+      "body": {
+        "pending": 3,
+        "approved": 10,
+        "available": 42
+      }
+    }
+  ]
+}

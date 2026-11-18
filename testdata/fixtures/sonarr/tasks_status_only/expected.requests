@@ -1,0 +1,2 @@
+GET /api/v3/system/status?pageSize=1000
+GET /api/v3/system/task?pageSize=1000

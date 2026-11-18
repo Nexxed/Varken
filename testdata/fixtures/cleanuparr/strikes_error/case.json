@@ -1,0 +1,13 @@
+{
+  "job": "get_strikes",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/strikes",
+      "status": 404,
+      "body_text": "Not Found"
+    }
+  ]
+}
