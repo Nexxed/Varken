@@ -7,10 +7,12 @@ package pycompat
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"math"
 	"math/big"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 // Kind is the Python type a Value holds.
@@ -203,23 +205,28 @@ func (v *Value) UnmarshalJSON(data []byte) error {
 	case 'f':
 		*v = Value{kind: BoolKind}
 	case '"':
+		// Most strings have no escapes: copy them as they are instead of running the full decoder.
+		if len(data) >= 2 && data[len(data)-1] == '"' {
+			if inner := data[1 : len(data)-1]; plainString(inner) {
+				*v = Value{kind: StrKind, s: string(inner)}
+				return nil
+			}
+		}
 		var s string
 		if err := json.Unmarshal(data, &s); err != nil {
 			return err
 		}
 		*v = Value{kind: StrKind, s: s}
-	case '[':
-		var items []json.RawMessage
-		if err := json.Unmarshal(data, &items); err != nil {
+	case '[', '{':
+		n, err := countElements(data)
+		if err != nil {
 			return err
 		}
-		*v = Value{kind: ListKind, s: string(data), n: len(items)}
-	case '{':
-		var items map[string]json.RawMessage
-		if err := json.Unmarshal(data, &items); err != nil {
-			return err
+		kind := ListKind
+		if data[0] == '{' {
+			kind = DictKind
 		}
-		*v = Value{kind: DictKind, s: string(data), n: len(items)}
+		*v = Value{kind: kind, s: string(data), n: n}
 	default:
 		*v = parseJSONNumber(string(data))
 	}
@@ -286,4 +293,69 @@ func fromToken(x any) Value {
 		return parseJSONNumber(string(t))
 	}
 	return None
+}
+
+// plainString reports string contents that decode to themselves: valid UTF-8 without escapes, quotes or control
+// characters.
+func plainString(b []byte) bool {
+	for _, c := range b {
+		if c < 0x20 || c == '"' || c == '\\' {
+			return false
+		}
+	}
+	return utf8.Valid(b)
+}
+
+var errBadContainer = errors.New("malformed JSON array or object")
+
+// countElements returns len() of a JSON array, or the number of distinct keys of a JSON object (a Python dict
+// keeps one entry per key), without decoding the array's values.
+func countElements(data []byte) (int, error) {
+	if !json.Valid(data) {
+		return 0, errBadContainer
+	}
+	if data[0] == '{' {
+		var keys map[string]json.RawMessage
+		if err := json.Unmarshal(data, &keys); err != nil {
+			return 0, err
+		}
+		return len(keys), nil
+	}
+	depth, commas, nonEmpty, inString, escaped := 0, 0, false, false, false
+	for _, c := range data {
+		if inString {
+			switch {
+			case escaped:
+				escaped = false
+			case c == '\\':
+				escaped = true
+			case c == '"':
+				inString = false
+			}
+			continue
+		}
+		switch c {
+		case ' ', '\t', '\n', '\r':
+		case ',':
+			if depth == 1 {
+				commas++
+			}
+		case ']', '}':
+			depth--
+		default:
+			if depth == 1 {
+				nonEmpty = true
+			}
+			switch c {
+			case '"':
+				inString = true
+			case '[', '{':
+				depth++
+			}
+		}
+	}
+	if !nonEmpty {
+		return 0, nil
+	}
+	return commas + 1, nil
 }

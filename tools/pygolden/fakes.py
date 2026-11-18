@@ -3,6 +3,7 @@
 The Go test helpers in internal/testutil implement the same route-matching rules, so a case.json behaves the same
 under both implementations.
 """
+import gzip
 import json
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -145,6 +146,8 @@ class FakeInflux(object):
                 query = dict(parse_qsl(parts.query, keep_blank_values=True))
                 length = int(self.headers.get('Content-Length') or 0)
                 body = self.rfile.read(length) if length else b''
+                if self.headers.get('Content-Encoding') == 'gzip':
+                    body = gzip.decompress(body)  # real InfluxDB accepts gzipped writes; the Go version sends them
                 if parts.path == '/ping':
                     self.send_response(204)
                     self.send_header('X-Influxdb-Version', '1.8.10')

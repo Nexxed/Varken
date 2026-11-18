@@ -41,6 +41,13 @@ responses. The Python version is kept on the `python-1.x` branch.
 - Secrets from environment variables are masked in the log as well; API keys and passwords are masked completely.
 - A job never overlaps itself, a crashing job no longer stops anything else, and SIGTERM stops Varken cleanly.
 
+**Performance** (measured side by side with the same configuration and responses):
+- Memory: about 17 MB resident against about 35 MB for the Python version, with the image at 26 MB.
+- CPU: one round of Sonarr, Radarr and Ombi jobs used 0.05 s against 0.25 s.
+- The largest response Varken reads, a 2,500-movie Radarr library (7 MB of JSON), takes 42-46 ms per run against
+  44-51 ms in Python, whose JSON parser is written in C. `go test ./internal/collector/radarr -bench .` measures it.
+- Jobs no longer start a thread per run.
+
 **Fixed bugs (each was a crash or lost data in the Python version):**
 - GeoIP: the retry and invalid-license handling of the MaxMind download could never run; the old database was
   deleted before the new one was downloaded; lookups could hit a closed database during an update; an address

@@ -188,7 +188,12 @@ func (c *Client) Do(ctx context.Context, method, path string, params Params, jso
 		return nil, err
 	}
 	defer resp.Body.Close()
-	data, err := io.ReadAll(io.LimitReader(resp.Body, maxBody))
+	var buf bytes.Buffer
+	if resp.ContentLength > 0 && resp.ContentLength <= maxBody {
+		buf.Grow(int(resp.ContentLength) + bytes.MinRead)
+	}
+	_, err = buf.ReadFrom(io.LimitReader(resp.Body, maxBody))
+	data := buf.Bytes()
 	if err != nil {
 		c.log.Error(fmt.Sprintf("Broken connection during request... oops? Error: %v", err))
 		return nil, err
@@ -251,11 +256,32 @@ func (c *Client) request(ctx context.Context, method, path string, params Params
 	if resp.Status != http.StatusOK {
 		return nil, false
 	}
-	if !json.Valid(resp.Body) {
+	if !looksLikeJSON(resp.Body) {
 		c.log.Error("No JSON response. Response is: " + py.Truncate(string(resp.Body), 2000))
 		return nil, false
 	}
 	return resp.Body, true
+}
+
+// looksLikeJSON is a cheap stand-in for json.Valid, which would scan large bodies once more: it catches what a
+// server sends instead of JSON (HTML error pages, plain text, empty bodies) and a body cut short. Anything else
+// that is malformed fails when the collector decodes it.
+func looksLikeJSON(body []byte) bool {
+	body = bytes.TrimSpace(body)
+	if len(body) == 0 {
+		return false
+	}
+	switch first, last := body[0], body[len(body)-1]; first {
+	case '{':
+		return last == '}'
+	case '[':
+		return last == ']'
+	case '"':
+		return len(body) > 1 && last == '"'
+	case 't', 'f', 'n', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9':
+		return json.Valid(body)
+	}
+	return false
 }
 
 // GetInto fetches JSON and decodes it into out. It returns false when the request failed or, like Python's

@@ -3,6 +3,7 @@ package pycompat
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 )
 
 // API responses are decoded into structs whose fields are only Value, Obj, List, Objs and Map. None of these
@@ -46,6 +47,18 @@ type List[T any] []T
 // UnmarshalJSON implements json.Unmarshaler.
 func (l *List[T]) UnmarshalJSON(data []byte) error {
 	*l = nil
+	// Fast path: one decoding pass. It fails only when an element has the wrong type for T; the slow path then
+	// decodes element by element, keeping positions.
+	var fast []T
+	if err := json.Unmarshal(data, &fast); err == nil && isArray(data) {
+		*l = fast
+		return nil
+	}
+	return l.slow(data)
+}
+
+func (l *List[T]) slow(data []byte) error {
+	*l = nil
 	items, ok := rawItems(data)
 	if !ok {
 		return nil
@@ -65,6 +78,29 @@ type Objs[T any] []T
 // UnmarshalJSON implements json.Unmarshaler.
 func (l *Objs[T]) UnmarshalJSON(data []byte) error {
 	*l = nil
+	// Fast path: one decoding pass when every element is an object or null (null decodes to nil and is skipped).
+	// Any other element makes it fail, and the slow path skips those elements one by one.
+	var fast []*T
+	if err := json.Unmarshal(data, &fast); err == nil && isArray(data) {
+		l.keep(fast)
+		return nil
+	}
+	return l.slow(data)
+}
+
+// keep stores the decoded objects, skipping nulls.
+func (l *Objs[T]) keep(items []*T) {
+	out := make(Objs[T], 0, len(items))
+	for _, t := range items {
+		if t != nil {
+			out = append(out, *t)
+		}
+	}
+	*l = out
+}
+
+func (l *Objs[T]) slow(data []byte) error {
+	*l = nil
 	items, ok := rawItems(data)
 	if !ok {
 		return nil
@@ -83,6 +119,11 @@ func (l *Objs[T]) UnmarshalJSON(data []byte) error {
 	}
 	*l = out
 	return nil
+}
+
+func isArray(data []byte) bool {
+	data = bytes.TrimSpace(data)
+	return len(data) > 0 && data[0] == '['
 }
 
 func rawItems(data []byte) ([]json.RawMessage, bool) {
@@ -168,8 +209,52 @@ func (m *Map[V]) UnmarshalJSON(data []byte) error {
 }
 
 // Decode unmarshals an API response body into T. It only fails when the body is not JSON at all.
+//
+// A top-level List or Objs decodes the body directly: going through json.Unmarshal would scan the whole body
+// once to find the value and once more to decode it.
 func Decode[T any](body []byte) (T, error) {
 	var t T
+	if top, ok := any(&t).(topLevel); ok {
+		err := top.decodeTop(body)
+		return t, err
+	}
 	err := json.Unmarshal(body, &t)
 	return t, err
+}
+
+type topLevel interface{ decodeTop([]byte) error }
+
+var errNotJSON = errors.New("response is not valid JSON")
+
+func (l *List[T]) decodeTop(body []byte) error {
+	var fast []T
+	if err := json.Unmarshal(body, &fast); err == nil {
+		if isArray(body) {
+			*l = fast
+		}
+		return nil
+	}
+	if !json.Valid(body) {
+		return errNotJSON
+	}
+	return l.slow(body)
+}
+
+func (l *Objs[T]) decodeTop(body []byte) error {
+	if !isArray(body) {
+		if !json.Valid(body) {
+			return errNotJSON
+		}
+		*l = nil
+		return nil
+	}
+	var fast []*T
+	if err := json.Unmarshal(body, &fast); err == nil {
+		l.keep(fast)
+		return nil
+	}
+	if !json.Valid(body) {
+		return errNotJSON
+	}
+	return l.slow(body)
 }

@@ -202,3 +202,25 @@ func TestTruthy(t *testing.T) {
 		}
 	}
 }
+
+func TestLooksLikeJSON(t *testing.T) {
+	for body, want := range map[string]bool{`{"a": 1}`: true, " [1] \n": true, `"x"`: true, `12`: true, `-1.5`: true,
+		`true`: true, `null`: true, `{"a": 1`: false, `[1, 2`: false, `<html></html>`: false, ``: false, `  `: false,
+		`"`: false, `12x`: false, `nope`: false} {
+		if looksLikeJSON([]byte(body)) != want {
+			t.Errorf("looksLikeJSON(%q) != %v", body, want)
+		}
+	}
+}
+
+func TestTruncatedBodyIsReported(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`[{"a": 1}, {"a": `))
+	}))
+	defer srv.Close()
+	var buf bytes.Buffer
+	c := New(Options{BaseURL: srv.URL, Log: logger(&buf)})
+	if _, ok := c.Get(context.Background(), "/x", nil); ok || !strings.Contains(buf.String(), "No JSON response") {
+		t.Errorf("log = %s", buf.String())
+	}
+}
