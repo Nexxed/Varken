@@ -1,6 +1,6 @@
 from logging import getLogger
 from requests import Session, Request
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 from varken.structures import QueuePages, RadarrMovie, RadarrQueue
 from varken.helpers import hashit, connection_handler
@@ -166,3 +166,42 @@ class RadarrAPI(ArrStatsMixin):
             self.dbmanager.write_points(influx_payload)
         else:
             self.logger.warning("No data to send to influx for radarr-queue instance, discarding.")
+
+    def get_calendar(self, future_days=30):
+        """Upcoming movie releases: one point per movie, for the earliest of its cinema/digital/physical release
+        dates that falls between today and today + future_days."""
+        start = date.today()
+        end = start + timedelta(days=future_days)
+        now = datetime.now(timezone.utc).astimezone().isoformat()
+        movies = self._arr_get('/calendar', {'start': str(start), 'end': str(end)})
+        if not isinstance(movies, list):
+            return
+
+        payload = []
+        for movie in movies:
+            releases = []
+            for key, release_type in (('inCinemas', 'cinema'), ('digitalRelease', 'digital'),
+                                      ('physicalRelease', 'physical')):
+                value = movie.get(key)
+                if not value:
+                    continue
+                try:
+                    release_date = date.fromisoformat(str(value)[:10])
+                except ValueError:
+                    continue
+                if start <= release_date <= end:
+                    releases.append((release_date, release_type))
+            if not releases:
+                continue
+            release_date, release_type = min(releases)
+            tmdb_id = int(movie.get('tmdbId') or 0)
+            year = movie.get('year')
+            title = movie.get('title') or 'Unknown'
+            name = f'{title} ({year})' if year else title
+            payload.append(self._arr_point("Future", {
+                "hash": hashit(f'{self.server.id}{tmdb_id}{release_type}'),
+                "tmdb_id": tmdb_id
+            }, now, name=name, release_type=release_type, release_date=str(release_date),
+                downloaded="1" if movie.get('hasFile') else "0"))
+
+        self._write_arr(payload, 'calendar')
