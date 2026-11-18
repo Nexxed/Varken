@@ -1,0 +1,11 @@
+Cleanuparr,metric=strikesIssued,server=1,type=Timeline count=2i 1795010400000000000
+Cleanuparr,metric=strikesIssued,server=1,type=Timeline count=0i 1795014000000000000
+Cleanuparr,metric=strikesIssued,server=1,type=Timeline count=5i 1795017600000000000
+Cleanuparr,metric=recovered,server=1,type=Timeline count=1i 1795014000000000000
+Cleanuparr,metric=recovered,server=1,type=Timeline count=3i 1795014000000000000
+Cleanuparr,metric=removed,server=1,type=Timeline count=1i 1795017600123456000
+Cleanuparr,metric=removed,server=1,type=Timeline count=4i 1795017600000000000
+Cleanuparr,metric=events,server=1,type=Timeline count=9i 1795006800000000000
+Cleanuparr,metric=events,server=1,type=Timeline count=11i 1795010400000000000
+Cleanuparr,metric=events,server=1,type=Timeline count=7i 1795014000000000000
+Cleanuparr,metric=events,server=1,type=Timeline count=2i 1795017600000000000

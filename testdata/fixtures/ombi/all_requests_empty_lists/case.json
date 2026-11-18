@@ -1,0 +1,19 @@
+{
+  "job": "get_all_requests",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/tv",
+      "status": 200,
+      "body": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/movie",
+      "status": 200,
+      "body": []
+    }
+  ]
+}

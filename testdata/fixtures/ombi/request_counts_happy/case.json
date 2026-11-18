@@ -1,0 +1,22 @@
+{
+  "job": "get_request_counts",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "request_type_counts": true,
+    "request_total_counts": true,
+    "issue_status_counts": true
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/count",
+      "status": 200,
+      "body": {
+        "pending": 3,
+        "approved": 10,
+        "available": 42
+      }
+    }
+  ]
+}

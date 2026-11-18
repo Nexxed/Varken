@@ -1,0 +1,67 @@
+{
+  "job": "get_timeline",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "strikesIssued",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "recovered",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "removed",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "malwareBlocked",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "events",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": []
+    }
+  ]
+}

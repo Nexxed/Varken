@@ -1,0 +1,1 @@
+Tautulli,server=1,type=Server_Status connected=1i,last_play="2026-11-18T14:30:00+00:00",plex_name="Plex",plex_platform="Linux",plex_update_available=1i,plex_update_version="1.42.0.1",plex_version="1.41.0.1234",plexpass=1i,seconds_since_last_play=7200i,tautulli_reachable=1i,tautulli_version="v2.18.1" 1795019400123456000

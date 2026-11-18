@@ -1,0 +1,1 @@
+Environment variables override the ini, including globals, booleans and padded ints.

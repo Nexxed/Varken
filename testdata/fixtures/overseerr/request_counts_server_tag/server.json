@@ -1,0 +1,10 @@
+{
+  "api_key": "testkey",
+  "get_request_total_counts": false,
+  "id": 3,
+  "num_latest_requests_seconds": 30,
+  "num_latest_requests_to_fetch": 10,
+  "request_total_run_seconds": 30,
+  "url": "",
+  "verify_ssl": false
+}

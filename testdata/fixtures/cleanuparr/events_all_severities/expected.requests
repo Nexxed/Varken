@@ -1,0 +1,1 @@
+GET /api/events?page=1&pageSize=5

@@ -1,0 +1,18 @@
+{
+  "job": "get_request_counts",
+  "description": "A null count is left out; available is missing so the NamedTuple default 0 is written.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/count",
+      "status": 200,
+      "body": {
+        "pending": null,
+        "approved": 2.5,
+        "extra": 1
+      }
+    }
+  ]
+}

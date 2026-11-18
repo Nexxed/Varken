@@ -1,0 +1,128 @@
+{
+  "job": "get_activity",
+  "fix": "Python exited at startup when the GeoLite2 database could not be downloaded; Tautulli now runs without it and writes every stream with the unknown-location defaults",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_activity"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "stream_count": "2",
+            "stream_count_direct_play": 2,
+            "stream_count_direct_stream": 1,
+            "stream_count_transcode": 4,
+            "total_bandwidth": 54000,
+            "lan_bandwidth": 9000,
+            "wan_bandwidth": 45000,
+            "sessions": [
+              {
+                "session_id": "sess-movie",
+                "session_key": "12",
+                "username": "alice",
+                "friendly_name": "Alice",
+                "user": "alice",
+                "full_title": "The Movie",
+                "ip_address": "203.0.113.5",
+                "ip_address_public": "203.0.113.5",
+                "product": "Plex Web",
+                "platform": "Chrome",
+                "product_version": "4.100.1",
+                "transcode_decision": "transcode",
+                "stream_video_decision": "transcode",
+                "stream_video_resolution": "1080",
+                "stream_video_full_resolution": "1080p",
+                "container": "mkv",
+                "state": "playing",
+                "transcode_hw_decoding": 1,
+                "transcode_hw_encoding": 1,
+                "media_type": "movie",
+                "audio_codec": "eac3",
+                "audio_profile": "",
+                "stream_audio_codec": "aac",
+                "quality_profile": "Original",
+                "relayed": 0,
+                "secure": 1,
+                "location": "wan",
+                "bandwidth": "10000",
+                "stream_bitrate": "8000",
+                "bitrate": "20000",
+                "progress_percent": "45",
+                "view_offset": "1234567",
+                "duration": "7200000",
+                "transcode_speed": "1.5",
+                "transcode_throttled": 0,
+                "transcode_hw_full_pipeline": 1,
+                "subtitle_decision": "burn",
+                "stream_video_dynamic_range": "HDR10",
+                "library_name": "Movies",
+                "audio_atmos": 1,
+                "video_dovi_present": 0,
+                "some_new_field_from_a_newer_tautulli": {
+                  "x": 1
+                }
+              },
+              {
+                "session_id": "sess-ep",
+                "session_key": 13,
+                "username": "bob",
+                "friendly_name": "Bob",
+                "user": "alice",
+                "full_title": "Show - S01E02",
+                "ip_address": "192.168.1.20",
+                "ip_address_public": "10.0.0.5",
+                "product": "Plex for Mac",
+                "platform": "osx",
+                "product_version": "1.2.3-abcdef",
+                "transcode_decision": "direct play",
+                "stream_video_decision": "direct play",
+                "stream_video_resolution": "sd",
+                "stream_video_full_resolution": "1080p",
+                "container": "mkv",
+                "state": "paused",
+                "transcode_hw_decoding": 0,
+                "transcode_hw_encoding": 0,
+                "media_type": "episode",
+                "audio_codec": "eac3",
+                "audio_profile": "lc",
+                "stream_audio_codec": "aac",
+                "quality_profile": "Original",
+                "relayed": 1,
+                "secure": 0,
+                "location": "lan",
+                "bandwidth": "10000",
+                "stream_bitrate": "8000",
+                "bitrate": "20000",
+                "progress_percent": "",
+                "view_offset": null,
+                "duration": "",
+                "transcode_speed": null,
+                "transcode_throttled": 0,
+                "transcode_hw_full_pipeline": 1,
+                "subtitle_decision": null,
+                "stream_video_dynamic_range": null,
+                "library_name": "TV Shows",
+                "audio_atmos": 1,
+                "video_dovi_present": 0,
+                "some_new_field_from_a_newer_tautulli": {
+                  "x": 1
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

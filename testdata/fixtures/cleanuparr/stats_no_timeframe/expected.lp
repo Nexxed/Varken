@@ -1,0 +1,1 @@
+Cleanuparr,server=1,timeframe_hours=24,type=Summary cleaned=0i,events=1i,jobs=0i,jobs_completed=0i,jobs_failed=0i,removals=0i,searches=0i,searches_completed=0i,searches_failed=0i,searches_grabbed=0i,strikes=0i,strikes_recovered=0i 1795019400123456000

@@ -1,0 +1,121 @@
+{
+  "job": "get_stats",
+  "description": "Numeric strings, floats and bools as counts, nulls and wrong container types.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2/stats",
+      "status": 200,
+      "match_query": {
+        "hours": 24,
+        "includeDryRun": "false"
+      },
+      "body": {
+        "timeframeHours": null,
+        "events": {
+          "total": "12",
+          "byType": {
+            "StalledStrike": 4,
+            "QueueItemDeleted": 3,
+            "DownloadCleaned": 5
+          },
+          "bySeverity": {
+            "Information": 8,
+            "Important": 4
+          }
+        },
+        "strikes": {
+          "total": 6,
+          "recovered": 2,
+          "byType": {
+            "Stalled": "3",
+            "SlowSpeed": 2.9,
+            "FailedImport": true
+          }
+        },
+        "removals": {
+          "total": 3,
+          "byReason": []
+        },
+        "cleaned": null,
+        "searches": {
+          "total": 7,
+          "completed": 5,
+          "failed": 1,
+          "grabbed": 3.7,
+          "byReason": {
+            "Replacement": 4,
+            "Proactive": 3
+          }
+        },
+        "jobs": {
+          "total": 40,
+          "completed": 38,
+          "failed": 2,
+          "byType": {
+            "QueueCleaner": {
+              "total": 20,
+              "completed": 19,
+              "failed": 1,
+              "lastRunAt": null,
+              "nextRunAt": ""
+            },
+            "MalwareBlocker": {
+              "total": 12,
+              "completed": 12,
+              "failed": 0,
+              "lastRunAt": "2026-11-18T16:00:00.1234567Z",
+              "nextRunAt": null
+            },
+            "DownloadCleaner": {
+              "total": 8,
+              "completed": 7,
+              "failed": 1
+            }
+          }
+        },
+        "health": {
+          "downloadClients": [
+            {
+              "id": "a1",
+              "name": "qBittorrent",
+              "type": "qBittorrent",
+              "isHealthy": true,
+              "lastChecked": "2026-11-18T16:29:00Z",
+              "errorMessage": null,
+              "responseTimeMs": "15"
+            },
+            {
+              "id": "a2",
+              "name": null,
+              "type": "SABnzbd",
+              "isHealthy": false,
+              "lastChecked": "2026-11-18T16:29:01Z",
+              "errorMessage": "Connection refused",
+              "responseTimeMs": 31
+            }
+          ],
+          "arrInstances": [
+            {
+              "name": "Sonarr",
+              "type": "",
+              "isHealthy": true,
+              "lastChecked": "2026-11-18T16:28:00Z",
+              "responseTimeMs": null
+            },
+            {
+              "name": "Radarr 4K",
+              "type": "Radarr",
+              "isHealthy": false,
+              "lastChecked": 1700000000,
+              "errorMessage": "Unauthorized: check the API key",
+              "responseTimeMs": 250.75
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

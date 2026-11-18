@@ -1,0 +1,170 @@
+{
+  "job": "get_all_requests",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/tv",
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "tvDbId": 70001,
+          "title": "Denied Show",
+          "childRequests": [
+            {
+              "id": 7,
+              "denied": true,
+              "approved": false,
+              "available": false,
+              "requestedDate": "2026-11-10T09:30:00.123",
+              "requestedUser": {
+                "userAlias": "bob"
+              },
+              "seasonRequests": [
+                {
+                  "seasonNumber": 1
+                }
+              ]
+            }
+          ],
+          "totalSeasons": 3,
+          "imdbId": null,
+          "status": "Continuing",
+          "background": "x.jpg",
+          "requestStatus": "Common.Approved"
+        },
+        {
+          "id": 2,
+          "tvDbId": 70002,
+          "title": "Available Show",
+          "childRequests": [
+            {
+              "id": 7,
+              "denied": null,
+              "approved": true,
+              "available": true,
+              "requestedDate": "2026-11-10T09:30:00.123",
+              "requestedUser": {
+                "userAlias": "bob"
+              },
+              "seasonRequests": [
+                {
+                  "seasonNumber": 1
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "denied": true,
+              "approved": false,
+              "available": false,
+              "requestedDate": "2026-11-10T09:30:00.123",
+              "requestedUser": {
+                "userAlias": "bob"
+              },
+              "seasonRequests": [
+                {
+                  "seasonNumber": 1
+                }
+              ]
+            }
+          ],
+          "totalSeasons": 3,
+          "imdbId": null,
+          "status": "Continuing",
+          "background": "x.jpg",
+          "requestStatus": "Common.Approved"
+        },
+        {
+          "id": 3,
+          "tvDbId": 70003,
+          "title": "Approved Show",
+          "childRequests": [
+            {
+              "id": 7,
+              "denied": null,
+              "approved": true,
+              "available": false,
+              "requestedDate": "2026-11-10T09:30:00.123",
+              "requestedUser": {
+                "userAlias": "Dana"
+              },
+              "seasonRequests": [
+                {
+                  "seasonNumber": 1
+                }
+              ]
+            }
+          ],
+          "totalSeasons": 3,
+          "imdbId": null,
+          "status": "Continuing",
+          "background": "x.jpg",
+          "requestStatus": "Common.Approved"
+        },
+        {
+          "id": 4,
+          "tvDbId": 70004,
+          "title": "Pending Show",
+          "childRequests": [
+            {
+              "id": 7,
+              "denied": null,
+              "approved": false,
+              "available": false,
+              "requestedDate": "2026-11-10T09:30:00.123",
+              "requestedUser": {
+                "userAlias": "bob"
+              },
+              "seasonRequests": [
+                {
+                  "seasonNumber": 1
+                }
+              ]
+            }
+          ],
+          "totalSeasons": 3,
+          "imdbId": null,
+          "status": "Continuing",
+          "background": "x.jpg",
+          "requestStatus": "Common.Approved"
+        },
+        {
+          "id": 5.0,
+          "tvDbId": 70005.0,
+          "title": "Float Id Show",
+          "childRequests": [
+            {
+              "id": 7,
+              "denied": null,
+              "approved": true,
+              "available": false,
+              "requestedDate": "2026-11-10T09:30:00.123",
+              "requestedUser": {
+                "userAlias": "bob"
+              },
+              "seasonRequests": [
+                {
+                  "seasonNumber": 1
+                }
+              ]
+            }
+          ],
+          "totalSeasons": 3,
+          "imdbId": null,
+          "status": "Continuing",
+          "background": "x.jpg",
+          "requestStatus": "Common.Approved"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/Request/movie",
+      "status": 500,
+      "body_text": "error"
+    }
+  ]
+}

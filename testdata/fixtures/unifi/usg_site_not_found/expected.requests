@@ -1,0 +1,3 @@
+GET /api/s/nowhere/stat/device
+GET /api/self/sites
+POST /api/login

@@ -1,0 +1,170 @@
+{
+  "job": "get_missing",
+  "fix": "Python dropped the whole job (TypeError building SickChillTVShow) when one entry was not an object; only that entry is skipped.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/testkey",
+      "status": 200,
+      "match_query": {
+        "cmd": "future",
+        "paused": 1,
+        "type": "missed|today|soon|later|snatched",
+        "limit": 1000
+      },
+      "body": {
+        "data": {
+          "missed": [
+            {
+              "airdate": "2026-11-10",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "Two",
+              "ep_plot": "Plot.",
+              "episode": 2,
+              "indexerid": 11,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": 1,
+              "show_name": "Missed Show",
+              "show_status": "Continuing",
+              "tvdbid": 11,
+              "weekday": 3
+            },
+            "not an episode",
+            {
+              "airdate": "2026-11-18",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "Twelve",
+              "ep_plot": "Plot.",
+              "episode": 12,
+              "indexerid": 12,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": 10,
+              "show_name": "Other Missed",
+              "show_status": "Continuing",
+              "tvdbid": 12,
+              "weekday": 3
+            }
+          ],
+          "today": [
+            {
+              "airdate": "2026-11-18",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "It's Today",
+              "ep_plot": "Plot.",
+              "episode": 4,
+              "indexerid": 13,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": 3,
+              "show_name": "Today Show",
+              "show_status": "Continuing",
+              "tvdbid": 13,
+              "weekday": 3
+            }
+          ],
+          "soon": [
+            {
+              "airdate": "2026-11-20",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "String Numbers",
+              "ep_plot": "Plot.",
+              "episode": "5",
+              "indexerid": 14,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": "2",
+              "show_name": "Soon Show",
+              "show_status": "Continuing",
+              "tvdbid": 14,
+              "weekday": 3,
+              "newfield": "ignored"
+            },
+            null
+          ],
+          "later": [
+            {
+              "airdate": "2026-12-25",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "Float Season, Bool Episode",
+              "ep_plot": "Plot.",
+              "episode": true,
+              "indexerid": 15,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": 2.0,
+              "show_name": "Later Show",
+              "show_status": "Continuing",
+              "tvdbid": 15,
+              "weekday": 3
+            }
+          ],
+          "snatched": [
+            {
+              "airdate": "2026-11-18",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "Snatched",
+              "ep_plot": "Plot.",
+              "episode": 1,
+              "indexerid": 16,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": 1,
+              "show_name": "Snatched Show",
+              "show_status": "Continuing",
+              "tvdbid": 16,
+              "weekday": 3
+            }
+          ],
+          "future": [
+            {
+              "airdate": "2026-11-18",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "Zero Episode",
+              "ep_plot": "Plot.",
+              "episode": 0,
+              "indexerid": 17,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": 5,
+              "show_name": "Future Show",
+              "show_status": "Continuing",
+              "tvdbid": 17,
+              "weekday": 3
+            }
+          ],
+          "unknown": [
+            {
+              "airdate": "2026-11-18",
+              "airs": "Wednesday 9:00 PM",
+              "ep_name": "Unknown",
+              "ep_plot": "Plot.",
+              "episode": 1,
+              "indexerid": 18,
+              "network": "HBO",
+              "paused": 0,
+              "quality": "HD1080p",
+              "season": 1,
+              "show_name": "Unknown Section",
+              "show_status": "Continuing",
+              "tvdbid": 18,
+              "weekday": 3
+            }
+          ]
+        },
+        "message": "",
+        "result": "success"
+      }
+    }
+  ]
+}

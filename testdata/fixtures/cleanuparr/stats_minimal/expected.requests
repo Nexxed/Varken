@@ -1,0 +1,1 @@
+GET /api/v2/stats?hours=24&includeDryRun=false

@@ -1,5 +1,58 @@
 # Change Log
 
+## Go rewrite (unreleased)
+
+Varken is now a single Go program. Configuration, environment variables, flags, the Docker image name and the
+`/config` volume are unchanged, and the data written to InfluxDB keeps the same measurements, tags, field types and
+hashes: every collector is tested against the exact line protocol the Python version wrote for the same API
+responses. The Python version is kept on the `python-1.x` branch.
+
+**Upgrading:**
+- Docker: pull the new image. The container still runs as root and still defaults to `DEBUG=True` and
+  `DATA_FOLDER=/config`.
+- Without Docker: replace the virtualenv and `Varken.py` with the `varken` binary; see `varken.systemd`.
+- `utilities/historical_tautulli_import.py` is now `varken import-tautulli`, and `utilities/grafana_build.py` is
+  `varken grafana-build` (settings are flags).
+
+**New:**
+- Optional `[influxdb] database` (default `varken`).
+- Optional `[global] add_server_tag` (default `false`): adds the `server` tag to the Ombi and Overseerr count points
+  and the UniFi point, so several servers of one kind no longer write into the same series.
+- Images for linux/amd64, linux/arm64 and linux/arm/v7.
+
+**Changed behaviour:**
+- `varken.ini` is never rewritten. A missing setting uses its default (the value in `varken.example.ini`) with a
+  warning, instead of the whole file being regenerated from the example.
+- Environment variables work without a matching ini section or key, so a server can be configured from the
+  environment alone. Overseerr's `num_latest_requests_to_fetch` also accepts `VRKN_OVERSEERR_N_NUM_LATEST_REQUESTS_TO_FETCH`
+  besides the old `..._GET_LATEST_REQUESTS_TO_FETCH`.
+- A bad value (not a number, an invalid URL, a private `fallback_ip`) skips only that server, with an error, instead
+  of stopping Varken. A service left with no usable server is disabled. A server id listed twice is used once.
+- Tautulli `fallback_ip` may be a public IPv6 address.
+- Overseerr latest requests carry each request's own requester and date (Python used the first request of the
+  title). Titles are cached between runs instead of looked up every 30 seconds.
+- UniFi WAN counters are always written as floats (Python wrote whatever type the controller sent, which caused
+  field type conflicts).
+- Tautulli runs without the GeoIP database (locations are written as unknown until it downloads) instead of
+  exiting, and the public IP used for LAN streams is re-checked hourly instead of cached forever.
+- InfluxDB: Varken waits about a minute for it at startup, retries writes on server and connection errors instead of
+  dropping the data, and leaves out a single unwritable point instead of losing the whole write. It exits with code
+  1, not 0, when `varken.ini` still points at the example host.
+- Secrets from environment variables are masked in the log as well; API keys and passwords are masked completely.
+- A job never overlaps itself, a crashing job no longer stops anything else, and SIGTERM stops Varken cleanly.
+
+**Fixed bugs (each was a crash or lost data in the Python version):**
+- GeoIP: the retry and invalid-license handling of the MaxMind download could never run; the old database was
+  deleted before the new one was downloaded; lookups could hit a closed database during an update; an address
+  missing from the database could stop the Tautulli job.
+- Tautulli: blank stream or library counts and missing session fields no longer lose the whole run.
+- Ombi: a TV request without child requests or a request without a user no longer loses the run.
+- Overseerr: a failed title lookup skips that request instead of failing the job.
+- Cleanuparr: null counts and an unparseable timeline date no longer lose the run.
+- SickChill: an episode with no season or episode number, or a malformed entry, no longer loses the run.
+- UniFi: a site without a description no longer fails at startup.
+- Sonarr/Radarr/Lidarr: see below.
+
 ## Nexxed fork (unreleased)
 
 **Implemented enhancements:**

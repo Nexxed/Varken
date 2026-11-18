@@ -1,0 +1,32 @@
+{
+  "job": "get_events",
+  "fix": "Python crashed with TypeError joining a non-string failedImportReasons entry; numbers are printed and nulls left out.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/events",
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": "n1",
+            "timestamp": "2026-11-18T16:20:00Z",
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "Event n1",
+            "itemTitle": "Item n1",
+            "isDryRun": false,
+            "failedImportReasons": [
+              "ok",
+              5,
+              null,
+              "x"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

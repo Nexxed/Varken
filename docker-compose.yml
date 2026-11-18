@@ -15,7 +15,7 @@ services:
   varken:
     hostname: varken
     container_name: varken
-    image: boerderij/varken
+    image: ghcr.io/nexxed/varken:latest
     networks:
       - internal
     volumes:

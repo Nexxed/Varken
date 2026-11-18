@@ -1,0 +1,173 @@
+{
+  "job": "get_strikes",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "include_dry_run": true,
+    "num_strikes_to_fetch": 10
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/strikes",
+      "status": 200,
+      "match_query": {
+        "page": 1,
+        "pageSize": 10
+      },
+      "body": {
+        "items": [
+          {
+            "downloadId": "HASH1",
+            "title": "Show.S01E01.1080p",
+            "totalStrikes": 4,
+            "strikesByType": {
+              "Stalled": 2,
+              "FailedImport": 1,
+              "DownloadingMetadata": 1
+            },
+            "firstStrikeAt": "2026-11-17T08:00:00Z",
+            "latestStrikeAt": "2026-11-18T16:00:00Z",
+            "isReturning": false,
+            "isMarkedForRemoval": false,
+            "isRemoved": false,
+            "strikes": [
+              {
+                "type": "Stalled",
+                "isDryRun": false
+              }
+            ]
+          },
+          {
+            "downloadId": "HASH2",
+            "title": "Movie.2024.2160p",
+            "totalStrikes": 3,
+            "strikesByType": {
+              "SlowSpeed": 3
+            },
+            "firstStrikeAt": "2026-11-17T08:00:00Z",
+            "latestStrikeAt": "2026-11-18T16:00:00Z",
+            "isReturning": true,
+            "isMarkedForRemoval": true,
+            "isRemoved": false,
+            "strikes": [
+              {
+                "type": "Stalled",
+                "isDryRun": false
+              }
+            ]
+          },
+          {
+            "downloadId": null,
+            "title": "Removed.Thing",
+            "totalStrikes": 5,
+            "strikesByType": {
+              "Stalled": 5
+            },
+            "firstStrikeAt": "2026-11-17T08:00:00Z",
+            "latestStrikeAt": "2026-11-18T16:00:00Z",
+            "isReturning": false,
+            "isMarkedForRemoval": false,
+            "isRemoved": true,
+            "strikes": [
+              {
+                "type": "Stalled",
+                "isDryRun": false
+              }
+            ],
+            "downloadItemId": "item-77"
+          },
+          {
+            "downloadId": "HASH4",
+            "title": "Dry.Run.Only",
+            "totalStrikes": 2,
+            "strikesByType": {},
+            "firstStrikeAt": "2026-11-17T08:00:00Z",
+            "latestStrikeAt": "2026-11-18T16:00:00Z",
+            "isReturning": false,
+            "isMarkedForRemoval": false,
+            "isRemoved": false,
+            "strikes": [
+              {
+                "type": "Stalled",
+                "isDryRun": true
+              },
+              {
+                "type": "Stalled",
+                "isDryRun": true
+              }
+            ]
+          },
+          {
+            "downloadId": "HASH5",
+            "title": "Mixed.Dry",
+            "totalStrikes": 2,
+            "strikesByType": {
+              "b": 1,
+              "a": 1
+            },
+            "firstStrikeAt": "2026-11-17T08:00:00Z",
+            "latestStrikeAt": "2026-11-18T16:00:00Z",
+            "isReturning": false,
+            "isMarkedForRemoval": false,
+            "isRemoved": false,
+            "strikes": [
+              {
+                "type": "Stalled",
+                "isDryRun": true
+              },
+              {
+                "type": "Stalled",
+                "isDryRun": false
+              }
+            ]
+          },
+          {
+            "downloadId": "",
+            "title": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLétail",
+            "totalStrikes": null,
+            "strikesByType": {},
+            "firstStrikeAt": "2026-11-17T08:00:00Z",
+            "latestStrikeAt": "2026-11-18T16:00:00Z",
+            "isReturning": false,
+            "isMarkedForRemoval": false,
+            "isRemoved": false,
+            "strikes": [
+              {
+                "type": "Stalled",
+                "isDryRun": false
+              }
+            ]
+          },
+          {
+            "downloadId": "HASH7",
+            "title": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+            "totalStrikes": "7",
+            "strikesByType": {},
+            "firstStrikeAt": "2026-11-17T08:00:00Z",
+            "latestStrikeAt": "2026-11-18T16:00:00Z",
+            "isReturning": false,
+            "isMarkedForRemoval": false,
+            "isRemoved": false,
+            "strikes": null
+          },
+          {
+            "downloadId": "HASH8",
+            "title": null,
+            "totalStrikes": 1.9,
+            "strikesByType": {},
+            "firstStrikeAt": null,
+            "latestStrikeAt": null,
+            "isReturning": false,
+            "isMarkedForRemoval": false,
+            "isRemoved": false,
+            "strikes": []
+          }
+        ],
+        "page": 1,
+        "pageSize": 50,
+        "totalCount": 8
+      }
+    }
+  ]
+}

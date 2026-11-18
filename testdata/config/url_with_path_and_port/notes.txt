@@ -1,0 +1,1 @@
+Base paths and ports are kept; the influx url may have a path.

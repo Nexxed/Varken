@@ -1,0 +1,127 @@
+{
+  "job": "get_events",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "events_severity": "",
+    "num_events_to_fetch": 5,
+    "include_dry_run": true
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/events",
+      "status": 200,
+      "match_query": {
+        "page": 1,
+        "pageSize": 5,
+        "severity": null
+      },
+      "body": {
+        "items": [
+          {
+            "id": "e1",
+            "timestamp": "2026-11-18T16:20:00Z",
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "Event e1",
+            "itemTitle": "Item e1",
+            "isDryRun": false,
+            "deleteReason": "Stalled",
+            "cleanReason": "ignored"
+          },
+          {
+            "id": "e2",
+            "timestamp": "2026-11-18T16:21:00.5+01:00",
+            "eventType": "DownloadCleaned",
+            "severity": "Information",
+            "message": "Event e2",
+            "itemTitle": "Item e2",
+            "isDryRun": false,
+            "cleanReason": "MaxRatioReached"
+          },
+          {
+            "id": "e3",
+            "timestamp": "2026-11-18T16:22:00Z",
+            "eventType": "FailedImportStrike",
+            "severity": "Important",
+            "message": "Event e3",
+            "itemTitle": "Item e3",
+            "isDryRun": false,
+            "failedImportReasons": [
+              "No files found",
+              "Sample only"
+            ]
+          },
+          {
+            "id": "e4",
+            "timestamp": null,
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "Event e4",
+            "itemTitle": "Item e4",
+            "isDryRun": false
+          },
+          {
+            "id": "e5",
+            "timestamp": "",
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "no timestamp",
+            "itemTitle": "Item e5",
+            "isDryRun": false
+          },
+          {
+            "id": "e6",
+            "timestamp": "2026-11-18T16:23:00Z",
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "Event e6",
+            "itemTitle": "Item e6",
+            "isDryRun": true
+          },
+          {
+            "id": "e7",
+            "timestamp": "2026-11-18T16:24:00Z",
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLétail",
+            "itemTitle": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+            "isDryRun": false
+          },
+          {
+            "id": "e8",
+            "timestamp": "2026-11-18T16:25:00Z",
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "first of a pair",
+            "itemTitle": "Item e8",
+            "isDryRun": false
+          },
+          {
+            "id": "e9",
+            "timestamp": "2026-11-18T16:25:00Z",
+            "eventType": "StalledStrike",
+            "severity": "Important",
+            "message": "second of a pair (same type, severity, time)",
+            "itemTitle": "Item e9",
+            "isDryRun": false
+          },
+          {
+            "id": 10,
+            "timestamp": "2026-11-18T16:26:00.1234567Z",
+            "eventType": null,
+            "severity": null,
+            "message": null,
+            "itemTitle": null,
+            "isDryRun": false,
+            "failedImportReasons": []
+          }
+        ],
+        "page": 1,
+        "pageSize": 50,
+        "totalCount": 10
+      }
+    }
+  ]
+}

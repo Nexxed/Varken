@@ -1,0 +1,12 @@
+{
+  "api_key": "testkey",
+  "id": 2,
+  "issue_status_counts": false,
+  "issue_status_run_seconds": 30,
+  "request_total_counts": false,
+  "request_total_run_seconds": 30,
+  "request_type_counts": false,
+  "request_type_run_seconds": 30,
+  "url": "",
+  "verify_ssl": false
+}

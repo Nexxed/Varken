@@ -259,3 +259,6 @@ func IntExact(v Value) (int64, error) {
 	}
 	return 0, ErrType
 }
+
+// IsSpace is str.isspace() for one character.
+func IsSpace(r rune) bool { return isPySpace(r) }

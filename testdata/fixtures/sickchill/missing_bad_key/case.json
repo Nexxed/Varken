@@ -1,0 +1,23 @@
+{
+  "job": "get_missing",
+  "description": "No \"data\": Python crashed with KeyError, nothing is written either way.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/testkey",
+      "status": 200,
+      "match_query": {
+        "cmd": "future",
+        "paused": 1,
+        "type": "missed|today|soon|later|snatched",
+        "limit": 1000
+      },
+      "body": {
+        "result": "denied",
+        "message": "Invalid API key"
+      }
+    }
+  ]
+}

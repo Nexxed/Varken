@@ -1,0 +1,106 @@
+{
+  "job": "get_latest_requests",
+  "fix": "Python tagged every request with the user and date of the media's first request; each request now carries its own requestedBy and createdAt. The title is looked up once per media.",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/request",
+      "status": 200,
+      "match_query": {
+        "take": 10,
+        "filter": "all",
+        "sort": "added"
+      },
+      "body": {
+        "pageInfo": {
+          "pages": 1,
+          "pageSize": 10,
+          "results": 4,
+          "page": 1
+        },
+        "results": [
+          {
+            "id": 5,
+            "status": 2,
+            "createdAt": "2026-11-18T12:00:00.000Z",
+            "updatedAt": "2026-11-18T12:00:00.000Z",
+            "type": "movie",
+            "is4k": false,
+            "media": {
+              "id": 105,
+              "tmdbId": 603,
+              "tvdbId": null,
+              "status": 5,
+              "mediaType": "movie"
+            },
+            "requestedBy": {
+              "id": 5,
+              "displayName": "Erin",
+              "email": "erin@example.com"
+            },
+            "modifiedBy": null,
+            "seasons": []
+          },
+          {
+            "id": 1,
+            "status": 2,
+            "createdAt": "2026-11-17T10:00:00.000Z",
+            "updatedAt": "2026-11-17T10:00:00.000Z",
+            "type": "movie",
+            "is4k": false,
+            "media": {
+              "id": 101,
+              "tmdbId": 603,
+              "tvdbId": null,
+              "status": 5,
+              "mediaType": "movie"
+            },
+            "requestedBy": {
+              "id": 1,
+              "displayName": "Alice",
+              "email": "alice@example.com"
+            },
+            "modifiedBy": null,
+            "seasons": []
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/movie/603",
+      "status": 200,
+      "body": {
+        "id": 603,
+        "mediaInfo": {
+          "id": 604,
+          "tmdbId": 603,
+          "status": 5,
+          "requests": [
+            {
+              "id": 1,
+              "createdAt": "2026-11-17T10:00:00.000Z",
+              "requestedBy": {
+                "id": 1,
+                "displayName": "Alice",
+                "email": "alice@example.com"
+              }
+            },
+            {
+              "id": 5,
+              "createdAt": "2026-11-18T12:00:00.000Z",
+              "requestedBy": {
+                "id": 5,
+                "displayName": "Erin",
+                "email": "erin@example.com"
+              }
+            }
+          ]
+        },
+        "title": "The Matrix"
+      }
+    }
+  ]
+}

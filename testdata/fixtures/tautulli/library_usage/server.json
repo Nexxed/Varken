@@ -1,0 +1,20 @@
+{
+  "api_key": "testkey",
+  "fallback_ip": "1.1.1.1",
+  "get_activity": false,
+  "get_activity_run_seconds": 30,
+  "get_daily_stats": true,
+  "get_daily_stats_run_seconds": 3600,
+  "get_history": true,
+  "get_history_run_seconds": 300,
+  "get_server": true,
+  "get_server_run_seconds": 300,
+  "get_stats": false,
+  "get_stats_run_seconds": 30,
+  "history_backfill_days": 364,
+  "history_days": 2,
+  "id": 1,
+  "maxmind_license_key": null,
+  "url": "",
+  "verify_ssl": false
+}

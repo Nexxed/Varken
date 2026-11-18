@@ -1,0 +1,100 @@
+{
+  "created": false,
+  "exception": null,
+  "exit": null,
+  "filtered": [
+    "admin",
+    "cleanuparr",
+    "cleanuparr:11011",
+    "cleanuparrkeyhhhhhhhh",
+    "influxdb",
+    "s3cret-influx",
+    "unifi",
+    "unifi-pass",
+    "unifi:8443",
+    "varken"
+  ],
+  "influx": {
+    "password": "s3cret-influx",
+    "port": 8086,
+    "ssl": false,
+    "url": "influxdb",
+    "username": "varken",
+    "verify_ssl": false
+  },
+  "rewritten": false,
+  "services": {
+    "cleanuparr": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "cleanuparrkeyhhhhhhhh",
+          "events_severity": "Important",
+          "get_events": true,
+          "get_events_run_seconds": 300,
+          "get_stats": true,
+          "get_stats_run_seconds": 300,
+          "get_strikes": true,
+          "get_strikes_run_seconds": 300,
+          "get_timeline": true,
+          "get_timeline_run_seconds": 300,
+          "id": 1,
+          "include_dry_run": false,
+          "num_events_to_fetch": 50,
+          "num_strikes_to_fetch": 50,
+          "stats_hours": 12,
+          "timeline_hours": 48,
+          "url": "http://cleanuparr:11011",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "lidarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "ombi": {
+      "enabled": null,
+      "servers": []
+    },
+    "overseerr": {
+      "enabled": null,
+      "servers": []
+    },
+    "radarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "sickchill": {
+      "enabled": null,
+      "servers": []
+    },
+    "sonarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "tautulli": {
+      "enabled": null,
+      "servers": []
+    },
+    "unifi": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "get_usg_stats_run_seconds": 300,
+          "id": 1,
+          "password": "envpass!",
+          "site": "default",
+          "url": "https://unifi:8443",
+          "username": "admin",
+          "usg_name": "Gateway",
+          "verify_ssl": false
+        }
+      ]
+    }
+  }
+}

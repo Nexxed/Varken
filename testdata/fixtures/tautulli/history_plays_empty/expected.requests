@@ -1,0 +1,2 @@
+GET /api/v2?after=2025-11-19&cmd=get_history&length=1000&section_id=1&start=0
+GET /api/v2?cmd=get_libraries

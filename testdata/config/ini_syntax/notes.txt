@@ -1,0 +1,1 @@
+Comments, DEFAULT, ":" and "=" delimiters, key case, continuation lines, # and ; inside values.

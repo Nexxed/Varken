@@ -1,0 +1,48 @@
+{
+  "job": "get_usg_stats",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "username": "admin",
+    "password": "secret",
+    "site": "default",
+    "usg_name": "MyRouter"
+  },
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/api/login",
+      "status": 400,
+      "body": {
+        "meta": {
+          "rc": "error",
+          "msg": "api.err.Invalid"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/self/sites",
+      "status": 401,
+      "body": {
+        "data": [],
+        "meta": {
+          "rc": "error",
+          "msg": "api.err.LoginRequired"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/s/default/stat/device",
+      "status": 401,
+      "body": {
+        "data": [],
+        "meta": {
+          "rc": "error",
+          "msg": "api.err.LoginRequired"
+        }
+      }
+    }
+  ]
+}

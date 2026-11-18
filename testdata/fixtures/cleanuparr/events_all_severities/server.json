@@ -1,0 +1,20 @@
+{
+  "api_key": "testkey",
+  "events_severity": "",
+  "get_events": false,
+  "get_events_run_seconds": 300,
+  "get_stats": false,
+  "get_stats_run_seconds": 300,
+  "get_strikes": false,
+  "get_strikes_run_seconds": 300,
+  "get_timeline": false,
+  "get_timeline_run_seconds": 300,
+  "id": 1,
+  "include_dry_run": true,
+  "num_events_to_fetch": 5,
+  "num_strikes_to_fetch": 50,
+  "stats_hours": 24,
+  "timeline_hours": 48,
+  "url": "",
+  "verify_ssl": false
+}

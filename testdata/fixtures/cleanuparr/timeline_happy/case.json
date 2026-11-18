@@ -1,0 +1,115 @@
+{
+  "job": "get_timeline",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "strikesIssued",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": [
+        {
+          "date": "2026-11-18T14:00:00Z",
+          "count": 2
+        },
+        {
+          "date": "2026-11-18T15:00:00Z",
+          "count": 0
+        },
+        {
+          "date": "2026-11-18T16:00:00Z",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "recovered",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": [
+        {
+          "date": "2026-11-18T15:00:00+00:00",
+          "count": 1
+        },
+        {
+          "date": "2026-11-18T17:00:00+02:00",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "removed",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": [
+        {
+          "date": "2026-11-18T16:00:00.1234567Z",
+          "count": 1
+        },
+        {
+          "date": "2026-11-18T16:00:00",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "malwareBlocked",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/stats/timeline",
+      "status": 200,
+      "match_query": {
+        "metric": "events",
+        "hours": 48,
+        "bucket": "hour",
+        "includeDryRun": "false"
+      },
+      "body": [
+        {
+          "date": "2026-11-18T13:00:00Z",
+          "count": 9
+        },
+        {
+          "date": "2026-11-18T14:00:00Z",
+          "count": 11
+        },
+        {
+          "date": "2026-11-18T15:00:00Z",
+          "count": 7
+        },
+        {
+          "date": "2026-11-18T16:00:00Z",
+          "count": 2
+        }
+      ]
+    }
+  ]
+}

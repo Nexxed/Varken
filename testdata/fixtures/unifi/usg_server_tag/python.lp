@@ -1,0 +1,1 @@
+UniFi,model=UGW3,name=MyRouter bytes_current=1500.0,cpu_loadavg_1=0.12,cpu_loadavg_15=0.08,cpu_loadavg_5=0.1,cpu_util=5.3,mem_util=41.2,rx_bytes_current=1200.5,rx_bytes_total=123456789.0,tx_bytes_current=299.5,tx_bytes_total=98765432.0 1795019400123456000

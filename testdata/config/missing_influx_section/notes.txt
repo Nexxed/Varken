@@ -1,0 +1,1 @@
+No [influxdb] section: Python filled it from the example (influxdb.domain.tld).

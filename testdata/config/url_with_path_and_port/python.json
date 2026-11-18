@@ -1,0 +1,111 @@
+{
+  "created": false,
+  "exception": null,
+  "exit": null,
+  "filtered": [
+    "influx.example.com",
+    "influx.example.com/db",
+    "media.example.com",
+    "media.example.com:8443",
+    "media.example.com:8443/tv/sonarr/",
+    "ombi.example.com",
+    "ombi.example.com/ombi",
+    "ombikeyeeeeeeee",
+    "s3cret-influx",
+    "sonarrkey1aaaaaaaa",
+    "varken"
+  ],
+  "influx": {
+    "password": "s3cret-influx",
+    "port": 8086,
+    "ssl": false,
+    "url": "influx.example.com/db",
+    "username": "varken",
+    "verify_ssl": false
+  },
+  "rewritten": false,
+  "services": {
+    "cleanuparr": {
+      "enabled": null,
+      "servers": []
+    },
+    "lidarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "ombi": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "ombikeyeeeeeeee",
+          "id": 1,
+          "issue_status_counts": true,
+          "issue_status_run_seconds": 300,
+          "request_total_counts": true,
+          "request_total_run_seconds": 300,
+          "request_type_counts": true,
+          "request_type_run_seconds": 300,
+          "url": "https://ombi.example.com/ombi",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "overseerr": {
+      "enabled": null,
+      "servers": []
+    },
+    "radarr": {
+      "enabled": null,
+      "servers": []
+    },
+    "sickchill": {
+      "enabled": null,
+      "servers": []
+    },
+    "sonarr": {
+      "enabled": [
+        1
+      ],
+      "servers": [
+        {
+          "api_key": "sonarrkey1aaaaaaaa",
+          "future_days": 1,
+          "future_days_run_seconds": 300,
+          "get_disk": true,
+          "get_disk_run_seconds": 900,
+          "get_health": true,
+          "get_health_run_seconds": 300,
+          "get_history_events": true,
+          "get_history_events_run_seconds": 300,
+          "get_history_totals": true,
+          "get_history_totals_run_seconds": 900,
+          "get_library": true,
+          "get_library_run_seconds": 3600,
+          "get_tasks": true,
+          "get_tasks_run_seconds": 900,
+          "get_wanted": true,
+          "get_wanted_run_seconds": 900,
+          "history_events_backfill_days": 7,
+          "history_events_days": 1,
+          "id": 1,
+          "missing_days": 7,
+          "missing_days_run_seconds": 300,
+          "queue": true,
+          "queue_run_seconds": 300,
+          "url": "http://media.example.com:8443/tv/sonarr/",
+          "verify_ssl": false
+        }
+      ]
+    },
+    "tautulli": {
+      "enabled": null,
+      "servers": []
+    },
+    "unifi": {
+      "enabled": null,
+      "servers": []
+    }
+  }
+}

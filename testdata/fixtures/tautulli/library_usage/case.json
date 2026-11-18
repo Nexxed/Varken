@@ -1,0 +1,53 @@
+{
+  "job": "get_library_usage",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "fallback_ip": "1.1.1.1"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/v2",
+      "status": 200,
+      "match_query": {
+        "cmd": "get_libraries_table",
+        "length": "50"
+      },
+      "body": {
+        "response": {
+          "result": "success",
+          "message": null,
+          "data": {
+            "data": [
+              {
+                "section_name": "Movies",
+                "section_id": 1,
+                "plays": 10,
+                "duration": 100,
+                "count": 50,
+                "last_accessed": 1795019390,
+                "is_active": 1
+              },
+              {
+                "section_name": "Old",
+                "section_id": 2,
+                "is_active": 0
+              },
+              {
+                "section_id": null,
+                "is_active": "1"
+              },
+              {
+                "section_name": "Music",
+                "is_active": 1,
+                "count": "7",
+                "last_accessed": 0
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

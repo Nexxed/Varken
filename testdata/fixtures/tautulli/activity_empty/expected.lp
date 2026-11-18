@@ -1,0 +1,1 @@
+Tautulli,server=1,type=current_stream_stats direct_play_streams=0i,direct_streams=0i,hw_transcodes=0i,lan_bandwidth=0i,lan_streams=0i,stream_count=0i,sw_transcodes=0i,throttled_streams=0i,total_bandwidth=0i,transcode_streams=0i,wan_bandwidth=0i,wan_streams=0i 1795019400123456000

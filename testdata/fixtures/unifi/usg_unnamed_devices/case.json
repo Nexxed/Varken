@@ -1,0 +1,97 @@
+{
+  "job": "get_usg_stats",
+  "now": "2026-11-18T16:30:00.123456+00:00",
+  "tz": "America/Chicago",
+  "server": {
+    "username": "admin",
+    "password": "secret",
+    "site": "default",
+    "usg_name": "MyRouter"
+  },
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/api/login",
+      "status": 200,
+      "headers": {
+        "Set-Cookie": "unifises=SESSION123; Path=/; HttpOnly"
+      },
+      "body": {
+        "data": [],
+        "meta": {
+          "rc": "ok"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/self/sites",
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "_id": "s1",
+            "name": "default",
+            "desc": "Default",
+            "role": "admin"
+          },
+          {
+            "_id": "s2",
+            "name": "abc123",
+            "desc": "Main Office",
+            "role": "admin"
+          }
+        ],
+        "meta": {
+          "rc": "ok"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/s/default/stat/device",
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "model": "UAP"
+          },
+          {
+            "name": ""
+          },
+          {
+            "name": null
+          },
+          {
+            "name": "MyRouter",
+            "model": "UGW3",
+            "type": "ugw",
+            "mac": "aa:bb:cc:dd:ee:ff",
+            "wan1": {
+              "bytes-r": 1500.0,
+              "rx_bytes": 123456789.0,
+              "rx_bytes-r": 1200.5,
+              "tx_bytes": 98765432.0,
+              "tx_bytes-r": 299.5,
+              "name": "wan"
+            },
+            "sys_stats": {
+              "loadavg_1": "0.12",
+              "loadavg_5": "0.10",
+              "loadavg_15": "0.08",
+              "mem_total": 2000
+            },
+            "system-stats": {
+              "cpu": "5.3",
+              "mem": "41.2",
+              "uptime": "123456"
+            }
+          }
+        ],
+        "meta": {
+          "rc": "ok"
+        }
+      }
+    }
+  ]
+}
