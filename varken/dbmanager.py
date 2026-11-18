@@ -2,7 +2,7 @@ from sys import exit
 from logging import getLogger
 from influxdb import InfluxDBClient
 from requests.exceptions import ConnectionError
-from influxdb.exceptions import InfluxDBServerError
+from influxdb.exceptions import InfluxDBServerError, InfluxDBClientError
 
 
 class DBManager(object):
@@ -40,6 +40,13 @@ class DBManager(object):
         self.logger.debug('Writing Data to InfluxDB %s', d)
         try:
             self.influx.write_points(d)
+        except InfluxDBClientError as e:
+            # Back-dated points (history backfills) older than the retention policy are dropped by InfluxDB, which
+            # still writes the rest and returns a 400 "partial write". Don't let that kill the job thread.
+            if 'beyond retention policy' in str(e):
+                self.logger.warning('Some points were older than the retention policy and were dropped: %s', e)
+            else:
+                self.logger.error('InfluxDB rejected the write. Dropping this set of data. Error: %s', e)
         except (InfluxDBServerError, ConnectionError) as e:
             self.logger.error('Error writing data to influxdb. Dropping this set of data. '
                               'Check your database! Error: %s', e)

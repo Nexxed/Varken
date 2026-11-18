@@ -39,6 +39,14 @@ class SonarrServer(NamedTuple):
     get_history_totals_run_seconds: int = 900
     get_disk: bool = True
     get_disk_run_seconds: int = 900
+    get_history_events: bool = True
+    get_history_events_run_seconds: int = 300
+    history_events_days: int = 1
+    history_events_backfill_days: int = 7
+    get_tasks: bool = True
+    get_tasks_run_seconds: int = 900
+    get_library: bool = True
+    get_library_run_seconds: int = 3600
 
 
 class RadarrServer(NamedTuple):
@@ -58,6 +66,17 @@ class RadarrServer(NamedTuple):
     get_history_totals_run_seconds: int = 900
     get_disk: bool = True
     get_disk_run_seconds: int = 900
+    get_history_events: bool = True
+    get_history_events_run_seconds: int = 300
+    history_events_days: int = 1
+    history_events_backfill_days: int = 7
+    get_tasks: bool = True
+    get_tasks_run_seconds: int = 900
+    get_library: bool = True
+    get_library_run_seconds: int = 3600
+    get_calendar: bool = True
+    get_calendar_run_seconds: int = 3600
+    calendar_days: int = 30
 
 
 class OmbiServer(NamedTuple):
@@ -97,6 +116,12 @@ class TautulliServer(NamedTuple):
     maxmind_license_key: str = None
     get_server: bool = True
     get_server_run_seconds: int = 300
+    get_history: bool = True
+    get_history_run_seconds: int = 300
+    history_days: int = 2
+    history_backfill_days: int = 364
+    get_daily_stats: bool = True
+    get_daily_stats_run_seconds: int = 3600
 
 
 class SickChillServer(NamedTuple):

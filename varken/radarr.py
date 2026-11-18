@@ -4,10 +4,12 @@ from datetime import date, datetime, timedelta, timezone
 
 from varken.structures import QueuePages, RadarrMovie, RadarrQueue
 from varken.helpers import hashit, connection_handler
+from varken.arr_history import ArrHistoryMixin
+from varken.arr_library import ArrLibraryMixin
 from varken.arr import ArrStatsMixin, queue_item_fields, quality_name
 
 
-class RadarrAPI(ArrStatsMixin):
+class RadarrAPI(ArrStatsMixin, ArrHistoryMixin, ArrLibraryMixin):
     MEASUREMENT = 'Radarr'
     API_PREFIX = '/api/v3'
     HISTORY_EVENTS = {'grabbed': 1, 'imported': 3, 'failed': 4, 'deleted': 6, 'renamed': 8, 'ignored': 9}

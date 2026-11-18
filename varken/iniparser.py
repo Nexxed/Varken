@@ -18,9 +18,19 @@ ARR_OPTIONAL_SETTINGS = {
     'get_health': True, 'get_health_run_seconds': 300,
     'get_wanted': True, 'get_wanted_run_seconds': 900,
     'get_history_totals': True, 'get_history_totals_run_seconds': 900,
-    'get_disk': True, 'get_disk_run_seconds': 900
+    'get_disk': True, 'get_disk_run_seconds': 900,
+    'get_history_events': True, 'get_history_events_run_seconds': 300,
+    'history_events_days': 1, 'history_events_backfill_days': 7,
+    'get_tasks': True, 'get_tasks_run_seconds': 900,
+    'get_library': True, 'get_library_run_seconds': 3600
 }
-TAUTULLI_OPTIONAL_SETTINGS = {'get_server': True, 'get_server_run_seconds': 300}
+# Radarr's library call downloads the whole /movie list (~12 MB for ~2,000 movies), so poll it every 6 h.
+RADARR_OPTIONAL_SETTINGS = {**ARR_OPTIONAL_SETTINGS, 'get_library_run_seconds': 21600,
+                            'get_calendar': True, 'get_calendar_run_seconds': 3600, 'calendar_days': 30}
+TAUTULLI_OPTIONAL_SETTINGS = {'get_server': True, 'get_server_run_seconds': 300,
+                              'get_history': True, 'get_history_run_seconds': 300,
+                              'history_days': 2, 'history_backfill_days': 364,
+                              'get_daily_stats': True, 'get_daily_stats_run_seconds': 3600}
 
 
 class INIParser(object):
@@ -221,7 +231,9 @@ class INIParser(object):
                                                       self.config.get(section, 'queue')))
                             queue_run_seconds = int(env.get(f'VRKN_{envsection}_QUEUE_RUN_SECONDS',
                                                     self.config.getint(section, 'queue_run_seconds')))
-                            arr_settings = self.optional_settings(section, envsection, ARR_OPTIONAL_SETTINGS)
+                            arr_settings = self.optional_settings(
+                                section, envsection,
+                                RADARR_OPTIONAL_SETTINGS if service == 'radarr' else ARR_OPTIONAL_SETTINGS)
 
                         if service in ['sonarr', 'lidarr']:
                             missing_days = int(env.get(f'VRKN_{envsection}_MISSING_DAYS',

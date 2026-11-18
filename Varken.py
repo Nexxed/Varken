@@ -47,6 +47,16 @@ def schedule_arr_stats(api, server, name):
                                   (server.get_disk, server.get_disk_run_seconds, api.get_disk)):
         if enabled:
             schedule.every(seconds).seconds.do(thread, job).tag(f"{name}-{server.id}-{job.__name__}")
+    if server.get_history_events:
+        schedule.every(server.get_history_events_run_seconds).seconds.do(
+            thread, api.get_history_events, days=server.history_events_days).tag(f"{name}-{server.id}-history_events")
+        if server.history_events_backfill_days > server.history_events_days:
+            thread(api.get_history_events, days=server.history_events_backfill_days)
+    if server.get_tasks:
+        schedule.every(server.get_tasks_run_seconds).seconds.do(thread, api.get_tasks).tag(f"{name}-{server.id}-tasks")
+    if server.get_library:
+        schedule.every(server.get_library_run_seconds).seconds.do(thread, api.get_library).tag(
+            f"{name}-{server.id}-library")
 
 
 if __name__ == "__main__":
@@ -135,6 +145,17 @@ if __name__ == "__main__":
             if server.get_server:
                 at_time = schedule.every(server.get_server_run_seconds).seconds
                 at_time.do(thread, TAUTULLI.get_server_status).tag("tautulli-{}-get_server_status".format(server.id))
+            if server.get_history:
+                at_time = schedule.every(server.get_history_run_seconds).seconds
+                at_time.do(thread, TAUTULLI.get_history_plays, days=server.history_days).tag(
+                    "tautulli-{}-get_history_plays".format(server.id))
+                if server.history_backfill_days > server.history_days:
+                    thread(TAUTULLI.get_history_plays, days=server.history_backfill_days)
+            if server.get_daily_stats:
+                for job in (TAUTULLI.get_concurrent_streams, TAUTULLI.get_users, TAUTULLI.get_library_usage,
+                            TAUTULLI.get_recently_added):
+                    schedule.every(server.get_daily_stats_run_seconds).seconds.do(thread, job).tag(
+                        "tautulli-{}-{}".format(server.id, job.__name__))
 
     if CONFIG.radarr_enabled:
         for server in CONFIG.radarr_servers:
@@ -146,6 +167,10 @@ if __name__ == "__main__":
                 at_time = schedule.every(server.queue_run_seconds).seconds
                 at_time.do(thread, RADARR.get_queue).tag("radarr-{}-get_queue".format(server.id))
             schedule_arr_stats(RADARR, server, 'radarr')
+            if server.get_calendar:
+                schedule.every(server.get_calendar_run_seconds).seconds.do(
+                    thread, RADARR.get_calendar, future_days=server.calendar_days).tag(
+                    "radarr-{}-get_calendar".format(server.id))
 
     if CONFIG.lidarr_enabled:
         for server in CONFIG.lidarr_servers:

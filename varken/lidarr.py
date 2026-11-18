@@ -4,11 +4,12 @@ from datetime import datetime, timezone, date, timedelta
 
 from varken.structures import LidarrQueue, LidarrAlbum
 from varken.helpers import hashit, connection_handler
+from varken.arr_library import ArrLibraryMixin
 from varken.arr import ArrStatsMixin, queue_item_fields, quality_name
 from varken.arr_history import ArrHistoryMixin
 
 
-class LidarrAPI(ArrStatsMixin, ArrHistoryMixin):
+class LidarrAPI(ArrStatsMixin, ArrHistoryMixin, ArrLibraryMixin):
     MEASUREMENT = 'Lidarr'
     API_PREFIX = '/api/v1'
     HISTORY_EVENTS = {'grabbed': 1, 'track_imported': 3, 'failed': 4, 'deleted': 5, 'renamed': 6,
