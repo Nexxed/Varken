@@ -484,3 +484,207 @@ class TautulliAPI(object):
                     self.logger.debug('Only imported 30 days of data per retention policy')
                 else:
                     self.logger.error('Something went wrong... post this output in discord: %s', e)
+
+    def _data(self, cmd, **params):
+        """Return response.data for a Tautulli command, or None on failure."""
+        g = self._api(cmd, **params)
+        if not g or not isinstance(g.get('response'), dict) or g['response'].get('result') != 'success':
+            return None
+        return g['response'].get('data')
+
+    @staticmethod
+    def _iso(timestamp):
+        """Epoch seconds (possibly a string) to an ISO string in UTC, or '' when missing."""
+        ts = _num(timestamp)
+        if ts <= 0:
+            return ''
+        return datetime.fromtimestamp(ts, timezone.utc).isoformat()
+
+    def get_history_plays(self, days=2):
+        """One point per finished play, timestamped at its stop time so re-polling overwrites the same points."""
+        libraries = self._data('get_libraries')
+        if not libraries:
+            return
+        after = (date.today() - timedelta(days=days)).isoformat()
+        influx_payload = []
+
+        for library in libraries:
+            section_id = library.get('section_id')
+            section_name = library.get('section_name') or 'Unknown'
+            start = 0
+            while True:
+                data = self._data('get_history', section_id=section_id, after=after, length=1000, start=start)
+                if not isinstance(data, dict):
+                    break
+                rows = data.get('data') or []
+                for row in rows:
+                    row_id = _num(row.get('id'))
+                    stopped = _num(row.get('stopped'))
+                    if not row_id or not stopped:
+                        continue
+
+                    platform_name = row.get('platform') or ''
+                    if platform_name == 'osx':
+                        platform_name = 'macOS'
+                    if platform_name == 'windows':
+                        platform_name = 'Windows'
+
+                    played = row.get('play_duration')
+                    duration = _num(played) if played not in (None, '') else _num(row.get('duration'))
+
+                    influx_payload.append({
+                        "measurement": "Tautulli",
+                        "tags": {
+                            "type": "Play",
+                            "server": self.server.id,
+                            "user": row.get('friendly_name') or row.get('user') or '',
+                            "platform": platform_name,
+                            "product": row.get('product') or '',
+                            "media_type": row.get('media_type') or '',
+                            "transcode_decision": row.get('transcode_decision') or '',
+                            "network": row.get('location') or '',
+                            "library": section_name
+                        },
+                        "time": stopped * 10 ** 9 + (row_id % 10 ** 6),
+                        "fields": {
+                            "title": str(row.get('full_title') or ''),
+                            "duration": duration,
+                            "paused": _num(row.get('paused_counter')),
+                            "percent_complete": _num(row.get('percent_complete')),
+                            "watched": 1 if _num(row.get('watched_status'), float, 0.0) == 1 else 0,
+                            "row_id": row_id,
+                            "hash": hashit(f'{self.server.id}{row_id}')
+                        }
+                    })
+                start += len(rows)
+                if not rows or start >= _num(data.get('recordsFiltered')):
+                    break
+
+        if influx_payload:
+            self.dbmanager.write_points(influx_payload)
+
+    def get_concurrent_streams(self, days=30):
+        """Daily concurrent stream counts per stream type from Tautulli's graph data."""
+        data = self._data('get_concurrent_streams_by_stream_type', time_range=days)
+        if not isinstance(data, dict):
+            return
+        categories = data.get('categories') or []
+        influx_payload = []
+
+        for series in data.get('series') or []:
+            for day, count in zip(categories, series.get('data') or []):
+                try:
+                    day_time = datetime.strptime(day, '%Y-%m-%d').replace(tzinfo=timezone.utc).isoformat()
+                except (TypeError, ValueError):
+                    continue
+                influx_payload.append({
+                    "measurement": "Tautulli",
+                    "tags": {
+                        "type": "Concurrent_Streams",
+                        "server": self.server.id,
+                        "stream_type": series.get('name') or 'Unknown'
+                    },
+                    "time": day_time,
+                    "fields": {
+                        "count": _num(count)
+                    }
+                })
+
+        if influx_payload:
+            self.dbmanager.write_points(influx_payload)
+
+    def get_users(self):
+        """Per-user lifetime play counts and watch time."""
+        now = datetime.now(timezone.utc).astimezone().isoformat()
+        data = self._data('get_users_table', length=100)
+        if not isinstance(data, dict):
+            return
+        influx_payload = []
+
+        for user in data.get('data') or []:
+            influx_payload.append({
+                "measurement": "Tautulli",
+                "tags": {
+                    "type": "User",
+                    "server": self.server.id,
+                    "user": user.get('friendly_name') or user.get('username') or 'Unknown'
+                },
+                "time": now,
+                "fields": {
+                    "plays": _num(user.get('plays')),
+                    "duration": _num(user.get('duration')),
+                    "last_seen": self._iso(user.get('last_seen')),
+                    "is_active": _num(user.get('is_active'))
+                }
+            })
+
+        if influx_payload:
+            self.dbmanager.write_points(influx_payload)
+
+    def get_library_usage(self):
+        """Per-library lifetime play counts and watch time."""
+        now = datetime.now(timezone.utc).astimezone().isoformat()
+        data = self._data('get_libraries_table', length=50)
+        if not isinstance(data, dict):
+            return
+        influx_payload = []
+
+        for library in data.get('data') or []:
+            if _num(library.get('is_active')) != 1:
+                continue
+            influx_payload.append({
+                "measurement": "Tautulli",
+                "tags": {
+                    "type": "Library_Usage",
+                    "server": self.server.id,
+                    "library": library.get('section_name') or 'Unknown',
+                    "section_id": str(library.get('section_id'))
+                },
+                "time": now,
+                "fields": {
+                    "plays": _num(library.get('plays')),
+                    "duration": _num(library.get('duration')),
+                    "items": _num(library.get('count')),
+                    "last_played": self._iso(library.get('last_accessed'))
+                }
+            })
+
+        if influx_payload:
+            self.dbmanager.write_points(influx_payload)
+
+    def get_recently_added(self):
+        """Items added per library in the last 24 hours and 7 days."""
+        now_ts = time()
+        now = datetime.now(timezone.utc).astimezone().isoformat()
+        data = self._data('get_recently_added', count=50)
+        if not isinstance(data, dict):
+            return
+        counts = {}
+
+        for item in data.get('recently_added') or []:
+            library = item.get('library_name') or 'Unknown'
+            added = counts.setdefault(library, [0, 0])
+            age = now_ts - _num(item.get('added_at'))
+            if age < 0:
+                continue
+            if age <= 86400:
+                added[0] += 1
+            if age <= 7 * 86400:
+                added[1] += 1
+
+        influx_payload = [{
+            "measurement": "Tautulli",
+            "tags": {
+                "type": "Recently_Added",
+                "server": self.server.id,
+                "library": library
+            },
+            "time": now,
+            "fields": {
+                "added_24h": added[0],
+                "added_7d": added[1]
+            }
+        } for library, added in counts.items()]
+
+        if influx_payload:
+            self.dbmanager.write_points(influx_payload)
