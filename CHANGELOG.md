@@ -51,7 +51,19 @@ responses. The Python version is kept on the `python-1.x` branch.
 - Cleanuparr: null counts and an unparseable timeline date no longer lose the run.
 - SickChill: an episode with no season or episode number, or a malformed entry, no longer loses the run.
 - UniFi: a site without a description no longer fails at startup.
-- Sonarr/Radarr/Lidarr: see below.
+- Sonarr/Radarr/Lidarr: a root folder is matched to its volume only on a path boundary, so `/data2/movies` no longer
+  reports the size of `/data`. Queue paging stops when the server keeps returning the same page (Python could loop
+  forever) or sends a non-numeric total. History-event backfills are limited to the retention period.
+- Sonarr: an episode with no season number, no series or an untitled series is skipped instead of losing the
+  calendar run; queue records that are not objects are ignored.
+- Radarr: a missing-movie record that is not an object, or a calendar movie with a non-numeric TMDb id, is skipped
+  instead of losing the run.
+- Lidarr: an album with null statistics reads as incomplete (0/0) and an album without an artist is skipped,
+  instead of losing the calendar run.
+
+**Other:**
+- The Docker image no longer installs packages: the binary embeds the time zone database and Alpine ships CA
+  certificates. The image is about 26 MB.
 
 ## Nexxed fork (unreleased)
 

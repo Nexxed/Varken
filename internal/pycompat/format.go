@@ -255,7 +255,7 @@ func writeRepr(dec *json.Decoder, b *strings.Builder) error {
 		}
 		b.WriteString(closing)
 	default:
-		b.WriteString(FromAny(t).Repr())
+		b.WriteString(fromToken(t).Repr())
 	}
 	return nil
 }

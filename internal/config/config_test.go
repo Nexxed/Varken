@@ -399,3 +399,15 @@ func FuzzParseINI(f *testing.F) {
 		}
 	})
 }
+
+func FuzzURLCheck(f *testing.F) {
+	for _, s := range []string{"localhost", "sonarr.domain.tld:8989/x", "1.2.3.4", "ı.com", "a b"} {
+		f.Add(s)
+	}
+	f.Fuzz(func(t *testing.T, u string) {
+		// The port is optional when allowed, so anything valid without one is valid with one allowed.
+		if urlCheck(u, false) && !urlCheck(u, true) {
+			t.Fatalf("%q valid without a port but not with one allowed", u)
+		}
+	})
+}

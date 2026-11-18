@@ -103,7 +103,10 @@ func (w *Writer) Write(ctx context.Context, points []Point) error {
 			continue
 		}
 		if w.log.Enabled(ctx, slog.LevelDebug) {
-			w.log.Debug(fmt.Sprintf("Writing Data to InfluxDB %s", bytes.TrimSpace(body)))
+			// One log entry per point keeps the log one line per entry.
+			for _, line := range bytes.Split(bytes.TrimRight(body, "\n"), []byte("\n")) {
+				w.log.Debug("Writing Data to InfluxDB " + string(line))
+			}
 		}
 		if err := w.send(ctx, body); err != nil {
 			errs = append(errs, err)

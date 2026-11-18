@@ -35,6 +35,7 @@ import subprocess
 import sys
 import time
 import traceback
+import zoneinfo
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from pathlib import Path
@@ -110,7 +111,9 @@ def run_one(case_dir, python_src):
         module.plain_get = fake_plain_get
 
     error = ''
-    now = datetime.fromisoformat(case['now'])
+    # time-machine switches the process to the frozen time's own zone: give it the case's zone, so local dates
+    # (date.today()) and astimezone() follow the case's TZ even when "now" is written in UTC.
+    now = datetime.fromisoformat(case['now']).astimezone(zoneinfo.ZoneInfo(case.get('tz', 'UTC')))
     with time_machine.travel(now, tick=False):
         dbmanager = DBManager(structures.InfluxServer(url='127.0.0.1', port=influx.port))
         try:

@@ -18,10 +18,12 @@ if [ ! -x .golden-venv/bin/python ]; then
 fi
 py=.golden-venv/bin/python
 $py tools/pygolden/pycompat_gen.py --python-src "$src" --skip-tables
+$py internal/collector/arr/testdata/gen_corpus.py --python-src "$src"
 $py tools/pygolden/fixtures/build.py
 $py tools/pygolden/harness.py --python-src "$src"
 $py tools/pygolden/config_cases.py
 $py tools/pygolden/config_dump.py --python-src "$src"
-git status --porcelain -- testdata
-git diff --exit-code -- testdata
-test -z "$(git status --porcelain -- testdata)"
+paths=(testdata internal/collector/arr/testdata)
+git status --porcelain -- "${paths[@]}"
+git diff --exit-code -- "${paths[@]}"
+test -z "$(git status --porcelain -- "${paths[@]}")"

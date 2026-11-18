@@ -126,14 +126,6 @@ func (v Value) AsInt() (int64, bool) { return v.i, v.kind == IntKind && v.s == "
 // AsFloat returns the value of a float.
 func (v Value) AsFloat() (float64, bool) { return v.f, v.kind == FloatKind }
 
-// Raw returns the JSON text of a list or dict value.
-func (v Value) Raw() string {
-	if v.kind == ListKind || v.kind == DictKind {
-		return v.s
-	}
-	return ""
-}
-
 // String is Python's str(value). A missing key prints as None, like dict.get() would return.
 func (v Value) String() string {
 	switch v.kind {
@@ -283,34 +275,15 @@ func (v Value) MarshalJSON() ([]byte, error) {
 	return []byte(v.s), nil
 }
 
-// FromAny converts a value decoded by encoding/json (with UseNumber) or a Go scalar to a Value.
-func FromAny(x any) Value {
+// fromToken converts a token from a json.Decoder with UseNumber.
+func fromToken(x any) Value {
 	switch t := x.(type) {
-	case nil:
-		return None
-	case Value:
-		return t
 	case bool:
 		return Bool(t)
 	case string:
 		return String(t)
 	case json.Number:
 		return parseJSONNumber(string(t))
-	case int:
-		return Int(int64(t))
-	case int64:
-		return Int(t)
-	case float64:
-		return Float(t)
-	default:
-		raw, err := json.Marshal(t)
-		if err != nil {
-			return None
-		}
-		var v Value
-		if err := v.UnmarshalJSON(raw); err != nil {
-			return None
-		}
-		return v
 	}
+	return None
 }

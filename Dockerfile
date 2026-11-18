@@ -45,8 +45,7 @@ LABEL maintainer="dirtycajunrice,samwiseg0" \
   org.opencontainers.image.description="Varken (Nexxed fork, adds Cleanuparr) aggregates data from the Plex ecosystem into InfluxDB using Grafana for a frontend" \
   org.opencontainers.image.licenses="MIT"
 
-RUN apk add --no-cache ca-certificates tzdata
-
+# Alpine already ships CA certificates, and the binary embeds the time zone database, so TZ works as before.
 WORKDIR /app
 COPY --from=build /out/varken /app/varken
 COPY data /app/data

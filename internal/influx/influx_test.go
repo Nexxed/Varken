@@ -401,3 +401,95 @@ func FuzzAppendLine(f *testing.F) {
 		}
 	})
 }
+
+func TestClientErrorPaths(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch {
+		case r.URL.Path == "/ping":
+			w.WriteHeader(http.StatusOK) // not 204
+		case r.URL.Query().Get("q") == "SHOW DATABASES":
+			_, _ = w.Write([]byte(`{"results":[{"error":"database broken"}]}`))
+		case strings.HasPrefix(r.URL.Query().Get("q"), "SHOW RETENTION"):
+			w.WriteHeader(http.StatusUnauthorized)
+			_, _ = w.Write([]byte(`{"error":"authorization failed"}`))
+		default:
+			_, _ = w.Write([]byte(`not json`))
+		}
+	}))
+	defer srv.Close()
+	host, port, _ := strings.Cut(strings.TrimPrefix(srv.URL, "http://"), ":")
+	var p int
+	for _, c := range port {
+		p = p*10 + int(c-'0')
+	}
+	c, err := NewClient(Settings{URL: host, Port: p}, slog.New(slog.DiscardHandler))
+	if err != nil {
+		t.Fatal(err)
+	}
+	ctx := context.Background()
+	if _, err := c.Ping(ctx); err == nil {
+		t.Error("ping must require 204")
+	}
+	if err := c.EnsureDatabase(ctx); err == nil || !strings.Contains(err.Error(), "database broken") {
+		t.Errorf("EnsureDatabase = %v", err)
+	}
+	if _, err := c.DefaultRetention(ctx); err == nil || !strings.Contains(err.Error(), "authorization failed") {
+		t.Errorf("DefaultRetention = %v", err)
+	}
+	if _, err := c.Query(ctx, http.MethodGet, "SELECT 1"); err == nil || !strings.Contains(err.Error(), "not json") {
+		t.Errorf("Query = %v", err)
+	}
+	w := NewWriter(c, slog.New(slog.DiscardHandler))
+	if err := w.Connect(ctx, 1, 0); err == nil {
+		t.Error("Connect should fail")
+	}
+	cancelled, cancel := context.WithCancel(ctx)
+	cancel()
+	if err := sleepCtx(cancelled, time.Hour); err == nil {
+		t.Error("sleepCtx should stop on cancel")
+	}
+	if err := sleepCtx(ctx, time.Millisecond); err != nil {
+		t.Error(err)
+	}
+	// A point with a time Python could not represent is skipped, the others are written.
+	fake := &fakeInflux{}
+	w2, _ := newTestWriter(t, fake)
+	points := []Point{point(1), {Measurement: "m", Fields: map[string]py.Value{"v": py.Int(1)},
+		Time: At(time.Date(3000, 1, 1, 0, 0, 0, 0, time.UTC))}}
+	if err := w2.Write(ctx, points); err != nil || len(fake.writes) != 1 || fake.writes[0] != "m v=1i 1\n" {
+		t.Errorf("writes = %q, %v", fake.writes, err)
+	}
+	if err := w2.Write(ctx, points[1:]); err != nil || len(fake.writes) != 1 {
+		t.Error("a batch with only unwritable points sends nothing")
+	}
+}
+
+func TestEnsureDatabaseKeepsExistingPolicy(t *testing.T) {
+	fake := &fakeInflux{databases: []string{"_internal"}, policies: []string{RetentionPolicy}}
+	_, c := newTestWriter(t, fake)
+	if err := c.EnsureDatabase(context.Background()); err != nil {
+		t.Fatal(err)
+	}
+	for _, q := range fake.queries {
+		if strings.Contains(q, "CREATE RETENTION") {
+			t.Error("existing policy recreated")
+		}
+	}
+	fake.policies = []string{"autogen"}
+	if d, err := c.DefaultRetention(context.Background()); err != nil || d != 0 {
+		t.Errorf("no default policy: %v %v", d, err)
+	}
+}
+
+func TestDebugLogsOneEntryPerPoint(t *testing.T) {
+	fake := &fakeInflux{}
+	w, _ := newTestWriter(t, fake)
+	var buf bytes.Buffer
+	w.log = slog.New(slog.NewTextHandler(&buf, &slog.HandlerOptions{Level: slog.LevelDebug}))
+	if err := w.Write(context.Background(), []Point{point(1), point(2)}); err != nil {
+		t.Fatal(err)
+	}
+	if n := strings.Count(buf.String(), "Writing Data to InfluxDB m v="); n != 2 {
+		t.Errorf("want 2 entries, got %d: %s", n, buf.String())
+	}
+}

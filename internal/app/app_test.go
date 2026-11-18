@@ -11,7 +11,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Nexxed/Varken/internal/collector"
 	"github.com/Nexxed/Varken/internal/config"
+	"github.com/Nexxed/Varken/internal/logging"
+	"github.com/Nexxed/Varken/internal/scheduler"
 	"github.com/Nexxed/Varken/internal/testutil"
 )
 
@@ -218,5 +221,93 @@ func TestResolveDataFolder(t *testing.T) {
 	}
 	if Logger(&bytes.Buffer{}) == nil {
 		t.Error("Logger")
+	}
+}
+
+func tautulliFolder(t *testing.T, fixtureURL, influxHost string, influxPort int) string {
+	t.Helper()
+	folder := t.TempDir()
+	writeINI(t, folder, fmt.Sprintf(`[global]
+tautulli_server_ids = 1
+maxmind_license_key = testkey
+
+[influxdb]
+url = %s
+port = %d
+
+[tautulli-1]
+url = %s
+fallback_ip = 1.1.1.1
+apikey = tautullisecret
+ssl = false
+verify_ssl = false
+get_activity = true
+get_activity_run_seconds = 30
+get_stats = true
+get_stats_run_seconds = 3600
+`, influxHost, influxPort, strings.TrimPrefix(fixtureURL, "http://")))
+	db, err := os.ReadFile(filepath.Join(testutil.RepoRoot(t), "testdata", "geoip", "GeoLite2-City-Test.mmdb"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(folder, "GeoLite2-City.mmdb"), db, 0o644); err != nil {
+		t.Fatal(err)
+	}
+	return folder
+}
+
+func TestImportTautulliWritesHistory(t *testing.T) {
+	routes, expected := caseRoutes(t, "tautulli", "history_plays")
+	fixture := testutil.StartFixture(t, routes)
+	influxSrv := testutil.StartInflux(t, "varken")
+	host, port := influxSrv.HostPort()
+	folder := tautulliFolder(t, fixture.URL, host, port)
+	console := &syncBuffer{}
+	if code := ImportTautulli(context.Background(), Options{DataFolder: folder, Getenv: envOf(nil),
+		Console: console}, 2); code != 0 {
+		t.Fatalf("code %d: %s", code, console.String())
+	}
+	if got := strings.Join(influxSrv.Writes(), ""); got != expected {
+		t.Errorf("wrote:\n%s\nwant:\n%s", got, expected)
+	}
+
+	// A failing server makes the import report failure.
+	failing := testutil.StartFixture(t, nil)
+	folder = tautulliFolder(t, failing.URL, host, port)
+	if code := ImportTautulli(context.Background(), Options{DataFolder: folder, Getenv: envOf(nil),
+		Console: console}, 2); code != 0 && !strings.Contains(console.String(), "Import from") {
+		t.Errorf("code %d", code)
+	}
+}
+
+func TestRegisterSchedulesGeoIPUpdate(t *testing.T) {
+	fixture := testutil.StartFixture(t, nil)
+	folder := tautulliFolder(t, fixture.URL, "127.0.0.1", 1)
+	cfg, err := config.Load(folder, envOf(nil), logging.New(&syncBuffer{}).Logger)
+	if err != nil {
+		t.Fatal(err)
+	}
+	sched := scheduler.New(logging.New(&syncBuffer{}).Logger, nil)
+	Register(context.Background(), cfg, sched, collector.Deps{Now: time.Now}, logging.New(&syncBuffer{}), folder)
+	names := strings.Join(sched.Names(), ",")
+	if !strings.HasPrefix(names, "geoip-update,tautulli-1-get_activity") {
+		t.Errorf("names = %s", names)
+	}
+}
+
+func TestWriteExampleKeepsItCurrent(t *testing.T) {
+	folder := t.TempDir()
+	path := filepath.Join(folder, "varken.example.ini")
+	if err := os.WriteFile(path, []byte("old"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	log := logging.New(&syncBuffer{})
+	writeExample(folder, log)
+	if data, _ := os.ReadFile(path); string(data) != config.ExampleINI {
+		t.Error("example not refreshed")
+	}
+	writeExample(filepath.Join(folder, "missing"), log) // logged, not fatal
+	if err := checkFolder(path); err == nil {
+		t.Error("a file is not a data folder")
 	}
 }

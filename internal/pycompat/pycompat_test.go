@@ -317,7 +317,7 @@ func TestToIntAndFloatHelpers(t *testing.T) {
 	if n, err := IntExact(Float(-2.7)); err != nil || n != -2 {
 		t.Error("IntExact float")
 	}
-	big := FromAny(json.Number("123456789012345678901234567890"))
+	big := fromToken(json.Number("123456789012345678901234567890"))
 	if f, err := ToFloat(big); err != nil || FloatRepr(f) != "1.2345678901234568e+29" {
 		t.Errorf("float(big int) = %v, %v", f, err)
 	}

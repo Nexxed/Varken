@@ -39,12 +39,6 @@ func (o Obj[T]) V() T {
 	return *o.ptr
 }
 
-// Ptr returns the object or nil.
-func (o Obj[T]) Ptr() *T { return o.ptr }
-
-// NewObj wraps a value, for tests and constructed data.
-func NewObj[T any](t T) Obj[T] { return Obj[T]{ptr: &t} }
-
 // List is a JSON array of any element type. It is empty when the value is not an array. Elements that fail to
 // decode as T are kept as a zero T, so positions still line up (Python's zip over parallel lists).
 type List[T any] []T

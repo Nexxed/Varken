@@ -10,6 +10,8 @@ while read -r pkg pct; do
     echo "coverage of $pkg is ${pct}%, below ${floor}%"
     fail=1
   fi
-done < <(echo "$out" | awk '/^ok/ && /internal\// && /coverage:/ && !/internal\/testutil/ {
-  for (i = 1; i <= NF; i++) if ($i == "coverage:") { sub("%", "", $(i+1)); print $2, $(i+1) } }')
+done < <(echo "$out" | awk '/internal\// && !/internal\/testutil/ {
+  pkg = ($1 == "ok") ? $2 : $1
+  if (/no test files/) { print pkg, 0; next }
+  for (i = 1; i <= NF; i++) if ($i == "coverage:") { sub("%", "", $(i+1)); print pkg, $(i+1) } }')
 exit $fail
